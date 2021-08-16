@@ -1,18 +1,23 @@
 <template>
   <div class="container p-2.5 flex flex-col items-center">
-    <p>Chamois</p>
-    <p>NBR</p>
-    <form action="" class=" text-black">
-      <input type="text" placeholder="Espèce" v-model="space">
-      <input type="number" placeholder="Nombre" v-model="nbr">
-      <button @click.prevent="addNewList(space, nbr, list)">OK</button>
+    <form action="" class=" text-black mb-5">
+      <!-- <input type="text" placeholder="Espèce" v-model="spaceName"> -->
+      <select name="spaces" id="spaces" v-model="spaceName" class=" rounded-md px-2 py-1">
+        <option value="" disabled>Espèce</option>
+        <option :value="space" v-for="space of spacesDatasArray" :key="space">
+          {{space}}
+        </option>
+      </select>
+      <input type="number" placeholder="Nombre" v-model="nbr" class=" rounded-md px-2 py-1">
+      <button @click.prevent="addSpace" class=" bg-gray-100 text-black px-2 py-1 rounded-md">OK</button>
+      <!-- <button @click.prevent="addNewList(space, nbr, list)">OK</button> -->
     </form>
 
-    <div v-for="list of list" :key="list.name" class=" flex space-x-3">
-      <p>{{list.name}}</p>
+    <div v-for="list of listOfSpaces" :key="list.spaceName" class=" flex space-x-3">
+      <p>{{list.spaceName}}</p>
       <p>{{list.nbr}}</p>
     </div>
-    <p v-if="list.length === 0">Pas de données</p>
+    <p v-if="listOfSpaces.length === 0">Encore aucune espèce 😭</p>
   </div>
 </template>
 
@@ -31,44 +36,86 @@
     },
     data() {
       return {
-        space: "",
+        spaceName: "",
         nbr: 0,
-        list: [],
+        listOfSpaces: [],
+        spacesDatasArray: [
+          'chamois',
+          'renard',
+          'chevreuil'
+        ],
+      }
+    },
+    mounted() {
+      if (localStorage.getItem('listOfSpaces')) {
+        try {
+          this.listOfSpaces = JSON.parse(localStorage.getItem('listOfSpaces'))
+        } catch (e) {
+          localStorage.removeItem('listOfSpaces')
+        }
       }
     },
     methods: {
-      editList(objectOfDatas, newNbr, list) {
-        const parsedObjectOfDatas = JSON.parse(JSON.stringify(objectOfDatas))
-        const recoverObject = list.find(element => element.name == parsedObjectOfDatas.name)
-        const oldNbr = parseInt(JSON.parse(JSON.stringify(recoverObject)).nbr)
-        const newTotal = oldNbr + newNbr
-        console.log(parsedObjectOfDatas);
-        console.log(newTotal);
-        const index = list.indexOf(objectOfDatas, 0)
-        console.log(index);
 
+      addSpace() {
+        if (!this.spaceName || this.nbr <= 0) {
+          return;
+        }
+        // find spaceName in array for know if spaceName already exist
+        const isDuplicate = this.listOfSpaces.find(element => element.spaceName == this.spaceName)
 
-        list.splice(index, 1)
-        list.push({
-          name: objectOfDatas.name,
-          nbr: newTotal,
-        })
+        // exist or no
+        if (isDuplicate != undefined) {
+          this.editSpace(isDuplicate)
+        } else {
+          // defined const
+          const spaceName = this.spaceName
+          const nbr = parseInt(this.nbr)
+          // push on array
+          this.listOfSpaces.push({
+            spaceName,
+            nbr
+          })
+          // reset datas
+          this.spaceName = ''
+          this.nbr = 0
 
-      },
-      addNewList(spaceList, nbrList, list) {
-
-        const isEqual = list.find(element => element.name == spaceList)
-        if (spaceList != "" && nbrList != 0) {
-          if (isEqual == undefined) {
-            list.push({
-              name: spaceList,
-              nbr: nbrList,
-            })
-          } else {
-            this.editList(isEqual, parseInt(nbrList), list)
-          }
+          this.saveSpace()
         }
       },
+      editSpace(oneSpaces) {
+        // parsed object
+        const parsedSpace = JSON.parse(JSON.stringify(oneSpaces))
+        // defined const
+        const spaceName = this.spaceName
+        const oldNbr = parsedSpace.nbr
+        const newNbr = parseInt(this.nbr)
+        // addition of old & new nbr
+        const totalNbr = oldNbr + newNbr
+
+        // recover index
+        const index = this.listOfSpaces.indexOf(oneSpaces, 0)
+
+        // delete this space
+        this.listOfSpaces.splice(index, 1)
+
+        // re-defined nbr for push with the good key
+        const nbr = totalNbr
+        this.listOfSpaces.push({
+          spaceName,
+          nbr
+          })
+          // reset datas
+          this.spaceName = ''
+          this.nbr = 0
+
+          this.saveSpace()
+      },
+      saveSpace() {
+        // parsed array & save in localStorage
+        const parsed = JSON.stringify(this.listOfSpaces)
+        localStorage.setItem('listOfSpaces', parsed)
+      }
     }
   }
 
