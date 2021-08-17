@@ -4,7 +4,7 @@
       <!-- <input type="text" placeholder="Espèce" v-model="spaceName"> -->
       <select name="spaces" id="spaces" v-model="spaceName" class=" rounded-md px-2 py-1">
         <option value="" disabled>Espèce</option>
-        <option :value="space" v-for="space of spacesDatasArray" :key="space">
+        <option :value="space" v-for="space of allSpaces" :key="space">
           {{space}}
         </option>
       </select>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import allSpaces from '@/datas/allSpaces.json';
   export default {
 
     head() {
@@ -39,11 +40,7 @@
         spaceName: "",
         nbr: 0,
         listOfSpaces: [],
-        spacesDatasArray: [
-          'chamois',
-          'renard',
-          'chevreuil'
-        ],
+        allSpaces: allSpaces
       }
     },
     mounted() {
