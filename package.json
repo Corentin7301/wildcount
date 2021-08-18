@@ -1,5 +1,5 @@
 {
-  "name": "counter.know-wildlife",
+  "name": "wildCount",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,6 @@
     "preview": "nuxt -p 8080"
   },
   "dependencies": {
-    "@nuxtjs/cloudinary": "^1.0.3-beta-3",
     "@nuxtjs/sitemap": "^2.4.0",
     "nuxt": "^2.15.5"
   },

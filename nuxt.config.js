@@ -93,7 +93,7 @@ export default {
         rel: 'icon',
         type: 'image/x-icon',
         // CHANGE FAVICON NAME HERE
-        href: '/favicon.svg'
+        href: '/logo.png'
       },
       {
         hid: "canonical",
@@ -115,7 +115,7 @@ export default {
       }
     ]
   },
-  css: ['~/assets/css/main.css', '~/assets/css/colors.css', '~/assets/css/utility.css', '~/assets/css/scrollbar.css', '~/assets/css/transition.css', '~/assets/css/tailwind.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/transition.css', '~/assets/css/tailwind.css'],
   plugins: [{
       src: '@/plugins/variables.js'
     },
@@ -142,7 +142,6 @@ export default {
 
 
   modules: [
-    '@nuxtjs/cloudinary',
 
 
     // always at the end of array
@@ -175,17 +174,6 @@ export default {
     },
   },
 
-
-  cloudinary: {
-    cloudName: process.env.CLOUD_NAME,
-    apiKey: process.env.API_KEY,
-    apiSecret: process.env.API_SECRET,
-    useComponent: true
-  },
-
-  content: {
-    // Options
-  },
   styleResources: {
     // scss: ['~/assets/scss/*.scss'],
     css: ['~assets/css/*.css']

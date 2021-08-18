@@ -1,8 +1,6 @@
 <template>
-  <div id="layout" class="font-quicksand font-medium tracking-widest no-underline text-lightColor">
-    <Header />
+  <div id="layout" class=" text-lightColor">
     <Nuxt />
-    <Footer />
   </div>
 </template>
 

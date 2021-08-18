@@ -1,19 +1,19 @@
 <template>
-  <div class="container p-2.5 flex flex-col items-center">
-    <form action="" class=" text-black mb-5">
+  <div class="">
+    <form action="" class="">
       <!-- <input type="text" placeholder="Espèce" v-model="spaceName"> -->
-      <select name="spaces" id="spaces" v-model="spaceName" class=" rounded-md px-2 py-1">
+      <select name="spaces" id="spaces" v-model="spaceName" class="">
         <option value="" disabled>Espèce</option>
         <option :value="space" v-for="space of allSpaces" :key="space">
           {{space}}
         </option>
       </select>
-      <input type="number" placeholder="Nombre" v-model="nbr" class=" rounded-md px-2 py-1">
-      <button @click.prevent="addSpace" class=" bg-gray-100 text-black px-2 py-1 rounded-md">OK</button>
+      <input type="number" placeholder="Nombre" v-model="nbr" class="">
+      <button @click.prevent="addSpace" class="">OK</button>
       <!-- <button @click.prevent="addNewList(space, nbr, list)">OK</button> -->
     </form>
 
-    <div v-for="list of listOfSpaces" :key="list.spaceName" class=" flex space-x-3">
+    <div v-for="list of listOfSpaces" :key="list.spaceName" class="">
       <p>{{list.spaceName}}</p>
       <p>{{list.nbr}}</p>
     </div>
