@@ -94,7 +94,6 @@ Il apparaîtra dans la **configuration des cards de partage social**, dans **la 
 
 Il apparaîtra dans la **configuration des cards de partage social**.
 
-* #### **style.colors.primaryColor** : Couleur principale du site. EN HEXADECIMAL Exemple : #41b883.
 
 * #### **style.colors.backgroundColor** : Couleur de fond du site. EN HEXADECIMAL Exemple : #606f7b.
 
@@ -102,7 +101,6 @@ Il apparaîtra dans la **configuration des cards de partage social**.
 
 * #### **style.colors.lightColor** : Couleur claire du site. EN HEXADECIMAL Exemple : #eeeeee.
 
-* #### **style.colors.darkColor** : Couleur sombre du site. EN HEXADECIMAL Exemple : #41414141.
 
 **Pour sauvegarder les modifications il suffit de "commit" et "push".**
 
@@ -334,7 +332,6 @@ It will appear in the **social share cards configuration**, in **contact page** 
 It will appear in the **social share cards configuration**.
 
 
-* #### **style.colors.primaryColor** : Main site color. EN HEXADECIMAL Example : #41b883.
 
 * #### **style.colors.backgroundColor** : Background site color. EN HEXADECIMAL Example : #606f7b.
 
@@ -342,7 +339,6 @@ It will appear in the **social share cards configuration**.
 
 * #### **style.colors.lightColor** : Light site color. EN HEXADECIMAL Example : #eeeeee.
 
-* #### **style.colors.darkColor** : Dark site color. EN HEXADECIMAL Example : #41414141.
 
 **To save the modifications, just "commit" and "push".**
 ## Content :
