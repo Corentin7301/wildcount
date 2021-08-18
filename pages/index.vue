@@ -5,7 +5,7 @@
       <select name="spaces" id="spaces" v-model="spaceName" class="">
         <option value="" disabled>Espèce</option>
         <option :value="space" v-for="space of allSpaces" :key="space">
-          {{space}}
+          {{space.name}}
         </option>
       </select>
       <input type="number" placeholder="Nombre" v-model="nbr" class="">
@@ -14,7 +14,7 @@
     </form>
 
     <div v-for="list of listOfSpaces" :key="list.spaceName" class="">
-      <p>{{list.spaceName}}</p>
+      <p>{{list.spaceName.name}}</p>
       <p>{{list.nbr}}</p>
     </div>
     <p v-if="listOfSpaces.length === 0">Encore aucune espèce 😭</p>
