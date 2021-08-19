@@ -1,19 +1,23 @@
 .page-transition-enter-active,
 .page-transition-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity .2s;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
 .page-transition-enter,
 .page-transition-leave-to {
   opacity: 0;
+  transform: translate3d(0, 15px, 0);
 }
 
 .layout-transition-enter-active,
 .layout-transition-leave-active {
-  transition: opacity .5s
+  transition: opacity .2s;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
 .layout-transition-enter,
 .layout-transition-leave-active {
-  opacity: 0
+  opacity: 0;
+  transform: translate3d(0, 15px, 0);
 }
