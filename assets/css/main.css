@@ -23,3 +23,11 @@ body {
    /* margin: 0; */
   @apply bg-backgroundColor;
 }
+
+.nuxt-link-exact-active {
+  @apply bg-lightColor transition-all;
+}
+
+.nuxt-link-exact-active svg {
+  @apply text-darkGrey transition-all;
+}
