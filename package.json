@@ -9,13 +9,13 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "serve": "nuxt serve",
-    "production": "npm run build && nuxt generate",
-    "preview": "nuxt -p 8080"
+    "production": "npm run build && nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/sitemap": "^2.4.0",
     "fuse.js": "^6.4.6",
-    "nuxt": "^2.15.5"
+    "nuxt": "^2.15.5",
+    "vue-multiselect": "^2.1.6"
   },
   "devDependencies": {
     "@nuxtjs/google-analytics": "^2.4.0",

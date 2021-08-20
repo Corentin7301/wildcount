@@ -1,30 +1,36 @@
 <template>
-  <div class="">
-    <form action="" class="">
-      <!-- <input type="text" placeholder="Espèce" v-model="spaceName"> -->
-      <select name="spaces" id="spaces" v-model="spaceName" class="">
-        <option value="" disabled>Espèce</option>
-        <option :value="space" v-for="space of allSpaces" :key="space">
-          {{space.name}}
-        </option>
-      </select>
-      <input type="number" placeholder="Nombre" v-model="nbr" class="">
-      <button @click.prevent="addSpace" class="">OK</button>
-      <!-- <button @click.prevent="addNewList(space, nbr, list)">OK</button> -->
-    </form>
+  <div class=" h-[80vh] pb-32 ">
+    <form action="" class=" flex flex-col h-full space-y-8">
+      <div class=" relative">
+        <multiselect v-model="oneSpace" :options="allSpaces" track-by="name" placeholder="Espèces"
+          class=" w-full bg-darkGrey rounded-lg px-2 pl-10 py-2 focus:outline-none">
+          <template>
+            <p slot="noResult" class=" mt-2">Aucun résultat</p>
+          </template>
 
-    <div v-for="list of listOfSpaces" :key="list.spaceName" class="">
-      <p>{{list.spaceName.name}}</p>
-      <p>{{list.nbr}}</p>
-    </div>
-    <p v-if="listOfSpaces.length === 0">Encore aucune espèce 😭</p>
+        </multiselect>
+        <svg class="absolute top-3 left-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+      <input type="number" placeholder="0" min="0" v-model="nbr"
+        class=" w-full bg-darkGrey text-center h-full rounded-lg text-7xl focus:outline-none">
+      <button @click.prevent="addSpace"
+        class=" w-full bg-darkGrey text-center rounded-lg py-2 focus:outline-none">Ajouter</button>
+    </form>
   </div>
 </template>
 
 <script>
-import allSpaces from '@/datas/allSpaces.json';
-  export default {
+  import allSpaces from '@/datas/allSpaces.json';
+  import Multiselect from 'vue-multiselect';
 
+  export default {
+    components: {
+      Multiselect,
+    },
     head() {
       return {
         title: this.$global.siteName,
@@ -37,8 +43,8 @@ import allSpaces from '@/datas/allSpaces.json';
     },
     data() {
       return {
-        spaceName: "",
-        nbr: 0,
+        oneSpace: "",
+        nbr: "",
         listOfSpaces: [],
         allSpaces: allSpaces
       }
@@ -55,26 +61,30 @@ import allSpaces from '@/datas/allSpaces.json';
     methods: {
 
       addSpace() {
-        if (!this.spaceName || this.nbr <= 0) {
+        // inputs are not empty validation
+        if (!this.oneSpace || this.nbr <= 0) {
           return;
         }
-        // find spaceName in array for know if spaceName already exist
-        const isDuplicate = this.listOfSpaces.find(element => element.spaceName == this.spaceName)
+        // find oneSpace in array for know if oneSpace already exist
+        const isDuplicate = this.listOfSpaces.find(element => element.oneSpace == this.oneSpace)
+        console.log(isDuplicate);
 
         // exist or no
         if (isDuplicate != undefined) {
           this.editSpace(isDuplicate)
         } else {
           // defined const
-          const spaceName = this.spaceName
+          const oneSpace = this.oneSpace
           const nbr = parseInt(this.nbr)
+          const lastUpdate = new Date()
           // push on array
           this.listOfSpaces.push({
-            spaceName,
-            nbr
+            oneSpace,
+            nbr,
+            lastUpdate
           })
           // reset datas
-          this.spaceName = ''
+          this.oneSpace = ''
           this.nbr = 0
 
           this.saveSpace()
@@ -84,7 +94,7 @@ import allSpaces from '@/datas/allSpaces.json';
         // parsed object
         const parsedSpace = JSON.parse(JSON.stringify(oneSpaces))
         // defined const
-        const spaceName = this.spaceName
+        const oneSpace = this.oneSpace
         const oldNbr = parsedSpace.nbr
         const newNbr = parseInt(this.nbr)
         // addition of old & new nbr
@@ -99,14 +109,14 @@ import allSpaces from '@/datas/allSpaces.json';
         // re-defined nbr for push with the good key
         const nbr = totalNbr
         this.listOfSpaces.push({
-          spaceName,
+          oneSpace,
           nbr
-          })
-          // reset datas
-          this.spaceName = ''
-          this.nbr = 0
+        })
+        // reset datas
+        this.oneSpace = ''
+        this.nbr = 0
 
-          this.saveSpace()
+        this.saveSpace()
       },
       saveSpace() {
         // parsed array & save in localStorage
@@ -117,3 +127,12 @@ import allSpaces from '@/datas/allSpaces.json';
   }
 
 </script>
+
+<style>
+  .multiselect__input {
+    @apply bg-transparent focus:outline-none;
+  }
+  .multiselect__content-wrapper {
+    @apply overflow-scroll py-3;
+  }
+</style>
