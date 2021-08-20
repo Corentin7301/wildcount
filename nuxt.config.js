@@ -103,7 +103,7 @@ export default {
 
       {
         rel: 'manifest',
-        href: '/manifest.json'
+        href: '@/manifest.json'
       },
       {
         rel: 'stylesheet',
