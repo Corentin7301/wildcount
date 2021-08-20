@@ -143,6 +143,9 @@ dist/
 npm-debug.log
 yarn-error.log
 
+.DS_Store
 package-lock.json 
+
+sw.*
 
 # End of https://www.toptal.com/developers/gitignore/api/nuxt,node,vuejs,visualstudiocode

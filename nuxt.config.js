@@ -100,11 +100,6 @@ export default {
         rel: "canonical",
         href: global.siteUrl,
       },
-
-      {
-        rel: 'manifest',
-        href: '@/manifest.json'
-      },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap'
@@ -120,6 +115,7 @@ export default {
   components: true,
   buildModules: [
     '@nuxtjs/google-analytics',
+    '@nuxtjs/pwa',
     '@nuxtjs/tailwindcss',
   ],
 
@@ -132,9 +128,30 @@ export default {
     },
   },
 
-  // tailwindcss: {
-  //   jit: true
-  // },
+  pwa: {
+    meta: {
+      theme_color: '#373D20',
+      name:'WildCount',
+      author: 'Corentin PERROUX',
+      description: 'Vois ton nombre d\'observations par espèces au lieu de les calculer sur WildCount !',
+      lang: 'fr',
+
+    },
+    manifest: {
+      name: 'WildCount',
+      short_name: 'WildCount',
+      description: 'Vois ton nombre d\'observations par espèces au lieu de les calculer sur WildCount !',
+      lang: 'fr',
+      theme_color: "#333333",
+      background_color: "#333333",
+      display: "standalon",
+      orientation: "portrait",
+      start_url: "./?utm_source=pwa"
+    },
+    workbox: {
+
+    },
+  },
 
 
   modules: [
