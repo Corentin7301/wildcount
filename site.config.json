@@ -10,7 +10,8 @@
       "style": {
         "colors": {
           "backgroundColor": "#333333",
-          "grey": "#2C2C2E",
+          "darkGrey": "#2C2C2E",
+          "lightGrey": "#494746",
           "lightColor": "#ECECEC"
         }
       }
