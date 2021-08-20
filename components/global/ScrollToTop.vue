@@ -10,7 +10,7 @@ data() {
       return {
         scrollY: 0,
         // will be hide after 350 px scroll down
-        hideFrom: 350
+        hideFrom: 250
       }
     },
     methods: {
@@ -43,6 +43,6 @@ data() {
 
 <style lang="scss" scoped>
       .fixedElement {
-        @apply fixed w-6 h-6 bottom-12 right-8 z-50 cursor-pointer text-white
+        @apply fixed w-6 h-6 bottom-24 right-8 z-50 cursor-pointer text-white opacity-70
       }
 </style>

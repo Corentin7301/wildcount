@@ -1,5 +1,5 @@
 <template>
-  <div class=" space-y-10 overflow-scroll">
+  <div class=" space-y-10 ">
     <div class=" relative">
       <input type="text" placeholder="Espèce" v-model="spaceQuery"
         class=" w-full bg-darkGrey rounded-lg px-2 pl-10 py-2 focus:outline-none">
@@ -9,7 +9,7 @@
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
       </svg>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-3">
+    <div class="grid grid-cols-2 gap-x-4 gap-y-3 overflow-scroll">
       <div v-for="list of fuseResult" :key="list.spaceName"
         class=" bg-lightGrey flex flex-col justify-between space-y-2 text-white rounded-lg py-3 px-4 text-center text-xl">
         <div class=" h-full flex items-center justify-center">
