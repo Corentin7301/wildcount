@@ -146,7 +146,7 @@ export default {
       background_color: "#333333",
       display: "standalon",
       orientation: "portrait",
-      start_url: "./?utm_source=pwa"
+      start_url: "/?utm_source=pwa"
     },
     workbox: {
 

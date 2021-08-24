@@ -21,7 +21,7 @@
     <div v-if="listOfSpaces.length === 0">
       <p class=" text-center">Encore aucune espèce 😭</p>
       <nuxt-link to="/"><button
-          class=" w-full bg-darkGrey text-center rounded-lg py-2 mt-5 focus:outline-none">Ajoutez-en une !</button>
+          class=" w-full bg-darkGrey text-center rounded-lg py-2 mt-5 focus:outline-none">Ajoutes-en une !</button>
       </nuxt-link>
     </div>
   </div>
