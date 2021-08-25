@@ -52,15 +52,16 @@
 
 <script>
   export default {
-    mounted() {
-      let deferredPrompt;
-      const installApp = document.getElementById('installApp')
+    methods: {
+      installApp() {
+        let deferredPrompt;
 
-      window.addEventListener('beforeinstallprompt', (e) => {
-        deferredPrompt = e;
-      })
+        window.addEventListener('beforeinstallprompt', (e) => {
+          console.log('OK 2');
+          
+          deferredPrompt = e;
+        })
 
-      installApp.addEventListener('click', async () => {
         if (deferredPrompt) {
           deferredPrompt.prompt();
           const {
@@ -70,8 +71,9 @@
             deferredPrompt = null
           }
         }
-      })
-    },
+      },
+
+    }
   }
 
 </script>
