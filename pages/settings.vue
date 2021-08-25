@@ -56,6 +56,9 @@
       const installApp = document.getElementById('installApp')
 
       window.addEventListener('beforeinstallprompt', (e) => {
+        debugger
+        console.log('OK');
+        
         deferredPrompt = e;
       })
 
