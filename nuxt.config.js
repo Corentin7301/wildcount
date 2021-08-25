@@ -144,9 +144,9 @@ export default {
       lang: 'fr',
       theme_color: "#333333",
       background_color: "#333333",
-      display: "standalon",
+      display: "standalone",
       orientation: "portrait",
-      start_url: "/?utm_source=pwa"
+      // start_url: "/?utm_source=pwa"
     },
     workbox: {
 
