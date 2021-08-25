@@ -20,6 +20,27 @@
         blogConfig,
       }
     },
+    mounted() {
+      let deferredPrompt;
+      const installApp = document.getElementById('installApp')
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('OK');
+        deferredPrompt = e;
+      })
+
+      installApp.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const {
+            outcome
+          } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            deferredPrompt = null
+          }
+        }
+      })
+    },
   }
 
 </script>
