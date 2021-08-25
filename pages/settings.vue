@@ -54,6 +54,11 @@
   export default {
     mounted() {
       let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('OK');
+        deferredPrompt = e;
+        this.deferredPrompt = deferredPrompt
+      })
       const installApp = document.getElementById('installApp')
 
       window.addEventListener('beforeinstallprompt', (e) => {
