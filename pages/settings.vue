@@ -53,7 +53,7 @@
 <script>
   export default {
     methods: {
-      installApp() {
+      async installApp() {
         let deferredPrompt;
 
         window.addEventListener('beforeinstallprompt', (e) => {
