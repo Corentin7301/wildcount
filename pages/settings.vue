@@ -4,7 +4,7 @@
       j'espère qu'elle te plaît !<br />Le concept est simple mais c'est toujours sympa de savoir combien d'observations
       on a fait de chaque espèces non ? (paroles de photographe animalier 😉)<br /><br />Corentin PERROUX</p>
     <button id="installApp"
-      class="w-full flex space-x-4 items-center bg-darkGrey text-left rounded-lg px-4 py-3 focus:outline-none">
+      class="w-full flex space-x-4 items-center bg-darkGrey text-left rounded-lg px-4 py-3 focus:outline-none" @click="installApp">
       <div>
         <h2>Installer l'application</h2>
         <p class=" text-sm">(Ça ne prend même pas 1 Mo 😉)</p>
@@ -51,7 +51,27 @@
 
 <script>
   export default {
-
+    props: {
+      deferredPrompt: {
+        type: Event,
+      }
+    },
+    methods: {
+      async installApp() {
+        let deferredPrompt = this.deferredPrompt
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          console.log('OK 2');
+          
+          const {
+            outcome
+          } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            deferredPrompt = null
+          }
+        }
+      }
+    },
   }
 
 </script>
