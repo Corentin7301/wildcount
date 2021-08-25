@@ -1,7 +1,7 @@
 <template>
   <div id="layout" class=" font-quicksand text-lightColor relative text-xl min-h-screen">
     <Header class=" z-50" />
-    <Nuxt class=" pb-32 px-10" :deferredPrompt="deferredPrompt" />
+    <Nuxt class=" pb-32 px-10"/>
     <Navbar />
     <scroll-to-top>
       <svg class="w-6 h-6 top" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -18,11 +18,17 @@
     data() {
       return {
         blogConfig,
-        deferredPrompt: {}
       }
     },
     mounted() {
+      let deferredPrompt;
 
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('OK');
+        deferredPrompt = e;
+        this.deferredPrompt = deferredPrompt
+      })
 
 
     },
