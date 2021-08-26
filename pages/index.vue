@@ -15,8 +15,15 @@
             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </div>
+      <div class=" relative h-full w-full">
       <input type="number" placeholder="0" min="0" v-model="nbr"
-        class=" w-full bg-darkGrey text-center h-full rounded-lg text-7xl focus:outline-none">
+        class=" w-full h-full bg-darkGrey text-center rounded-lg text-7xl focus:outline-none">
+
+        <transition name="modal">
+          <success-icon id="successIcon" class=" hidden" />
+        </transition>
+
+      </div>
       <button @click.prevent="addSpace"
         class=" w-full bg-darkGrey text-center rounded-lg py-2 focus:outline-none">Ajouter</button>
     </form>
@@ -31,6 +38,7 @@
     components: {
       Multiselect,
     },
+    transitions: 'modal',
     head() {
       return {
         title: this.$global.siteName,
@@ -46,7 +54,7 @@
         oneSpace: "",
         nbr: "",
         listOfSpaces: [],
-        allSpaces: allSpaces
+        allSpaces: allSpaces,
       }
     },
     mounted() {
@@ -67,7 +75,6 @@
         }
         // find oneSpace in array for know if oneSpace already exist
         const isDuplicate = this.listOfSpaces.find(element => element.oneSpace == this.oneSpace)
-        console.log(isDuplicate);
 
         // exist or no
         if (isDuplicate != undefined) {
@@ -121,7 +128,15 @@
       saveSpace() {
         // parsed array & save in localStorage
         const parsed = JSON.stringify(this.listOfSpaces)
-        localStorage.setItem('listOfSpaces', parsed)
+        localStorage.setItem('listOfSpaces', parsed);
+
+        this.sucessMessage()
+      },
+      sucessMessage() {
+        document.querySelector('#successIcon').style.display = 'block';
+          setTimeout(() => {
+            document.querySelector('#successIcon').style.display = 'none';
+          }, 2000);
       }
     }
   }
@@ -132,7 +147,9 @@
   .multiselect__input {
     @apply bg-transparent focus:outline-none;
   }
+
   .multiselect__content-wrapper {
     @apply overflow-scroll py-3;
   }
+
 </style>
