@@ -192,7 +192,9 @@ export default {
     css: ['~assets/css/*.css']
   },
   build: {},
-  generate: {},
+  generate: {
+    // fallback: true
+  },
   layoutTransition: {
     name: 'layout-transition',
     mode: 'out-in'
