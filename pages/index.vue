@@ -7,6 +7,8 @@
           <template>
             <p slot="noResult" class=" mt-2">Aucun résultat</p>
           </template>
+          <template slot="singleLabel" slot-scope="props"><p class=" w-full">{{ props.option }}</p></template>
+          <template slot="option" slot-scope="props"><p class=" w-full">{{ props.option }}</p></template>
 
         </multiselect>
         <svg class="absolute top-3 left-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -136,7 +138,7 @@
         document.querySelector('#successIcon').style.display = 'block';
           setTimeout(() => {
             document.querySelector('#successIcon').style.display = 'none';
-          }, 2000);
+          }, 700);
       }
     }
   }
@@ -149,7 +151,19 @@
   }
 
   .multiselect__content-wrapper {
-    @apply overflow-scroll py-3;
+    @apply overflow-scroll py-5;
+  }
+
+  .multiselect__content {
+    @apply space-y-4;
+  }
+
+  .multiselect__content li {
+    @apply w-full;
+  }
+  
+  .multiselect__option {
+    @apply w-full;
   }
 
 </style>
