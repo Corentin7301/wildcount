@@ -24,10 +24,10 @@ body {
   @apply bg-backgroundColor;
 }
 
-.nuxt-link-exact-active {
+.nuxt-link-exact-active, .active {
   @apply bg-lightColor transition-all;
 }
 
-.nuxt-link-exact-active svg {
+.nuxt-link-exact-active svg, .active svg {
   @apply text-darkGrey transition-all;
 }
