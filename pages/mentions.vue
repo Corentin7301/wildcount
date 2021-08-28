@@ -186,7 +186,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     h1 {
         @apply text-2xl font-bold mt-5 mb-4;
     }
