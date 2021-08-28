@@ -193,7 +193,7 @@ export default {
   },
   build: {},
   generate: {
-    // fallback: true
+    fallback: true
   },
   layoutTransition: {
     name: 'layout-transition',
