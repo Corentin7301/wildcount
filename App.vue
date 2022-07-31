@@ -1,6 +1,6 @@
 
 <template>
-  <div class="hello">
+  <div class="text-green-400">
       Hello Nuxt {{ version }}!
   </div>
 </template>
@@ -8,12 +8,3 @@
 <script setup>
 const version = 2 + 1
 </script>
-
-
-<style scoped>
-.hello {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 3rem;
-  padding: 10rem;
-}
-</style>
