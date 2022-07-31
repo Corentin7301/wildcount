@@ -1,29 +1,12 @@
 {
-  "name": "wildCount",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "dev:host": "nuxt --hostname '0'",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "serve": "nuxt serve",
-    "production": "npm run build && nuxt generate"
-  },
-  "dependencies": {
-    "@nuxtjs/sitemap": "^2.4.0",
-    "fuse.js": "^6.4.6",
-    "nuxt": "^2.15.5",
-    "vue-multiselect": "^2.1.6"
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "start": "nuxi preview"
   },
   "devDependencies": {
-    "@nuxtjs/google-analytics": "^2.4.0",
-    "@nuxtjs/tailwindcss": "^4.2.0",
-    "@nuxtjs/pwa": "^3.3.5",
-    "node-sass": "^6.0.0",
-    "postcss": "^8.3.5",
-    "sass-loader": "^10.2.0",
-    "tailwindcss": "^2.2.4"
+    "@nuxtjs/tailwindcss": "^5.3.1",
+    "nuxt": "3.0.0-rc.6"
   }
 }

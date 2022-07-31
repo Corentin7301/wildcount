@@ -148,4 +148,14 @@ package-lock.json
 
 sw.*
 
+
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
+
 # End of https://www.toptal.com/developers/gitignore/api/nuxt,node,vuejs,visualstudiocode
