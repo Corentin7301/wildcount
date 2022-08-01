@@ -22,10 +22,10 @@
     <div
       class="rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
       <textarea name="comment" id="comment" placeholder="Entrez des informations sur votre rencontre"
-        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-xl leading-4 min-h-[100px] resize-none -mb-2 border-none outline-none focus:border-none focus:outline-none"
+        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl leading-4 min-h-[100px] w-full resize-none -mb-2 border-none outline-none focus:border-none focus:outline-none"
         v-model="comment"></textarea>
     </div>
-    <input type="submit" name="search" id="search" class="submit-button" placeholder="Ajouter">
+    <input type="submit" name="search" id="search" class="submit-button" value="Ajouter">
   </form>
 
 </template>
@@ -49,7 +49,7 @@
   }
 
   .submit-button {
-    @apply w-full text-3xl text-center pt-1 h-11 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full placeholder:text-gray-200;
+    @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full placeholder:text-gray-200;
   }
 
   .input-shadow {

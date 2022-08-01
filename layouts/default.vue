@@ -1,8 +1,9 @@
 <template>
-    <main class=" font-Dongle font-light leading-4 text-white bg-mine-shaft-500 min-h-screen pt-10">
+    <main class="relative font-Dongle font-light leading-4 text-white bg-mine-shaft-500 min-h-screen pt-10 pb-[120px]">
         <Container>
-            <Navbar />
+            <Header />
             <slot />
+            <Navbar />
         </Container>
     </main>
 </template>
