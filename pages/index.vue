@@ -9,20 +9,20 @@
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </div>
-        <input type="text" name="search" id="search" class="input-style pt-1 text-xl pl-10"
-          placeholder="Rechercher une espèce..." v-model="search">
+        <input type="text" name="search" id="search" class="input-style text-2xl p-0 pl-10 pt-1"
+          placeholder="Rechercher une espèce..." v-model="search" required>
       </div>
       <input type="date" name="date" id="date"
-        class="input-style max-h-[32px] pt-1 text-xl text-center max-w-[75%] mx-auto grid items-center justify-center "
-        v-model="date">
+        class="input-style p-0 pt-2 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
+        v-model="date" required>
     </div>
     <input type="number" name="number" id="number"
-      class="input-style max-w-[125px] min-h-[125px] mx-auto text-center grid items-center justify-center text-8xl pt-3"
-      placeholder="0" max="500" v-model="number">
+      class="input-style max-w-[125px] max-h-[125px] mx-auto text-center grid items-center justify-center text-8xl pt-5"
+      placeholder="0" max="500" v-model="number" required>
     <div
       class="rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
       <textarea name="comment" id="comment" placeholder="Entrez des informations sur votre rencontre"
-        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-xl leading-4 gradient-border min-h-[100px] resize-none -mb-2 border-none focus:border-none focus:outline-none"
+        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-xl leading-4 min-h-[100px] resize-none -mb-2 border-none outline-none focus:border-none focus:outline-none"
         v-model="comment"></textarea>
     </div>
     <input type="submit" name="search" id="search" class="submit-button" placeholder="Ajouter">
@@ -45,7 +45,7 @@
 
 <style scoped>
   .input-style {
-    @apply w-full h-9 bg-gradient-to-t from-tan-hide-500 to-ecstasy-500 input-shadow focus:ring-white focus:border-none focus:outline-none rounded-full placeholder:text-gray-200;
+    @apply w-full bg-gradient-to-t from-tan-hide-500 to-ecstasy-500 input-shadow focus:ring-white focus:border-none focus:outline-none rounded-full border-none placeholder:text-gray-200;
   }
 
   .submit-button {
@@ -59,5 +59,15 @@
   .button-shadow {
     box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25), inset 0px 2px 4px #FFFFFF;
   }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 </style>
