@@ -22,7 +22,7 @@
     <div
       class="rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
       <textarea name="comment" id="comment" placeholder="Entrez des informations sur votre rencontre"
-        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-xl leading-4 gradient-border min-h-[100px] resize-none -mb-2 focus:border-none focus:outline-none"
+        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-xl leading-4 gradient-border min-h-[100px] resize-none -mb-2 border-none focus:border-none focus:outline-none"
         v-model="comment"></textarea>
     </div>
     <input type="submit" name="search" id="search" class="submit-button" placeholder="Ajouter">
