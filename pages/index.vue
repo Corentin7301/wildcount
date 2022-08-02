@@ -32,6 +32,7 @@
 
 <script setup>
   import dayjs from 'dayjs'
+
   definePageMeta({
     title: 'My home page'
   })
@@ -68,6 +69,12 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
 }
 
 </style>
