@@ -29,6 +29,9 @@ export default defineNuxtConfig({
         '@/assets/css/fonts.css',
         '@/assets/css/transition.css',
       ],
+      plugins: [
+        { src: '~/plugins/nhost', ssr: false },
+      ],
       favicon: './assets/img/icon.png',
 
         // auto import components
