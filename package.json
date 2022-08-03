@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxi build",
+    "generate": "nuxi generate",
     "dev": "nuxi dev",
     "start": "nuxi preview"
   },
@@ -11,8 +12,8 @@
     "nuxt": "3.0.0-rc.6"
   },
   "dependencies": {
-    "@nhost/vue": "^0.4.0",
     "dayjs": "^1.11.4",
-    "graphql": "^16.5.0"
+    "graphql": "^16.5.0",
+    "nuxt-nhost": "^1.1.0"
   }
 }

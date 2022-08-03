@@ -1,5 +1,11 @@
 <template>
-    <div>
-        list
-    </div>
+  <div>
+    list
+  </div>
 </template>
+
+<script setup>
+  definePageMeta({
+    middleware: 'auth'
+  })
+</script>
