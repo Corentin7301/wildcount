@@ -18,12 +18,10 @@
     </NuxtLink>
 
     <transition name="slide" appear>
-      <menu v-if="menuIsOpen" class="absolute inset-0 z-50 h-screen w-full transition-all">
-        <div @click="menuIsOpen = false"  class="absolute inset-0 w-full h-full bg-mine-shaft-500 opacity-0"></div>
-        <div class=" absolute inset-0 h-full w-[80%] bg-mine-shaft-700">
-        </div>
-      </menu>
+
+      <Menu v-if="menuIsOpen" @close-menu="menuIsOpen = false" />
     </transition>
+
   </header>
 </template>
 
@@ -33,13 +31,14 @@
 </script>
 
 <style scoped>
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: transform 0.3s ease-in-out;
+  }
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.3s ease-in-out;
-}
-.slide-enter-from,
-.slide-leave-to {
-  transform: translateX(-100%);
-}
+  .slide-enter-from,
+  .slide-leave-to {
+    transform: translateX(-100%);
+  }
+
 </style>

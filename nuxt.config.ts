@@ -22,15 +22,16 @@ export default defineNuxtConfig({
       },
 
 
-    modules: ['@nuxtjs/tailwindcss'],
+    modules: ['@nuxtjs/tailwindcss','nuxt-nhost'],
+    nhost: {
+      backendUrl: process.env.NHOST_URL,
+    },
+
     css: [
         // CSS file in the project
         '@/assets/css/tailwind.css',
         '@/assets/css/fonts.css',
         '@/assets/css/transition.css',
-      ],
-      plugins: [
-        { src: '~/plugins/nhost', ssr: false },
       ],
       favicon: './assets/img/icon.png',
 

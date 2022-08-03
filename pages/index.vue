@@ -34,7 +34,7 @@
   import dayjs from 'dayjs'
 
   definePageMeta({
-    title: 'My home page'
+    middleware: 'auth'
   })
 
   const search = ref('')
