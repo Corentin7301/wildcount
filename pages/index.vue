@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="" class=" grid gap-9 max-w-[80%] mx-auto">
+  <form @submit.prevent="newObservation()" class=" grid gap-9 max-w-[80%] mx-auto">
     <div class=" flex flex-col gap-5 ">
       <div class="mt-1 relative rounded-md shadow-sm">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -37,10 +37,77 @@
     middleware: 'auth'
   })
 
-  const search = ref('')
+  const {
+    graphql
+  } = useNhostClient()
+  const user = useNhostUser()
+
+  // inputs
   const date = ref(dayjs().format('YYYY-MM-DD'))
   const number = ref('')
   const comment = ref('')
+
+// search feature
+  const search = ref('')
+  const searchedSpecies = ref([])
+
+
+  watch(search, (newSearch) => {
+    searchSpecies()
+  })
+
+  const selectedSpecies = ref({})
+
+  const searchSpecies = async () => {
+    await useAsyncData('', async () => {
+      const res = await graphql.request(`
+      query SearchSpecies {
+        Species(limit: 10,
+        order_by: {commonName: asc},
+        where: 
+        {_or: 
+          [
+            {commonName: {_ilike: "%${search.value}%"}},
+            {scientificName: {_ilike: "%${search.value}%"}}
+          ],
+          enabled: {_eq: true}}) {
+            id
+            commonName
+        }
+      }
+       `)
+      searchedSpecies.value = res.data.Species
+      console.log('my', searchedSpecies.value);
+    })
+  }
+
+
+  const newObservationOK = ref(false)
+
+  const newObservation = async () => {
+    await useAsyncData('', async () => {
+      const res = await graphql.request(`
+           mutation NewObservation {
+             insert_Observation_one(object: 
+             {
+              comment: "${comment.value}",
+              date: "${date.value}",
+              numberOfAnimals: ${number.value},
+              userID: "${user.value.id}",
+              speciesID: 684
+              }) {
+           id
+         }
+       }
+         `)
+        .then(res => {
+          newObservationOK.value = true
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+  }
 
 </script>
 
@@ -61,20 +128,21 @@
     box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25), inset 0px 2px 4px #FFFFFF;
   }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-calendar-picker-indicator {
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
-}
+  }
 
 </style>

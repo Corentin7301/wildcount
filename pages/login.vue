@@ -1,8 +1,8 @@
 <template>
   <div>
     <pre>{{user}}</pre>
-<pre>{{accessToken}}</pre>
-<pre>{{auth.getSession()}}</pre>
+<!--<pre>{{accessToken}}</pre>-->
+<!--<pre>{{auth.getSession()}}</pre>-->
 
     <p v-if="needsEmailVerification">
       Your email is not yet verified. Please check your mailbox and follow the verification link
@@ -19,33 +19,15 @@
 </template>
 
 <script setup>
-  // import {
-  //   useSignInEmailPassword
-  // } from '@nhost/vue'
 
-  const {
+const {
     auth
   } = useNhostClient()
   const user = useNhostUser()
   const refreshToken = useRefreshToken()
   const accessToken = useAccessToken()
-  // const {
-  //   signInEmailPassword,
-  //   needsEmailVerification
-  // } = useSignInEmailPassword()
+
   const email = ref('')
   const password = ref('')
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault()
-    // const {
-    //   isSuccess
-    // } = await signInEmailPassword(email, password)
-    // // todo : test it
-    // if (isSuccess) {
-    //   navigateTo({
-    //     path: '/',
-    //   })
-    // }
-  // }
 
 </script>
