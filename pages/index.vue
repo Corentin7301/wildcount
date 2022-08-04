@@ -1,17 +1,7 @@
 <template>
   <form @submit.prevent="newObservation()" class=" grid gap-9 max-w-[80%] mx-auto">
     <div class=" flex flex-col gap-5 ">
-      <div class="mt-1 relative rounded-md shadow-sm">
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <svg class="w-5 h-5 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-        <input type="text" name="search" id="search" class="input-style text-2xl p-0 pl-10 pt-1"
-          placeholder="Rechercher une espèce..." v-model="search" required>
-      </div>
+      <SearchBar @selected-species="(species) => selectedSpecies.value = species" />
       <input type="date" name="date" id="date"
         class="input-style p-0 pt-2 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
         v-model="date" required>
@@ -22,7 +12,7 @@
     <div
       class="rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
       <textarea name="comment" id="comment" placeholder="Entrez des informations sur votre rencontre"
-        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl leading-4 min-h-[100px] w-full resize-none -mb-2 border-none outline-none focus:border-none focus:outline-none"
+        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 border-none outline-none focus:border-none focus:outline-none"
         v-model="comment"></textarea>
     </div>
     <input type="submit" name="search" id="search" class="submit-button" value="Ajouter">
@@ -47,46 +37,15 @@
   const number = ref('')
   const comment = ref('')
 
-// search feature
-  const search = ref('')
-  const searchedSpecies = ref([])
+  const selectedSpecies = ref(null)
 
-
-  watch(search, (newSearch) => {
-    searchSpecies()
-  })
-
-  const selectedSpecies = ref({})
-
-  const searchSpecies = async () => {
-    await useAsyncData('', async () => {
-      const res = await graphql.request(`
-      query SearchSpecies {
-        Species(limit: 10,
-        order_by: {commonName: asc},
-        where: 
-        {_or: 
-          [
-            {commonName: {_ilike: "%${search.value}%"}},
-            {scientificName: {_ilike: "%${search.value}%"}}
-          ],
-          enabled: {_eq: true}}) {
-            id
-            commonName
-        }
-      }
-       `)
-      searchedSpecies.value = res.data.Species
-      console.log('my', searchedSpecies.value);
-    })
-  }
-
-
+  // new observation
   const newObservationOK = ref(false)
 
   const newObservation = async () => {
-    await useAsyncData('', async () => {
-      const res = await graphql.request(`
+    if (selectedSpecies && comment, date, number) {
+      await useAsyncData('', async () => {
+        const res = await graphql.request(`
            mutation NewObservation {
              insert_Observation_one(object: 
              {
@@ -100,18 +59,21 @@
          }
        }
          `)
-        .then(res => {
-          newObservationOK.value = true
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    })
+          .then(res => {
+            newObservationOK.value = true
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      })
+    } else {
+      console.log('missing inputs')
+    }
   }
 
 </script>
 
-<style scoped>
+<style>
   .input-style {
     @apply w-full bg-gradient-to-t from-tan-hide-500 to-ecstasy-500 input-shadow focus:ring-white focus:border-none focus:outline-none rounded-full border-none placeholder:text-gray-200;
   }
