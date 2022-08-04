@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="newObservation()" class=" grid gap-9 max-w-[80%] mx-auto">
     <div class=" flex flex-col gap-5 ">
-      <SearchBar @selected-species="(species) => selectedSpecies.value = species" />
+      <SearchBar @selected-species="(species) => selectedSpecies = species" />
       <input type="date" name="date" id="date"
         class="input-style p-0 pt-2 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
         v-model="date" required>
@@ -40,6 +40,8 @@
   const selectedSpecies = ref(null)
 
   // new observation
+
+  // todo: add animation when submitting
   const newObservationOK = ref(false)
 
   const newObservation = async () => {
@@ -53,7 +55,7 @@
               date: "${date.value}",
               numberOfAnimals: ${number.value},
               userID: "${user.value.id}",
-              speciesID: 684
+              speciesID: ${selectedSpecies.value.id}
               }) {
            id
          }
