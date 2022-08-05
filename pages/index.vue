@@ -15,9 +15,9 @@
         class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 border-none outline-none focus:border-none focus:outline-none"
         v-model="comment"></textarea>
     </div>
+    <div v-if="success" class=" text-center bg-gradient-to-t from-green-400 to-green-500 rounded-full py-1 input-shadow pb-[1px]">Observation bien répertoriée</div>
     <input type="submit" name="search" id="search" class="submit-button" value="Ajouter">
   </form>
-
 </template>
 
 <script setup>
@@ -44,6 +44,7 @@ import dayjs from 'dayjs'
   // todo: add animation when submitting
   const newObservationOK = ref(false)
   const clearSearch = ref(false)
+  const success = ref(false)
 
   const newObservation = async () => {
     if (selectedSpecies && comment, date, number) {
@@ -69,6 +70,10 @@ import dayjs from 'dayjs'
             comment.value = ''
             selectedSpecies.value = null
             clearSearch.value = true
+            success.value = true
+            setTimeout(() => {
+              success.value = false
+            }, 2000)
           })
           .catch(err => {
             console.log(err)
