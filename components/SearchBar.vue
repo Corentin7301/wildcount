@@ -11,7 +11,7 @@
     </div>
 
     <ul v-if="dropdownIsOpen"
-      class="absolute top-12 left-0 bg-mine-shaft-700 rounded-3xl min-h-[30px] w-full divide-y-[1px] divide-gray-700">
+      class="absolute top-12 left-0 bg-mine-shaft-700 rounded-3xl min-h-[30px]  max-h-60 w-full overflow-y-scroll divide-y-[1px] divide-gray-700">
       <li v-for="(species,index) in searchedSpecies" :key="index" @click="selectOneSpecies(species)"
         class=" pl-8 py-3 text-2xl leading-4">
         {{ species.commonName }}</li>
@@ -33,41 +33,59 @@
 
   watch(search, (newSearch) => {
     searchSpecies()
-    if (newSearch.length === 0 || (selectedSpecies.value !== null && newSearch === selectedSpecies.value.commonName)) {
+    if (newSearch.length === 0 || (selectedSpecies.value !== null && newSearch === selectedSpecies.value
+        .commonName)) {
       dropdownIsOpen.value = false
     } else {
       dropdownIsOpen.value = true
     }
   })
 
-const emit = defineEmits(['selected-species'])
+  const searchSpecies = async () => {
+    await useAsyncData('', async () => {
+      const res = await graphql.request(`
+          query SearchSpecies {
+            Species(limit: 10,
+            order_by: {commonName: asc},
+            where: 
+            {_or: 
+              [
+                {commonName: {_ilike: "%${search.value}%"}},
+                {scientificName: {_ilike: "%${search.value}%"}}
+              ],
+              enabled: {_eq: true}}) {
+                id
+                commonName
+            }
+          }
+           `)
+      searchedSpecies.value = res.data.Species
+    })
+  }
 
+  // select one species feature
   const selectOneSpecies = (species) => {
     selectedSpecies.value = species
     search.value = species.commonName
     emit('selected-species', species)
   }
 
-  const searchSpecies = async () => {
-    await useAsyncData('', async () => {
-      const res = await graphql.request(`
-      query SearchSpecies {
-        Species(limit: 10,
-        order_by: {commonName: asc},
-        where: 
-        {_or: 
-          [
-            {commonName: {_ilike: "%${search.value}%"}},
-            {scientificName: {_ilike: "%${search.value}%"}}
-          ],
-          enabled: {_eq: true}}) {
-            id
-            commonName
-        }
-      }
-       `)
-      searchedSpecies.value = res.data.Species
-    })
-  }
+  const emit = defineEmits(['selected-species', 'cleared-search'])
+
+
+  // clear search & selectedSpecies when observation is successfully submitted
+  const props = defineProps({
+    clearedSearch: {
+      type: Boolean,
+      default: false,
+    },
+  })
+  watch(() => props.clearedSearch, (newClearedSearch, second) => {
+    if (newClearedSearch === true) {
+      search.value = ''
+      selectedSpecies.value = null
+      emit('cleared-search')
+    }
+  })
 
 </script>
