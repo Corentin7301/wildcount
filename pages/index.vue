@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="newObservation()" class=" grid gap-9 max-w-[80%] mx-auto">
     <div class=" flex flex-col gap-5 ">
-      <SearchBar @selected-species="(species) => selectedSpecies = species" />
+      <SearchBar @selected-species="(species) => selectedSpecies = species" :clearedSearch="clearSearch" @cleared-search="clearSearch = false" />
       <input type="date" name="date" id="date"
         class="input-style p-0 pt-2 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
         v-model="date" required>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-  import dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
   definePageMeta({
     middleware: 'auth'
@@ -43,6 +43,7 @@
 
   // todo: add animation when submitting
   const newObservationOK = ref(false)
+  const clearSearch = ref(false)
 
   const newObservation = async () => {
     if (selectedSpecies && comment, date, number) {
@@ -63,6 +64,11 @@
          `)
           .then(res => {
             newObservationOK.value = true
+            date.value = dayjs().format('YYYY-MM-DD')
+            number.value = ''
+            comment.value = ''
+            selectedSpecies.value = null
+            clearSearch.value = true
           })
           .catch(err => {
             console.log(err)

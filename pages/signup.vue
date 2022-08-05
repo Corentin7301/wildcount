@@ -1,4 +1,5 @@
 <template>
+<!--todo:design this page-->
   <p v-if="needsEmailVerification">
     Veuillez vérifier votre boîte mail et suivre le lien de vérification pour vérifier votre e-mail 📬.
   </p>

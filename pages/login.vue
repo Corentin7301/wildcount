@@ -1,9 +1,10 @@
 <template>
   <div>
-    <pre>{{user}}</pre>
+    <!--<pre>{{user}}</pre>-->
 <!--<pre>{{accessToken}}</pre>-->
 <!--<pre>{{auth.getSession()}}</pre>-->
 
+<!--todo:design this page-->
     <p v-if="needsEmailVerification">
       Your email is not yet verified. Please check your mailbox and follow the verification link
       finish registration.
