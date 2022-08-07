@@ -55,9 +55,9 @@ import dayjs from 'dayjs'
              {
               comment: "${comment.value}",
               date: "${date.value}",
-              numberOfAnimals: ${number.value},
-              userID: "${user.value.id}",
-              speciesID: ${selectedSpecies.value.id}
+              number_of_animals: ${number.value},
+              user_id: "${user.value.id}",
+              species_id: ${selectedSpecies.value.id}
               }) {
            id
          }

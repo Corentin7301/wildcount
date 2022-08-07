@@ -14,7 +14,7 @@
       class="absolute top-12 left-0 bg-mine-shaft-700 rounded-3xl min-h-[30px]  max-h-60 w-full overflow-y-scroll divide-y-[1px] divide-gray-700">
       <li v-for="(species,index) in searchedSpecies" :key="index" @click="selectOneSpecies(species)"
         class=" pl-8 py-3 text-2xl leading-4">
-        {{ species.commonName }}</li>
+        {{ species.common_name }}</li>
     </ul>
   </div>
 </template>
@@ -33,29 +33,28 @@
 
   watch(search, (newSearch) => {
     searchSpecies()
-    if (newSearch.length === 0 || (selectedSpecies.value !== null && newSearch === selectedSpecies.value
-        .commonName)) {
+    if (newSearch.length === 0 || (selectedSpecies.value !== null && newSearch === selectedSpecies.value.common_name)) {
       dropdownIsOpen.value = false
     } else {
       dropdownIsOpen.value = true
     }
   })
-
+// todo: look at graphQL subscription
   const searchSpecies = async () => {
     await useAsyncData('', async () => {
       const res = await graphql.request(`
           query SearchSpecies {
             Species(limit: 10,
-            order_by: {commonName: asc},
+            order_by: {common_name: asc},
             where: 
             {_or: 
               [
-                {commonName: {_ilike: "%${search.value}%"}},
-                {scientificName: {_ilike: "%${search.value}%"}}
+                {common_name: {_ilike: "%${search.value}%"}},
+                {scientific_name: {_ilike: "%${search.value}%"}}
               ],
               enabled: {_eq: true}}) {
                 id
-                commonName
+                common_name
             }
           }
            `)
@@ -66,7 +65,7 @@
   // select one species feature
   const selectOneSpecies = (species) => {
     selectedSpecies.value = species
-    search.value = species.commonName
+    search.value = species.common_name
     emit('selected-species', species)
   }
 
