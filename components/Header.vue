@@ -18,7 +18,6 @@
     </NuxtLink>
 
     <transition name="slide" appear>
-
       <Menu v-if="menuIsOpen" @close-menu="menuIsOpen = false" />
     </transition>
 

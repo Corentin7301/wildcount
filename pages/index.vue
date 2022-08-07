@@ -24,7 +24,7 @@
 import dayjs from 'dayjs'
 
   definePageMeta({
-    middleware: 'auth'
+    middleware: 'auth',
   })
 
   const {

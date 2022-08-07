@@ -2,7 +2,7 @@
   <div>
     <Container>
       <!--todo:add searchbar + filters (+ update calc-max-h class in css)-->
-      <ul class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h">
+      <ul class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll">
         <li v-for="(observation,index) in observations.data.Observation_aggregate.nodes" :key="index"
           class=" min-h-[140px] rounded-2xl bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent card-shadow">
           <div class="grid gap-2 bg-mine-shaft-500 pt-6 px-5 rounded-2xl text-white h-full w-full border-none outline-none">

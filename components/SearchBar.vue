@@ -11,7 +11,7 @@
     </div>
 
     <ul v-if="dropdownIsOpen"
-      class="absolute top-12 left-0 bg-mine-shaft-700 rounded-3xl min-h-[30px]  max-h-60 w-full overflow-y-scroll divide-y-[1px] divide-gray-700">
+      class="absolute top-12 left-0 bg-mine-shaft-700 rounded-3xl min-h-[30px]  max-h-60 w-full overflow-y-scroll divide-y-[1px] divide-gray-700 no-scroll">
       <li v-for="(species,index) in searchedSpecies" :key="index" @click="selectOneSpecies(species)"
         class=" pl-8 py-3 text-2xl leading-4">
         {{ species.common_name }}</li>
