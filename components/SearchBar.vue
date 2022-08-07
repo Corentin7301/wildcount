@@ -41,7 +41,6 @@
   })
 // todo: look at graphQL subscription
   const searchSpecies = async () => {
-    await useAsyncData('', async () => {
       const res = await graphql.request(`
           query SearchSpecies {
             Species(limit: 10,
@@ -59,7 +58,6 @@
           }
            `)
       searchedSpecies.value = res.data.Species
-    })
   }
 
   // select one species feature
