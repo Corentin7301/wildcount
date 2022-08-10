@@ -32,6 +32,7 @@ export default defineNuxtConfig({
         '@/assets/css/tailwind.css',
         '@/assets/css/fonts.css',
         '@/assets/css/transition.css',
+        '@/assets/css/style-perso.css',
       ],
       favicon: './assets/img/icon.png',
 

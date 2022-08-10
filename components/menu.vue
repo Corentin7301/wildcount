@@ -13,7 +13,7 @@
           <nuxt-link to="/stats"></nuxt-link>
           <nuxt-link to="/settings"></nuxt-link>
         </div>
-        <button v-if="user" @click="auth.signOut()"
+        <button v-if="user" @click="signout()"
           class=" text-red-500 font-normal text-xl justify-self-end">Déconnexion</button>
       </div>
     </div>
@@ -43,5 +43,17 @@
   `)
     return classes
   })
+
+    const signout = async () => {
+    try {
+      const res = await auth.signOut()
+      console.log(res);
+      if(res.error===null) {
+        return navigateTo('/login')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 </script>

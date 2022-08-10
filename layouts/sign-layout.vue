@@ -1,0 +1,28 @@
+<template>
+  <main class="relative grid font-Dongle font-light leading-4 text-white bg-mine-shaft-500 min-w-full min-h-screen max-h-screen antialiased">
+    <Container class=" w-full">
+          <img class="mx-auto h-20 w-auto mt-16 mb-4" src="/logo.png" alt="Wildcount" />
+
+      <slot />
+    </Container>
+    <RandomImage />
+  </main>
+</template>
+
+<script setup>
+  useHead({
+    title: 'Wildcount',
+    // or, instead:
+    // titleTemplate: (title) => `My App - ${title}`,
+    viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+    charset: 'utf-8',
+    meta: [{
+      name: 'description',
+      content: 'My amazing site.'
+    }, ],
+    bodyAttrs: {
+      class: 'test'
+    }
+  })
+
+</script>

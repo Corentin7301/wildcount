@@ -85,39 +85,3 @@ import dayjs from 'dayjs'
   }
 
 </script>
-
-<style>
-  .input-style {
-    @apply w-full bg-gradient-to-t from-tan-hide-500 to-ecstasy-500 input-shadow focus:ring-white focus:border-none focus:outline-none rounded-full border-none placeholder:text-gray-200;
-  }
-
-  .submit-button {
-    @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full placeholder:text-gray-200;
-  }
-
-  .input-shadow {
-    box-shadow: 0px 3.25px 15.4375px rgba(0, 0, 0, 0.25), inset 0px 1.625px 4.0625px -0.8125px #FFFFFF;
-  }
-
-  .button-shadow {
-    box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25), inset 0px 2px 4px #FFFFFF;
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Firefox */
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
-
-  input[type="date"]::-webkit-inner-spin-button,
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-  }
-
-</style>
