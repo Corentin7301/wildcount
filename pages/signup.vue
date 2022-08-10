@@ -1,8 +1,12 @@
 <template>
   <div class="flex flex-col justify-center pb-12 sm:px-6 lg:px-8">
-    <p v-if="needsEmailVerification" class="mt-14">
-      Votre e-mail n'est pas encore vérifié. Veuillez vérifier votre boite mail et terminer l'inscription grâce au lien de vérification 📬.
-    </p>
+    <div v-if="needsEmailVerification" >
+      <p class="mt-14 text-xl leading-4 text-center">
+        Vérifies ta boîte mail et termines ton inscription grâce au <span class="text-ecstasy-500">lien de vérification </span>!
+        <span class="block text-base">(Pensez à vérifier vos spams si vous ne recevez pas le mail...)</span>
+      </p>
+      <p class=" text-center text-9xl pt-20">📬</p>
+    </div>
     <div v-else>
       <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 class="mt-6 text-center text-5xl font-extrabold text-gray-100">Nouveau compte</h2>
@@ -101,19 +105,24 @@
   const needsEmailVerification = ref(false)
 
   const signUp = async () => {
-    await auth.signUp({
+    try {
+      const res = await auth.signUp({
         email: email.value,
         password: password.value,
       })
-      .then(() => {
+
+      console.log(res);
+
+      if (res.error === null) {
         needsEmailVerification.value = true
         setTimeout(() => {
           navigateTo('/')
         }, 15000);
-      })
-      .catch(error => {
-        console.log('signUp error', error)
-      })
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 </script>
