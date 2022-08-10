@@ -13,7 +13,6 @@
     const random = ref(null)
     
     random.value = randomImage();
-    // console.log(random.value);
     
   function randomImage () {
     return allImages[Math.floor(Math.random() * allImages.length)]

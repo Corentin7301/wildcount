@@ -111,8 +111,6 @@
         password: password.value,
       })
 
-      console.log(res);
-
       if (res.error === null) {
         needsEmailVerification.value = true
         setTimeout(() => {

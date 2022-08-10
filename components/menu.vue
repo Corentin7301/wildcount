@@ -47,7 +47,6 @@
     const signout = async () => {
     try {
       const res = await auth.signOut()
-      console.log(res);
       if(res.error===null) {
         return navigateTo('/login')
       }
