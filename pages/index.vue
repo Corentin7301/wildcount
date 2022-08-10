@@ -63,7 +63,8 @@ import dayjs from 'dayjs'
          }
        }
          `)
-          .then(res => {
+
+         if (res.data.insert_Observation_one.id) {
             newObservationOK.value = true
             date.value = dayjs().format('YYYY-MM-DD')
             number.value = ''
@@ -74,10 +75,7 @@ import dayjs from 'dayjs'
             setTimeout(() => {
               success.value = false
             }, 2000)
-          })
-          .catch(err => {
-            console.log(err)
-          })
+         }
       })
     } else {
       console.log('missing inputs')
