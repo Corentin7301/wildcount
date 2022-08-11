@@ -1,6 +1,7 @@
 <template>
   <div>
     <Container>
+
       <!--todo:add searchbar + filters (+ update calc-max-h class in css)-->
       <ul class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll">
         <li v-for="(observation,index) in observations.data.Observation_aggregate.nodes" :key="index"
@@ -21,51 +22,37 @@
     middleware: 'auth'
   })
 
-  const {
-    auth
-  } = useNhostClient()
   const user = useNhostUser()
   const {
     graphql
   } = useNhostClient()
 
+
+  onMounted(() => {
+    refresh()
+  })
+
+// data refreshing
+  const refresh = () => refreshNuxtData('observations')
+
+// data fetching
   const {
     data: observations
-  } = await useAsyncData('', async () => {
-    try {
-      //     const observations = await graphql.request(`
-      //     query MyObservervations {
-      //     Observation(where: {userID: {_eq: "${user.value.id}"}}, order_by: {created_at: desc}) {
-      //       id
-      //       date
-      //       created_at
-      //       numberOfAnimals
-      //       comment
-      //       species {
-      //         commonName
-      //         id
-      //       }
-      //   }
-      // }
-      //   `)
-      const observations = await graphql.request(`
+  } = await useAsyncData('observations', async () => {
+    const observations = await graphql.request(`
     query nbrOfObservationsBySpecies {
-      Observation_aggregate(distinct_on: species_id,where: {userID: {_eq: "${user.value.id}"}}, order_by: {created_at: desc}) {
-        nodes {
-          number_of_animals
-          Species {
-            common_name
-          }
+    Observation_aggregate(distinct_on: species_id, where: {user_id: {_eq: "${user.value.id}"}}) {
+      nodes {
+        number_of_animals
+        Species {
+          common_name
         }
       }
     }
-    `)
-      return observations
-    } catch (error) {
-      console.log(error)
-    }
+  }
+  `)
+    return observations
   })
-
 </script>
 
 <style scoped>
