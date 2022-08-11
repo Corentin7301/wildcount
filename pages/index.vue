@@ -6,6 +6,9 @@
       <input type="date" name="date" id="date"
         class="input-style p-0 pt-2 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
         v-model="date" required>
+      <Transition name="fade">
+        <p v-if="badDateMessage" class=" text-center text-red-500 text-xl">{{badDateMessage}}</p>
+      </Transition>
     </div>
     <input type="number" name="number" id="number"
       class="input-style max-w-[125px] max-h-[125px] mx-auto text-center grid items-center justify-center text-8xl pt-5"
@@ -37,6 +40,15 @@
 
   // inputs
   const date = ref(dayjs().format('YYYY-MM-DD'))
+  // error message
+  const badDateMessage = ref(null)
+  watch(date, (newDate) => {
+    if (newDate > dayjs().format('YYYY-MM-DD')) {
+      badDateMessage.value = 'La date doit être inférieure à la date du jour'
+    } else {
+      badDateMessage.value = null
+    }
+  })
   const number = ref('')
   const comment = ref('')
 
@@ -50,7 +62,7 @@
   const success = ref(false)
 
   const newObservation = async () => {
-    if (selectedSpecies && comment, date, number) {
+    if (selectedSpecies.value && date.value && !badDateMessage.value && number.value) {
       try {
         const {
           data,
