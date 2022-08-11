@@ -27,10 +27,12 @@
               </label>
             </div>
             <!--error message-->
-              <Transition name="fade">
-                <p href="#" v-if="errorMessage" class="text-base text-center font-medium text-red-500 hover:text-red-500 opacity-80 transition-all">{{errorMessage}}
-                </p>
-              </Transition>
+            <Transition name="fade">
+              <p href="#" v-if="errorMessage"
+                class="text-base text-center font-medium text-red-500 hover:text-red-500 opacity-80 transition-all">
+                {{errorMessage}}
+              </p>
+            </Transition>
             <div class="flex items-center justify-end max-w-[80%] mx-auto">
               <!--todo:mot de passe oublié-->
               <a href="#" class="text-base font-medium text-ecstasy-500 hover:text-ecstasy-500 opacity-80">Mot de
@@ -99,10 +101,15 @@
     layout: "sign-layout",
   });
 
+  // redirect method if user is already logged in
+  const user = useNhostUser()
+  if (user) {
+    navigateTo('/')
+  }
+
   const errorMessage = ref(null)
   const email = ref('')
   const password = ref('')
-
 
   const loginWithLogin = async () => {
     try {

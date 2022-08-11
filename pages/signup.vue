@@ -97,9 +97,15 @@
     layout: "sign-layout",
   });
 
+  // redirect method if user is already logged in
+  const user = useNhostUser()
+  if (user) {
+    navigateTo('/')
+  }
+
   // todo: google ?
   // todo: facebook ?
-  const locale = ref(navigator.language || navigator.userLanguage)
+  // const locale = ref(navigator.language || navigator.userLanguage)
   const email = ref('')
   const password = ref('')
   const needsEmailVerification = ref(false)
