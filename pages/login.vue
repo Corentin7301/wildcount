@@ -5,7 +5,7 @@
         <h2 class="mt-6 text-center text-5xl font-extrabold text-gray-100">Connexion</h2>
         <p class=" text-center text-xl text-gray-200">
           ou
-          <NuxtLink to="/signup" class="font-medium text-ecstasy-500 hover:text-ecstasy-600"> créez votre compte
+          <NuxtLink to="/signup" class="font-medium text-ecstasy-500 hover:text-ecstasy-600"> créé ton compte
           </NuxtLink>
         </p>
       </div>
@@ -27,17 +27,20 @@
               </label>
             </div>
             <!--error message-->
-            <Transition name="fade">
+            <Transition name="fade" appear>
               <p href="#" v-if="errorMessage"
                 class="text-base text-center font-medium text-red-500 hover:text-red-500 opacity-80 transition-all">
                 {{errorMessage}}
               </p>
             </Transition>
-            <div class="flex items-center justify-end max-w-[80%] mx-auto">
-              <!--todo:mot de passe oublié-->
-              <a href="#" class="text-base font-medium text-ecstasy-500 hover:text-ecstasy-500 opacity-80">Mot de
+            <div class="flex flex-col items-end justify-center max-w-[80%] mx-auto">
+              <p @click="resetPasswordFormIsOpen = true"
+                class="text-base font-medium text-ecstasy-500 hover:text-ecstasy-500 opacity-80">Mot de
                 passe oublié ?
-              </a>
+              </p>
+              <Transition name="slide-top" appear>
+                <ResetPasswordModal v-if="resetPasswordFormIsOpen" @close-modal="resetPasswordFormIsOpen = false" />
+              </Transition>
             </div>
             <div class="flex items-center justify-center"><input type="submit" name="search" id="search"
                 class="submit-button max-w-[90%]" value="Connexion"></div>
@@ -48,7 +51,7 @@
                   <div class="w-full border-t border-ecstasy-900"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-ecstasy-500 text-white rounded-full">Ou connectez-vous avec</span>
+                  <span class="px-2 bg-ecstasy-500 text-white rounded-full">Ou connectes-toi avec</span>
                 </div>
               </div>
               <div class="mt-6 grid grid-cols-3 gap-3">
@@ -127,12 +130,14 @@
       }
       if (res.error.status === 102) {
         errorMessage.value =
-          'Vous devez vérifier votre adresse email. Cliquez sur le lien qui vous a été envoyé par email. 📬 (Si vous n\'avez pas reçu le mail, vérifiez dans les spams)'
+          'Tu dois vérifier ton adresse email. Cliques sur le lien qui t\'as a été envoyé par email. 📬 (Si tu n\'as pas reçu le mail, vérifies dans les spams)'
       }
 
     } catch (error) {
       console.log(error)
     }
   }
+
+  const resetPasswordFormIsOpen = ref(false)
 
 </script>
