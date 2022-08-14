@@ -6,7 +6,7 @@
       <input type="date" name="date" id="date"
         class="input-style p-0 pt-2 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
         v-model="date" required>
-      <Transition name="fade">
+      <Transition name="fade" appear>
         <p v-if="badDateMessage" class=" text-center text-red-500 text-xl">{{badDateMessage}}</p>
       </Transition>
     </div>
@@ -15,7 +15,7 @@
       placeholder="0" max="500" v-model="number" required>
     <div
       class="w-full rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
-      <textarea name="comment" id="comment" placeholder="Entrez des informations sur votre rencontre"
+      <textarea name="comment" id="comment" placeholder="Entre des informations sur ta rencontre"
         class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 border-none outline-none focus:border-none focus:outline-none"
         v-model="comment"></textarea>
     </div>

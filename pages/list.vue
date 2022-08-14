@@ -41,7 +41,7 @@
   } = await useAsyncData('observations', async () => {
     const observations = await graphql.request(`
     query MyQuery {
-      Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on:     species_id) {
+      Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on: species_id) {
         Species {
           small_name
           Observations_aggregate {

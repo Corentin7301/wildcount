@@ -1,6 +1,11 @@
 <template>
   <div>
     <button v-if="user" @click="signout()">Déconnexion</button>
+    <!--Add Hello User btn-->
+    <!--Add install btn-->
+    <!--Add account btn-->
+    <!--Add tutorial btn-->
+
   </div>
 </template>
 
@@ -25,5 +30,7 @@
       console.log(err)
     }
   }
+
+  // todo: add changePassword method
 
 </script>

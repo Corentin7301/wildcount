@@ -3,7 +3,7 @@
     <div v-if="needsEmailVerification" >
       <p class="mt-14 text-xl leading-4 text-center">
         Vérifies ta boîte mail et termines ton inscription grâce au <span class="text-ecstasy-500">lien de vérification </span>!
-        <span class="block text-base">(Pensez à vérifier vos spams si vous ne recevez pas le mail...)</span>
+        <span class="block text-base">(Penses à vérifier tes spams si tu ne reçois pas le mail...)</span>
       </p>
       <p class=" text-center text-9xl pt-20">📬</p>
     </div>
@@ -12,7 +12,7 @@
         <h2 class="mt-6 text-center text-5xl font-extrabold text-gray-100">Nouveau compte</h2>
         <p class=" text-center text-xl text-gray-200">
           ou
-          <NuxtLink to="/login" class="font-medium text-ecstasy-500 hover:text-ecstasy-600"> connectez-vous
+          <NuxtLink to="/login" class="font-medium text-ecstasy-500 hover:text-ecstasy-600"> connectes-toi
           </NuxtLink>
         </p>
       </div>
@@ -44,7 +44,7 @@
                   <div class="w-full border-t border-ecstasy-900"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-ecstasy-500 text-white rounded-full">Ou connectez-vous avec</span>
+                  <span class="px-2 bg-ecstasy-500 text-white rounded-full">Ou connectes-toi avec</span>
                 </div>
               </div>
               <div class="mt-6 grid grid-cols-3 gap-3">

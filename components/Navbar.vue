@@ -3,15 +3,13 @@
     class=" absolute bottom-0 left-0 min-h-[85px] w-full rounded-t-3xl bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 px-20 pt-9 pb-6">
     <div class="relative w-full h-full flex items-center justify-between">
       <NuxtLink to="/list">
-        <svg class="w-9 h-9 icon-shadow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16">
-          </path>
+        <svg class="w-9 h-9 icon-shadow stroke-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 21H20M4 3H20H4ZM4 9H20H4ZM4 15H20H4Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
         </svg>
       </NuxtLink>
 
       <NuxtLink to="/stats">
-        <svg class="w-9 h-9 icon-shadow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        <svg class="w-9 h-9 icon-shadow stroke-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
