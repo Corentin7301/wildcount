@@ -2,16 +2,20 @@
   <div>
     <Container>
       <SearchBar @selected-species="(species) => selectedSpecies = species" :clearedSearch="clearSearch"
-        @cleared-search="clearSearch = false" class=" mb-4" searchbarUtility="allObservations" :dataToSearch="observations.data.Observation" />
-      <p v-if="observations.data.Observation.length === 0" class=" text-center text-2xl">Il n'y a pas encore d'observation ! <NuxtLink to="/" class="block text-ecstasy-500 text-3xl">Ajoutes-en une !</NuxtLink></p>
-      <!--todo:add searchbar + filters (+ update calc-max-h class in css)-->
+        @cleared-search="clearSearch = false" class=" mb-4" searchbarUtility="allObservations"
+        @all-observations-search-value="(searchValue) => allObservationsSearch(searchValue)" />
+      <p v-if="observations.data.Observation.length === 0" class=" text-center text-2xl">Il n'y a pas encore
+        d'observation ! <NuxtLink to="/" class="block text-ecstasy-500 text-3xl">Ajoutes-en une !</NuxtLink>
+      </p>
+      <!--todo: filters (+ update calc-max-h class in css)-->
       <ul v-else class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll">
-       <li v-for="(observation,index) in observations.data.Observation" :key="index"
+        <li v-for="(observation,index) in allObservations" :key="index"
           class=" min-h-[140px] rounded-2xl bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent card-shadow">
           <div
             class="grid gap-2 bg-mine-shaft-500 pt-6 px-5 rounded-2xl text-white h-full w-full border-none outline-none">
             <p class="text-2xl text-center leading-5 font-normal">{{observation.Species.small_name}}</p>
-            <p class="text-7xl text-center font-normal">{{observation.Species.Observations_aggregate.aggregate.sum.number_of_animals}}</p>
+            <p class="text-7xl text-center font-normal">
+              {{observation.Species.Observations_aggregate.aggregate.sum.number_of_animals}}</p>
           </div>
         </li>
       </ul>
@@ -20,6 +24,7 @@
 </template>
 
 <script setup>
+  import Fuse from 'fuse.js'
   definePageMeta({
     middleware: 'auth'
   })
@@ -46,6 +51,8 @@
       Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on: species_id) {
         Species {
           small_name
+          common_name
+          scientific_name
           Observations_aggregate {
             aggregate {
               sum {
@@ -59,6 +66,29 @@
   `)
     return observations
   })
+
+
+  // search methods
+  const allObservations = computed(() => {
+    if (searchedObservations.value.length > 0) {
+      return searchedObservations.value.map(observation => observation.item)
+    } else {
+      return observations.value.data.Observation
+    }
+  })
+  const searchedObservations = ref([])
+
+  const allObservationsSearch = async (searchValue) => {
+    const options = {
+      keys: [
+        "Species.small_name",
+        "Species.common_name",
+        "Species.scientific_name"
+      ]
+    };
+    const fuse = new Fuse(observations.value.data.Observation, options);
+    searchedObservations.value = fuse.search(searchValue)
+  }
 
 </script>
 
