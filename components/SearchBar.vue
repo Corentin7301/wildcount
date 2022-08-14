@@ -1,7 +1,7 @@
 <template>
   <div class="mt-1 relative rounded-md shadow-sm">
     <input type="text" name="search" id="search" class="input-style text-2xl p-0 pl-10 pt-1"
-      placeholder="Rechercher une espèce..." v-model="search" required>
+      :placeholder="props.inputPlaceholder" v-model="search" required>
     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
       <svg class="w-5 h-5 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
@@ -24,6 +24,25 @@
     graphql
   } = useNhostClient()
 
+  const props = defineProps({
+    clearedSearch: {
+      type: Boolean,
+      default: false,
+    },
+    searchbarUtility: {
+      type: String,
+      default: '',
+    },
+    inputPlaceholder: {
+      type: String,
+      default: 'Rechercher une espèce...',
+    },
+    dataToSearch : {
+      type: Array,
+      default: () => [],
+    },
+  })
+
 
   // search feature
   const search = ref('')
@@ -32,16 +51,20 @@
   const selectedSpecies = ref(null)
 
   watch(search, (newSearch) => {
-    searchSpecies()
+    if (props.searchbarUtility === 'newObservation') {
+      searchSpecies()
+    } else if(props.searchbarUtility === 'allObservations') {
+      searchAllSpecies()
+    }
     if (newSearch.length === 0 || (selectedSpecies.value !== null && newSearch === selectedSpecies.value.common_name)) {
       dropdownIsOpen.value = false
     } else {
       dropdownIsOpen.value = true
     }
   })
-// todo: look at graphQL subscription
+  // todo: look at graphQL subscription
   const searchSpecies = async () => {
-      const res = await graphql.request(`
+    const res = await graphql.request(`
           query SearchSpecies {
             Species(limit: 10,
             order_by: {common_name: asc},
@@ -57,7 +80,7 @@
             }
           }
            `)
-      searchedSpecies.value = res.data.Species
+    searchedSpecies.value = res.data.Species
   }
 
   // select one species feature
@@ -71,12 +94,7 @@
 
 
   // clear search & selectedSpecies when observation is successfully submitted
-  const props = defineProps({
-    clearedSearch: {
-      type: Boolean,
-      default: false,
-    },
-  })
+
   watch(() => props.clearedSearch, (newClearedSearch, second) => {
     if (newClearedSearch === true) {
       search.value = ''
@@ -85,4 +103,8 @@
     }
   })
 
+
+const searchAllSpecies = async () => {
+    
+  }
 </script>

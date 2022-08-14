@@ -1,6 +1,8 @@
 <template>
   <div>
     <Container>
+      <SearchBar @selected-species="(species) => selectedSpecies = species" :clearedSearch="clearSearch"
+        @cleared-search="clearSearch = false" class=" mb-4" searchbarUtility="allObservations" :dataToSearch="observations.data.Observation" />
       <p v-if="observations.data.Observation.length === 0" class=" text-center text-2xl">Il n'y a pas encore d'observation ! <NuxtLink to="/" class="block text-ecstasy-500 text-3xl">Ajoutes-en une !</NuxtLink></p>
       <!--todo:add searchbar + filters (+ update calc-max-h class in css)-->
       <ul v-else class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll">
