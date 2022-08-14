@@ -36,11 +36,7 @@
     inputPlaceholder: {
       type: String,
       default: 'Rechercher une espèce...',
-    },
-    dataToSearch : {
-      type: Array,
-      default: () => [],
-    },
+    }
   })
 
 
@@ -53,13 +49,14 @@
   watch(search, (newSearch) => {
     if (props.searchbarUtility === 'newObservation') {
       searchSpecies()
-    } else if(props.searchbarUtility === 'allObservations') {
-      searchAllSpecies()
-    }
-    if (newSearch.length === 0 || (selectedSpecies.value !== null && newSearch === selectedSpecies.value.common_name)) {
-      dropdownIsOpen.value = false
-    } else {
-      dropdownIsOpen.value = true
+      if (newSearch.length === 0 || (selectedSpecies.value !== null && newSearch === selectedSpecies.value
+          .common_name)) {
+        dropdownIsOpen.value = false
+      } else {
+        dropdownIsOpen.value = true
+      }
+    } else if (props.searchbarUtility === 'allObservations') {
+      searchAllObservations()
     }
   })
   // todo: look at graphQL subscription
@@ -90,7 +87,7 @@
     emit('selected-species', species)
   }
 
-  const emit = defineEmits(['selected-species', 'cleared-search'])
+  const emit = defineEmits(['selected-species', 'cleared-search','all-observations-search-value'])
 
 
   // clear search & selectedSpecies when observation is successfully submitted
@@ -104,7 +101,8 @@
   })
 
 
-const searchAllSpecies = async () => {
-    
+  const searchAllObservations = () => {
+    emit('all-observations-search-value', search.value)
   }
+
 </script>
