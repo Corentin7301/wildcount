@@ -4,11 +4,18 @@
       <SearchBar @selected-species="(species) => selectedSpecies = species" :clearedSearch="clearSearch"
         @cleared-search="clearSearch = false" class=" mb-4" searchbarUtility="allObservations"
         @all-observations-search-value="(searchValue) => allObservationsSearch(searchValue)" />
+      <!--todo: filters (+ update calc-max-h class in css)-->
+      <!--<div class="flex gap-3 flex-nowrap overflow-x-scroll snap-x justify-between">
+        <Filter filter="by-numbers" @filter-name="(filterName) => filterChoiced = filterName">0-100</Filter>
+        <Filter filter="by-dates" @filter-name="(filterName) => filterChoiced = filterName">Dates</Filter>
+        <Filter filter="by-classes" @filter-name="(filterName) => filterChoiced = filterName">Classes</Filter>
+      </div>
+      -->
+
       <p v-if="observations.data.Observation.length === 0" class=" text-center text-2xl">Il n'y a pas encore
         d'observation ! <NuxtLink to="/" class="block text-ecstasy-500 text-3xl">Ajoutes-en une !</NuxtLink>
       </p>
-      <!--todo: filters (+ update calc-max-h class in css)-->
-      <ul v-else class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll">
+      <ul v-else class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll rounded-2xl">
         <li v-for="(observation,index) in allObservations" :key="index"
           class=" min-h-[140px] rounded-2xl bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent card-shadow">
           <div
@@ -90,15 +97,16 @@
     searchedObservations.value = fuse.search(searchValue)
   }
 
+
+  const filterChoiced = ref('')
+
 </script>
 
 <style scoped>
-  .card-shadow {
-    filter: drop-shadow(0px 4px 13px #0000002b);
-  }
 
   .calc-max-h {
-    max-height: var(--base-max-h);
+    /* base height - navbar height and filters height */
+    max-height: calc(var(--base-max-h) - (60px + 50px));
   }
 
 </style>
