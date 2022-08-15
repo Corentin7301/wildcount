@@ -18,12 +18,12 @@
       <ul v-else class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll rounded-2xl">
         <li v-for="(observation,index) in allObservations" :key="index"
           class=" min-h-[140px] rounded-2xl bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent card-shadow">
-          <div
+          <NuxtLink :to="`/species/${observation.Species.id}`"
             class="grid gap-2 bg-mine-shaft-500 pt-6 px-5 rounded-2xl text-white h-full w-full border-none outline-none">
             <p class="text-2xl text-center leading-5 font-normal">{{observation.Species.small_name}}</p>
             <p class="text-7xl text-center font-normal">
               {{observation.Species.Observations_aggregate.aggregate.sum.number_of_animals}}</p>
-          </div>
+          </NuxtLink>
         </li>
       </ul>
     </Container>
@@ -54,9 +54,10 @@
     data: observations
   } = await useAsyncData('observations', async () => {
     const observations = await graphql.request(`
-    query MyQuery {
+    query AllObservations {
       Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on: species_id) {
         Species {
+          id
           small_name
           common_name
           scientific_name
