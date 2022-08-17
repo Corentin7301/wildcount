@@ -123,10 +123,6 @@
         deleteObservation()
         break;
       case 'editObservation':
-        console.log(typeof newDate.value);
-        console.log(typeof newNumber.value);
-        console.log(typeof newComment.value);
-
         editObservation()
         break;
       default:
@@ -147,7 +143,7 @@
         errorMessage.value = ''
         emit('close-modal')
       } else {
-        errorMessage.value = 'Une erreur est survenue, réessayes stp.'
+        errorMessage.value = 'Une erreur est survenue, réessayes s\'il te plaît.'
       }
     } catch (error) {
       console.log(error)
@@ -165,14 +161,13 @@
         }
         
       `)
-      console.log(res);
 
-      // if (res.error === null && res.data.delete_Observation_by_pk.id) {
-      //   errorMessage.value = ''
-      //   emit('close-modal')
-      // } else {
-      //   errorMessage.value = 'Une erreur est survenue, réessayes stp.'
-      // }
+      if (res.error === null && res.data.update_Observation_by_pk.id) {
+        errorMessage.value = ''
+        emit('close-modal')
+      } else {
+        errorMessage.value = 'Une erreur est survenue, réessayes s\'il te plaît.'
+      }
     } catch (error) {
       console.log(error)
     }
