@@ -42,7 +42,7 @@
   } = useNhostClient()
 
 
-  onBeforeMount(() => {
+  onMounted(() => {
     refresh()
   })
 
