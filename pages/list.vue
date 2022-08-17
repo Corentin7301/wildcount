@@ -15,9 +15,9 @@
       <p v-if="observations.data.Observation.length === 0" class=" text-center text-2xl">Il n'y a pas encore
         d'observation ! <NuxtLink to="/" class="block text-ecstasy-500 text-3xl">Ajoutes-en une !</NuxtLink>
       </p>
-      <ul v-else class=" grid grid-cols-2 gap-4 overflow-y-scroll calc-max-h no-scroll rounded-2xl">
+      <ul v-else class=" grid grid-cols-2 gap-4 overflow-y-scroll snap-y scroll-pt-2 calc-max-h no-scroll rounded-2xl">
         <li v-for="(observation,index) in allObservations" :key="index"
-          class=" min-h-[140px] rounded-2xl bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent card-shadow">
+          class=" min-h-[140px] rounded-2xl bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent snap-start card-shadow">
           <NuxtLink :to="`/species/${observation.Species.id}`"
             class="grid gap-2 bg-mine-shaft-500 pt-6 px-5 rounded-2xl text-white h-full w-full border-none outline-none">
             <p class="text-2xl text-center leading-5 font-normal">{{observation.Species.small_name}}</p>
@@ -42,7 +42,7 @@
   } = useNhostClient()
 
 
-  onMounted(() => {
+  onBeforeMount(() => {
     refresh()
   })
 
@@ -107,7 +107,8 @@
 
   .calc-max-h {
     /* base height - navbar height and filters height */
-    max-height: calc(var(--base-max-h) - (60px + 50px));
+    /* max-height: calc(var(--base-max-h) - (60px + 50px)); */
+    max-height: calc(var(--base-max-h));
   }
 
 </style>
