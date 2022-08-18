@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       },
 
 
-    modules: ['@nuxtjs/tailwindcss','nuxt-nhost'],
+    modules: ['@nuxtjs/tailwindcss','nuxt-nhost','@pinia/nuxt'],
     nhost: {
       backendUrl: process.env.NHOST_URL,
     },

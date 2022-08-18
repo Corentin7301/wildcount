@@ -32,6 +32,11 @@
 
 <script setup>
   import Fuse from 'fuse.js'
+  import {
+    useFiltersStore
+  } from '~/store/filters'
+  const filtersStore = useFiltersStore()
+
   definePageMeta({
     middleware: 'auth'
   })
@@ -53,26 +58,50 @@
   const {
     data: observations
   } = await useAsyncData('observations', async () => {
-    const observations = await graphql.request(`
-    query AllObservations {
-      Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on: species_id) {
-        Species {
-          id
-          small_name
-          common_name
-          scientific_name
-          Observations_aggregate {
-            aggregate {
-              sum {
-                number_of_animals
+    if (filtersStore.classFilterChoiced === 'all') {
+      const observations = await graphql.request(`
+        query AllObservations {
+          Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on: species_id) {
+            Species {
+              id
+              small_name
+              common_name
+              scientific_name
+              Observations_aggregate {
+                aggregate {
+                  sum {
+                    number_of_animals
+                  }
+                }
               }
             }
           }
         }
-      }
-    }
   `)
-    return observations
+      return observations
+    } else {
+      const observations = await graphql.request(`
+        query AllObservations {
+          Observation(where: {_and: {user_id: {_eq: "${user.value.id}"}, Species: {Class: {id: {_eq: ${filtersStore.classFilterChoiced.id}}}}}}, order_by: {species_id: asc}, distinct_on: species_id) {
+            Species {
+              id
+              small_name
+              common_name
+              scientific_name
+              Observations_aggregate {
+                aggregate {
+                  sum {
+                    number_of_animals
+                  }
+                }
+              }
+            }
+          }
+        }
+  `)
+      return observations
+    }
+
   })
 
 
@@ -104,7 +133,6 @@
 </script>
 
 <style scoped>
-
   .calc-max-h {
     /* base height - navbar height and filters height */
     /* max-height: calc(var(--base-max-h) - (60px + 50px)); */
