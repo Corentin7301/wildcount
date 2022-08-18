@@ -5,7 +5,8 @@
         @cleared-search="clearSearch = false" class=" mb-4" searchbarUtility="allObservations"
         @all-observations-search-value="(searchValue) => allObservationsSearch(searchValue)" />
       <!--todo: filters (+ update calc-max-h class in css)-->
-      <!--<div class="flex gap-3 flex-nowrap overflow-x-scroll snap-x justify-between">
+      <!--
+      <div class="flex gap-3 flex-nowrap overflow-x-scroll snap-x justify-between">
         <Filter filter="by-numbers" @filter-name="(filterName) => filterChoiced = filterName">0-100</Filter>
         <Filter filter="by-dates" @filter-name="(filterName) => filterChoiced = filterName">Dates</Filter>
         <Filter filter="by-classes" @filter-name="(filterName) => filterChoiced = filterName">Classes</Filter>
