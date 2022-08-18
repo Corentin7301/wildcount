@@ -22,11 +22,15 @@
 }
 
 .submit-button {
-  @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full placeholder:text-gray-200;
+  @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full;
 }
 
 .warn-button {
-  @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-red-600 to-red-400 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full placeholder:text-gray-200;
+  @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-red-600 to-red-400 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full;
+}
+
+.light-button {
+  @apply w-full text-3xl text-center font-normal focus:ring-white focus:border-none focus:outline-none;
 }
 
 .input-shadow {

@@ -3,18 +3,17 @@
     <!--Delete modale-->
     <Transition name="slide-top" appear>
       <CtaModal v-if="deleteModale" @close-modal="deleteModale = false, refresh()"
-        message="Veux-tu vraiment supprimer cette observation ?<br/>Il sera impossible de la récupérer !"
-        ctaMessage="Supprimer l'observation" :warn="true" job="deletingObservation" :observationId="idOfObservation" />
+        title="Supprimer l'observation ?<br>(Tu ne pourras pas annuler !)" buttonMessage="Supprimer" :warn="true" job="deletingObservation" :observationId="idOfObservation" />
     </Transition>
     <!--Edit modale-->
     <Transition name="slide-top" appear>
-      <CtaModal v-if="editModale" @close-modal="editModale = false, refresh()" message="Modification de l'observation"
-        ctaMessage="Modifier l'observation" job="editObservation" :warn="false" :observationId="idOfObservation" />
+      <CtaModal v-if="editModale" @close-modal="editModale = false, refresh()" title="Modification de l'observation"
+        buttonMessage="Annuler" ctaIcon="validate" job="editObservation" :warn="false" :observationId="idOfObservation" />
     </Transition>
     <!--View Comment modale-->
     <Transition name="slide-top" appear>
       <CtaModal v-if="viewCommentModale" @close-modal="viewCommentModale = false"
-        message="Commentaire" ctaMessage="" job="viewComment" :observationId="idOfObservation" />
+        title="Commentaire" buttonMessage="" job="viewComment" :observationId="idOfObservation" />
     </Transition>
     <Container>
       <div

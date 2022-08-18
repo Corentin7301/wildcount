@@ -63,6 +63,7 @@
 
   const newObservation = async () => {
     if (selectedSpecies.value && date.value && !badDateMessage.value && number.value) {
+      comment.value = comment.value.replace(/(?:\r\n|\r|\n)/g, '<br>');
       try {
         const {
           data,
