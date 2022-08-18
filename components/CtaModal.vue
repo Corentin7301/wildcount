@@ -26,9 +26,17 @@
               <p v-if="badDateMessage" class=" text-center text-red-500 text-xl">{{badDateMessage}}</p>
             </Transition>
           </div>
-          <input type="number" name="number" id="number"
-            class="input-style max-w-[125px] max-h-[125px] mx-auto text-center grid items-center justify-center text-8xl pt-5"
-            placeholder="0" max="500" v-model="newNumber" required>
+
+          <div class=" grid grid-cols-3 gap-4 mx-auto items-center justify-between">
+            <button @click="newNumber--" class=" w-12 h-12 p-3 mx-auto text-3xl bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow rounded-full"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg></button>
+
+            <input type="number" name="number" id="number"
+              class="input-style max-w-[75px] max-h-[75px] mx-auto text-center grid items-center justify-center text-7xl pt-5"
+              placeholder="0" max="500" v-model="newNumber" required>
+
+            <button @click="newNumber++" class=" w-12 h-12 p-3 mx-auto text-3xl bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow rounded-full"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></button>
+          </div>
+          
           <div
             class="w-full rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
             <textarea name="comment" id="comment" placeholder="Entre des informations sur ta rencontre"
@@ -217,7 +225,6 @@
 
   const editObservation = async () => {
     newComment.value = newComment.value.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    debugger
     try {
       const res = await graphql.request(`
         mutation editObservation {

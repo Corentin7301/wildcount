@@ -120,7 +120,7 @@
       if (res.error === null) {
         needsEmailVerification.value = true
         setTimeout(() => {
-          navigateTo('/')
+          return navigateTo('/')
         }, 15000);
       }
 
