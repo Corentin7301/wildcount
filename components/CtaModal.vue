@@ -5,14 +5,15 @@
     <div class="bg-gradient-to-b px-[1px] pt-[1px] card-shadow rounded-xl w-[90%]"
       :class="warn ? 'from-red-600 via-red-400 to-transparent' : 'from-ecstasy-500 via-tan-hide-500 to-transparent'">
       <div class="relative bg-mine-shaft-700 text-xl rounded-xl p-10 pt-14 z-50 border-none outline-none">
-        <svg @click="$emit('close-modal')" class="w-6 h-6 absolute top-6 right-6" fill="none" stroke="currentColor"
-          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
+
+        <button @click="ctaAction()"
+          class="absolute -bottom-5 -right-3 w-12 h-12 p-3 rounded-full bg-gradient-to-b button-shadow"
+          :class="ctaColorChoice" v-html="ctaIconChoice">
+        </button>
         <!--Modal content-->
 
-        <p v-if="props.message" class=" text-3xl text-center font-normal mb-5 leading-6"
-          :class="props.warn ? 'text-red-400' : ''" v-html="props.message"></p>
+        <p v-if="props.title" class=" text-3xl text-center font-normal mb-5 leading-6"
+          :class="props.warn ? 'text-red-400' : ''" v-html="props.title"></p>
 
         <section v-if="props.job === 'editObservation'" class=" flex flex-col gap-5">
           <div class=" flex flex-col gap-5 ">
@@ -40,11 +41,11 @@
         </section>
 
         <section v-else-if="props.job === 'viewComment'">
-          <p class=" leading-6 text-3xl min-h-[100px]">{{observationDatas.comment}}</p>
+          <p class=" leading-6 text-3xl min-h-[75px]" v-html="observationDatas.comment"></p>
         </section>
 
-        <button v-if="props.ctaMessage" @click="choiceAction()" class=" mt-7"
-          :class="warn ? 'warn-button' : 'submit-button'">{{props.ctaMessage}}</button>
+        <button v-if="props.buttonMessage" @click="buttonAction()" class=" mt-7"
+          :class="buttonColorChoice">{{props.buttonMessage}}</button>
         <Transition name="fade" appear>
           <p>{{errorMessage}}</p>
         </Transition>
@@ -72,13 +73,21 @@
   const errorMessage = ref('')
 
   const props = defineProps({
-    message: {
+    title: {
       type: String,
       default: ''
     },
-    ctaMessage: {
+    buttonMessage: {
       type: String,
-      default: 'Réinitialiser le mot de passe'
+      default: ''
+    },
+    ctaIcon: {
+      type: String,
+      default: 'close'
+    },
+    ctaColor: {
+      type: String,
+      default: 'base'
     },
     warn: {
       type: Boolean,
@@ -117,22 +126,74 @@
       `)
     newDate.value = observationDatas.data.Observation_by_pk.date
     newNumber.value = observationDatas.data.Observation_by_pk.number_of_animals
-    newComment.value = observationDatas.data.Observation_by_pk.comment
+    newComment.value = observationDatas.data.Observation_by_pk.comment.replace(/<br>/g, '\n')
     return observationDatas.data.Observation_by_pk
   })
 
-  const choiceAction = async () => {
+  const ctaIconChoice = computed(() => {
+    switch (props.ctaIcon) {
+      case 'close':
+        return '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
+      case 'validate':
+        return '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'
+      default:
+        return ''
+    }
+  })
+
+  const ctaColorChoice = computed(() => {
+    switch (props.ctaIcon) {
+      case 'close':
+        return 'from-tan-hide-500 to-ecstasy-500'
+      case 'validate':
+        return 'from-emerald-300 to-emerald-500'
+      default:
+        return ''
+    }
+  })
+
+  const buttonColorChoice = computed(() => {
+    if (props.warn) {
+      return 'warn-button'
+    } else {
+      switch (props.buttonMessage) {
+        case 'Annuler':
+          return 'light-button'
+        default:
+          return 'submit-button'
+      }
+    }
+  })
+
+  const ctaAction = async () => {
     switch (props.job) {
       case 'deletingObservation':
-        deleteObservation()
+        emit('close-modal')
         break;
       case 'editObservation':
         editObservation()
+        break;
+      case 'viewComment':
+        emit('close-modal')
         break;
       default:
         console.log('no action');
     }
   }
+
+  const buttonAction = async () => {
+    switch (props.job) {
+      case 'deletingObservation':
+        deleteObservation()
+        break;
+      case 'editObservation':
+        emit('close-modal')
+        break;
+      default:
+        console.log('no action');
+    }
+  }
+
   const deleteObservation = async () => {
     try {
       const res = await graphql.request(`
@@ -155,6 +216,8 @@
   }
 
   const editObservation = async () => {
+    newComment.value = newComment.value.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    debugger
     try {
       const res = await graphql.request(`
         mutation editObservation {
