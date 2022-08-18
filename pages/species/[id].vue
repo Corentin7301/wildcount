@@ -2,14 +2,12 @@
   <div>
     <!--Delete modale-->
     <Transition name="slide-top" appear>
-      <CtaModal v-if="deleteModale" @close-modal="deleteModale = false, refresh()"
-        title="Supprimer l'observation ?<br>(Tu ne pourras pas annuler !)" buttonMessage="Supprimer" :warn="true"
+      <CtaModal v-if="deleteModale" @close-modal="deleteModale = false, refresh()" title="Supprimer l'observation ?<br>(Tu ne pourras pas annuler !)" buttonMessage="Supprimer" :warn="true"
         job="deletingObservation" :observationId="idOfObservation" />
     </Transition>
     <!--Edit modale-->
     <Transition name="slide-top" appear>
-      <CtaModal v-if="editModale" @close-modal="editModale = false, refresh()" title="Modification de l'observation"
-        buttonMessage="Annuler" ctaIcon="validate" job="editObservation" :warn="false"
+      <CtaModal v-if="editModale" @close-modal="editModale = false, refresh()" title="Modification de l'observation" buttonMessage="Annuler" ctaIcon="validate" job="editObservation" :warn="false"
         :observationId="idOfObservation" />
     </Transition>
     <!--View Comment modale-->
