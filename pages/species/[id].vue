@@ -14,8 +14,7 @@
     <!--View Comment modale-->
     <Transition name="slide-top" appear>
       <CtaModal v-if="viewCommentModale" @close-modal="viewCommentModale = false"
-        message="Veux-tu vraiment supprimer cette observation ?<br/>Il sera impossible de la récupérer !"
-        ctaMessage="Supprimer l'observation" job="deletingObservation" :observationId="idOfObservation" />
+        message="Commentaire" ctaMessage="" job="viewComment" :observationId="idOfObservation" />
     </Transition>
     <Container>
       <div
