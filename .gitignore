@@ -156,6 +156,6 @@ node_modules
 .output
 .env
 dist
-.DS_Store
+*.DS_Store
 
 # End of https://www.toptal.com/developers/gitignore/api/nuxt,node,vuejs,visualstudiocode

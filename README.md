@@ -6,6 +6,8 @@
 - [ ] : Create a Change password method
 - [ ] : Test install app button
 - [ ] : Pass to PWA
+- [ ] : Add analytics ?
+- [ ] : Connect form of send-comment to Netlify
 - [ ] Add Pages:
   - [ ] : my-account
   - [ ] : Tutorial
