@@ -7,6 +7,7 @@
 - [ ] : Test install app button
 - [ ] Add Pages:
   - [ ] : my-account
+  - [ ] : Tutorial
   - [ ] : send-comments
   - [ ] : legal-notice
   - [ ] : privacy-policy

@@ -25,7 +25,7 @@
         </svg>
       </NuxtLink>
 
-      <button class=" button-container">
+      <NuxtLink to="/tutorial" class=" button-container">
         <div class="label-container">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -36,7 +36,7 @@
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
-      </button>
+      </NuxtLink>
 
       <button class=" button-container" @click="whyThisAppModal = true">
         <div class="label-container">
@@ -127,7 +127,6 @@
           <span>Déconnexion</span>
         </div>
       </button>
-
     </section>
     <p class="mt-7 text-xl">Application réalisée par <a href="https://portfolio.corentinperroux.fr"
         class=" text-tan-hide-500">Corentin PERROUX</a> <span class="text-base">🦌</span></p>
