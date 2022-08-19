@@ -1,8 +1,9 @@
 <template>
   <div class="flex flex-col justify-center pb-12 sm:px-6 lg:px-8">
-    <div v-if="needsEmailVerification" >
+    <div v-if="needsEmailVerification">
       <p class="mt-14 text-xl leading-4 text-center">
-        Vérifies ta boîte mail et termines ton inscription grâce au <span class="text-ecstasy-500">lien de vérification </span>!
+        Vérifies ta boîte mail et termines ton inscription grâce au <span class="text-ecstasy-500">lien de vérification
+        </span>!
         <span class="block text-base">(Penses à vérifier tes spams si tu ne reçois pas le mail...)</span>
       </p>
       <p class=" text-center text-9xl pt-20">📬</p>
@@ -32,6 +33,13 @@
                   v-model="password"
                   class="appearance-none w-full focus:outline-none focus:ring-ecstasy-500 input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center">
               </label>
+                          <!--error message-->
+            <Transition name="fade" appear>
+              <p href="#" v-if="errorMessage"
+                class="text-base text-center font-medium text-red-500 hover:text-red-500 opacity-80 transition-all">
+                {{errorMessage}}
+              </p>
+            </Transition>
             </div>
             <div class="flex items-center justify-center">
               <input type="submit" name="search" id="search" class="submit-button max-w-[90%] mt-10"
@@ -109,6 +117,7 @@
   const email = ref('')
   const password = ref('')
   const needsEmailVerification = ref(false)
+  const errorMessage = ref('')
 
   const signUp = async () => {
     try {
@@ -117,11 +126,14 @@
         password: password.value,
       })
 
+
       if (res.error === null) {
         needsEmailVerification.value = true
         setTimeout(() => {
           return navigateTo('/')
         }, 15000);
+      } else if (res.error.status === 409) {
+        errorMessage.value = 'Un compte existe déjà avec cette adresse mail.'
       }
 
     } catch (error) {
