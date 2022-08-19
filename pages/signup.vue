@@ -99,7 +99,7 @@
 
   // redirect method if user is already logged in
   const user = useNhostUser()
-  if (user) {
+  if (user.value !== null) {
     navigateTo('/')
   }
 
