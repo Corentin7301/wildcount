@@ -82,6 +82,7 @@
   const {
     auth
   } = useNhostClient()
+  const user = useNhostUser()
   const {
     graphql
   } = useNhostClient()
@@ -192,14 +193,8 @@
 
   const ctaAction = async () => {
     switch (props.job) {
-      case 'deletingObservation':
-        emit('close-modal')
-        break;
       case 'editObservation':
         editObservation()
-        break;
-      case 'viewComment':
-        emit('close-modal')
         break;
       default:
         emit('close-modal')
@@ -213,6 +208,9 @@
         break;
       case 'editObservation':
         emit('close-modal')
+        break;
+      case 'deletingAllObservations':
+        deletingAllObservations()
         break;
       default:
         console.log('no action');
@@ -254,6 +252,31 @@
       `)
 
       if (res.error === null && res.data.update_Observation_by_pk.id) {
+        errorMessage.value = ''
+        emit('close-modal')
+      } else {
+        errorMessage.value = 'Une erreur est survenue, réessayes s\'il te plaît.'
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deletingAllObservations = async () => {
+    try {
+      const res = await graphql.request(`
+        mutation deleteAllObservations {
+          delete_Observation(where: {user_id: {_eq: "${user.value.id}"}}) {
+            returning {
+              id
+            }
+            affected_rows
+          }
+        }
+      `)
+      console.log(res);
+      
+      if (res.error === null && res.data.delete_Observation.affected_rows >= 0) {
         errorMessage.value = ''
         emit('close-modal')
       } else {
