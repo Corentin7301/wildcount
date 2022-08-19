@@ -1,7 +1,7 @@
 <template>
   <Container>
     <section class=" grid gap-4 divide-y-[1px] overflow-y-scroll snap-y scroll-pt-2 calc-max-h no-scroll">
-      <button class=" button-container text-ecstasy-500">
+      <button class=" button-container text-ecstasy-500" v-if="deferredPrompt" @click="clickCallback()">
         <div class="label-container">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -38,7 +38,7 @@
         </svg>
       </button>
 
-      <button class=" button-container">
+      <button class=" button-container" @click="whyThisAppModal = true">
         <div class="label-container">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -129,7 +129,11 @@
       </button>
 
     </section>
-      <p class="mt-7 text-xl">Application réalisée par <a href="https://portfolio.corentinperroux.fr" class=" text-tan-hide-500">Corentin PERROUX</a> <span class="text-base">🦌</span></p>
+    <p class="mt-7 text-xl">Application réalisée par <a href="https://portfolio.corentinperroux.fr"
+        class=" text-tan-hide-500">Corentin PERROUX</a> <span class="text-base">🦌</span></p>
+        <Transition  name="slide-top" appear>
+        <CtaModal v-if="whyThisAppModal" @close-modal="whyThisAppModal = false" title="Pourquoi cette application ?" job="showText" :textToDisplay="whyThisAppText" />
+        </Transition>
   </Container>
 </template>
 
@@ -155,8 +159,31 @@
     }
   }
 
-  // todo: add changePassword method
+  onMounted(() => {
+    captureEvent()
+  })
+  const deferredPrompt = ref(null)
+  const captureEvent = () => {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault()
+      // Stash the event so it can be triggered later.
+      deferredPrompt.value = e
+    })
+  }
+  const clickCallback = () => {
+    // Show the prompt
+    deferredPrompt.prompt()
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        // Call another function?
+      }
+      deferredPrompt.value = null
+    })
+  }
 
+  const whyThisAppModal = ref(false)
+  const whyThisAppText = "J'ai réalisé cette application pour tous les photographes animaliers, ornithologues ou autres passionnés de la nature.<br>Cette application permet de répertorier toutes les observations que tu as pu faire durant tes sorties ou dans ton jardin.<br>Tu peux enregistrer toutes les observations que tu as fait, à quel jour, le nombre d'individus, et les commentaires que l'observation t'a inspiré.<br>Si tu aimes cette application, n'hésites pas à en parler, à la recommander et à la partager avec d'autres personnes pour la faire vivre !<br>Si jamais tu souhaite m'aider à payer le nom de domaine pour la garder en ligne, n'hésites pas à me <a href=\"https://www.buymeacoffee.com/corentin7301\" class=\"text-ecstasy-500\" target=\"_blank\">\"payer un café\"</a>, ça me fera plaisir, m'aidera financièrement et ça me motivera à continuer d'améliorer l'appli !<br>Si tu veux m'aider à améliorer cette application, n'hésites pas à me <a href=\"/send-comments\" class=\"text-ecstasy-500\">contacter</a> ou à faire un tour sur le <a href=\"https://github.com/Corentin7301/wildcount\" class=\"text-ecstasy-500\">Github</a> de l'app !"
 </script>
 
 <style scoped>
@@ -170,8 +197,8 @@
 
   .calc-max-h {
     /* base height - navbar height and copyright height */
-    /* max-height: calc(var(--base-max-h) - (50px)); */
-    max-height: calc(var(--base-max-h) - (50px));
+    /* max-height: calc(var(--base-max-h) - (55px)); */
+    max-height: calc(var(--base-max-h) - (55px));
   }
 
 </style>
