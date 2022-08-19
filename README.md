@@ -5,6 +5,7 @@
 - [ ] : check nuxt.config & metas
 - [ ] : Create a Change password method
 - [ ] : Test install app button
+- [ ] : Pass to PWA
 - [ ] Add Pages:
   - [ ] : my-account
   - [ ] : Tutorial
