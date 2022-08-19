@@ -274,8 +274,6 @@
           }
         }
       `)
-      console.log(res);
-      
       if (res.error === null && res.data.delete_Observation.affected_rows >= 0) {
         errorMessage.value = ''
         emit('close-modal')
