@@ -3,3 +3,8 @@
 - [ ] : manage connection not available
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
 - [ ] : check nuxt.config & metas
+- [ ] Add Pages:
+  - [ ] : my-account
+  - [ ] : send-comments
+  - [ ] : legal-notice
+  - [ ] : privacy-policy
