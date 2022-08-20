@@ -46,12 +46,9 @@
         errorMessage.value = 'Aucun compte ne correspond à cette adresse email'
       }
 
-
-
     } catch (error) {
       console.log(error)
     }
-
   }
 
 </script>

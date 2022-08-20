@@ -35,7 +35,7 @@
               </label>
                           <!--error message-->
             <Transition name="fade" appear>
-              <p href="#" v-if="errorMessage"
+              <p v-if="errorMessage"
                 class="text-base text-center font-medium text-red-500 hover:text-red-500 opacity-80 transition-all">
                 {{errorMessage}}
               </p>
