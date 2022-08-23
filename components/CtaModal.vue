@@ -61,8 +61,8 @@
           <p class=" leading-6 text-3xl min-h-[75px]" v-html="observationDatas.comment"></p>
         </section>
 
-        <section v-else-if="props.job === 'showText'">
-          <p class=" leading-6 text-xl min-h-[75px]" v-html="textToDisplay"></p>
+        <section v-else-if="props.job === 'showText'" class="showText">
+          <slot/>
         </section>
 
         <button v-if="props.buttonMessage" @click="buttonAction()" class=" mt-7"
@@ -286,3 +286,9 @@
   }
 
 </script>
+
+<style>
+.showText hr {
+  display: none;
+}
+</style>

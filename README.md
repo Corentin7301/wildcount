@@ -8,6 +8,7 @@
 - [ ] : Pass to PWA
 - [ ] : Add analytics ?
 - [ ] : Connect form of send-comment to Netlify
+- [ ] : Add swipe between pages
 - [ ] Add Pages:
   - [ ] : my-account
   - [ ] : Tutorial

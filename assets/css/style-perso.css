@@ -15,7 +15,21 @@
 }
 
 
+.content-container {
+  @apply text-xl leading-6;
+}
 
+.content-container h1 {
+  @apply text-4xl mb-3;
+}
+
+.content-container h2 {
+  @apply text-2xl mb-1;
+}
+
+.content-container a {
+  @apply text-ecstasy-500;
+}
 
 .input-style {
   @apply w-full bg-gradient-to-t from-tan-hide-500 to-ecstasy-500 input-shadow focus:ring-white focus:border-none focus:outline-none rounded-full border-none placeholder:text-gray-200;

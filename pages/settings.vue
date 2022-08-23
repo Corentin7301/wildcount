@@ -136,7 +136,7 @@
       <!--why this app modale-->
       <Transition name="slide-top" appear>
         <CtaModal v-if="whyThisAppModal" @close-modal="whyThisAppModal = false" title="Pourquoi cette application ?"
-          job="showText" :textToDisplay="whyThisAppText" />
+          job="showText" class=" content-container"><ContentRenderer :value="data"/></CtaModal>
       </Transition>
       <!--delete modale-->
       <Transition name="slide-top" appear>
@@ -194,8 +194,7 @@
   }
 
   const whyThisAppModal = ref(false)
-  const whyThisAppText =
-    "J'ai réalisé cette application pour tous les photographes animaliers, ornithologues ou autres passionnés de la nature.<br>Cette application permet de répertorier toutes les observations que tu as pu faire durant tes sorties ou dans ton jardin.<br>Tu peux enregistrer toutes les observations que tu as fait, à quel jour, le nombre d'individus, et les commentaires que l'observation t'a inspiré.<br>Si tu aimes cette application, n'hésites pas à en parler, à la recommander et à la partager avec d'autres personnes pour la faire vivre !<br>Si jamais tu souhaite m'aider à payer le nom de domaine pour la garder en ligne, n'hésites pas à me <a href=\"https://www.buymeacoffee.com/corentin7301\" class=\"text-ecstasy-500\" target=\"_blank\">\"payer un café\"</a>, ça me fera plaisir, m'aidera financièrement et ça me motivera à continuer d'améliorer l'appli !<br>Si tu veux m'aider à améliorer cette application, n'hésites pas à me <a href=\"/send-comments\" class=\"text-ecstasy-500\">contacter</a> ou à faire un tour sur le <a href=\"https://github.com/Corentin7301/wildcount\" class=\"text-ecstasy-500\">Github</a> de l'app !"
+  const { data } = await useAsyncData('page-data', () => queryContent('/why-this-app').findOne())
 
   const deleteModale = ref(false)
 
