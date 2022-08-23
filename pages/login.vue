@@ -21,7 +21,7 @@
             </div>
             <div>
               <label for="email">
-                <input id="password" name="password" type="password" placeholder="Mot de passe" required
+                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Mot de passe" required
                   v-model="password"
                   class="appearance-none w-full focus:outline-none focus:ring-ecstasy-500 input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center">
               </label>
