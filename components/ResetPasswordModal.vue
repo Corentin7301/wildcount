@@ -24,9 +24,7 @@
 </template>
 
 <script setup>
-  const {
-    auth
-  } = useNhostClient()
+   
 
   const resetPasswordEmail = ref('')
   const errorMessage = ref('')

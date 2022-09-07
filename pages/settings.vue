@@ -153,9 +153,7 @@
   definePageMeta({
     middleware: 'auth'
   })
-  const {
-    auth
-  } = useNhostClient()
+   
   const user = useNhostUser()
 
   const signout = async () => {

@@ -79,9 +79,7 @@
 
 <script setup>
   import dayjs from 'dayjs'
-  const {
-    auth
-  } = useNhostClient()
+   
   const user = useNhostUser()
   const {
     graphql

@@ -24,10 +24,7 @@ export default defineNuxtConfig({
       },
 
 
-    modules: ['@nuxtjs/tailwindcss','nuxt-nhost','@pinia/nuxt','@nuxt/content'],
-    nhost: {
-      backendUrl: process.env.NHOST_URL,
-    },
+    modules: ['@nuxtjs/tailwindcss','@pinia/nuxt','@nuxt/content'],
 
     css: [
         // CSS file in the project
@@ -35,6 +32,9 @@ export default defineNuxtConfig({
         '@/assets/css/fonts.css',
         '@/assets/css/transition.css',
         '@/assets/css/style-perso.css',
+      ],
+      plugins: [
+        { src: '~/plugins/nhost.js', mode: 'client' },
       ],
       favicon: './assets/img/icon.png',
 

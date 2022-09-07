@@ -38,6 +38,7 @@
                 class="text-base font-medium text-ecstasy-500 hover:text-ecstasy-500 opacity-80">Mot de
                 passe oublié ?
               </p>
+              <p @click="logout()">Deconnection</p>
               <Transition name="slide-top" appear>
                 <ResetPasswordModal v-if="resetPasswordFormIsOpen" @close-modal="resetPasswordFormIsOpen = false" />
               </Transition>
@@ -96,19 +97,12 @@
 </template>
 
 <script setup>
-  const {
-    auth
-  } = useNhostClient()
+   import nhost from '@/plugins/nhost'
 
   definePageMeta({
     layout: "sign-layout",
   });
 
-  // redirect method if user is already logged in
-  const user = useNhostUser()
-  if (user.value !== null) {
-    navigateTo('/')
-  }
 
   const errorMessage = ref(null)
   const email = ref('')
@@ -116,26 +110,21 @@
 
   const loginWithLogin = async () => {
     try {
-      const res = await auth.signIn({
+      const res = await nhost.auth.signIn({
         email: email.value,
         password: password.value
       })
-
-      if (res.error === null || res.error.status === 100) {
-        return navigateTo('/')
-      }
-
-      if (res.error.status === 401) {
-        errorMessage.value = 'Email ou mot de passe incorrect'
-      }
-      if (res.error.status === 102) {
-        errorMessage.value =
-          'Tu dois vérifier ton adresse email. Cliques sur le lien qui t\'as a été envoyé par email. 📬 (Si tu n\'as pas reçu le mail, vérifies dans les spams)'
-      }
+      console.log(res)
 
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const logout = async () => {
+    const res = await nhost.auth.signOut()
+    console.log(res);
+    
   }
 
   const resetPasswordFormIsOpen = ref(false)

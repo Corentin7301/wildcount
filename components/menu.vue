@@ -48,9 +48,7 @@
   import {
     useFiltersStore
   } from '~/store/filters'
-  const {
-    auth
-  } = useNhostClient()
+   
   const user = useNhostUser()
   const {
     graphql

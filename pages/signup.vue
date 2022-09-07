@@ -97,9 +97,7 @@
 </template>
 
 <script setup>
-  const {
-    auth
-  } = useNhostClient()
+   
 
   definePageMeta({
     layout: "sign-layout",

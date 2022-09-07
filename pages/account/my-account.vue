@@ -38,9 +38,7 @@
   })
   
   const user = useNhostUser()
-  const {
-    auth
-  } = useNhostClient()
+   
 
   const newPassword = ref('')
   const errorMessage = ref('')
