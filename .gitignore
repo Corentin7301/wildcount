@@ -145,7 +145,7 @@ yarn-error.log
 
 package-lock.json 
 
-sw.*
+# sw.*
 
 
 node_modules
@@ -157,5 +157,6 @@ node_modules
 .env
 dist
 *.DS_Store
+*.icloud
 
 # End of https://www.toptal.com/developers/gitignore/api/nuxt,node,vuejs,visualstudiocode
