@@ -32,9 +32,15 @@ export default defineNuxtConfig({
   },
 
 
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content'],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', '@kevinmarrec/nuxt-pwa'],
   nhost: {
     backendUrl: process.env.NHOST_URL,
+  },
+
+  pwa: {
+    workbox: {
+      enabled: true
+    }
   },
 
   css: [
