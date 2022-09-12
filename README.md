@@ -3,15 +3,18 @@
 - [ ] : manage connection not available
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
 - [ ] : check nuxt.config & metas
-- [ ] : Create a Change password method
+- [x] : Create a Change password method
 - [ ] : Test install app button
 - [ ] : Pass to PWA
 - [ ] : Add analytics ?
 - [ ] : Connect form of send-comment to Netlify
 - [ ] : Add swipe between pages
-- [ ] Add Pages:
-  - [ ] : my-account
-  - [ ] : Tutorial
-  - [ ] : send-comments
-  - [ ] : legal-notice
-  - [ ] : privacy-policy
+- [ ] : Add animals choice (menu) as filter to list page
+- [ ] : Beta ?
+- [ ] : Demo ?
+- [x] Add Pages:
+  - [x] : my-account
+  - [x] : Tutorial
+  - [x] : send-comments
+  - [x] : legal-notice
+  - [x] : privacy-policy
