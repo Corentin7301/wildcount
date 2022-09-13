@@ -35,30 +35,28 @@
 
   const user = useNhostUser()
   const commentForm = ref()
-  console.log(commentForm);
 
   const encode = (data) => {
     return Object.keys(data)
       .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
       .join("&");
   }
-  const handleSubmit = () => {
-    fetch("/", {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        method: "POST",
-        body: encode({
-          "form-name": commentForm.value.getAttribute("name"),
-          ...commentForm.value
-        })
-      })
-      .then(function (res) {
-        console.log(res)
-      })
-      .catch(function (res) {
-        console.log(res)
-      })
+  const fields = {
+    'name': 'Coco',
+    'email': 'moi@hy.fr',
+    'message': 'Salut !',
+    'form-name': 'comment-form'
+  }
+  const encodedForm = this.encode(fields);
+  const handleSubmit = async () => {
+    const res = await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: encodedForm
+    })
+    console.log(res)
   }
 
 </script>
