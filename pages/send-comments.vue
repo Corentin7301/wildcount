@@ -4,7 +4,7 @@
       soit, <span class=" text-ecstasy-500">tu
         es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
       par mail au plus vite !</p>
-    <form name="comments" id="comments" @submit.prevent="handleSubmit()" ref="commentForm">
+    <form name="comment-form" @submit.prevent="handleSubmit()" ref="commentForm">
       <Container class=" grid gap-4 mt-10">
         <label for="firstname">
           <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
@@ -37,21 +37,28 @@
   const commentForm = ref()
   console.log(commentForm);
 
-
-  const handleSubmit = (e) => {
-    let myForm = document.getElementById("comments")
-    let formData = new FormData(myForm);
-
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  }
+  const handleSubmit = () => {
     fetch("/", {
-        method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: new URLSearchParams(formData).toString(),
+        method: "POST",
+        body: encode({
+          "form-name": commentForm.value.getAttribute("name"),
+          ...commentForm.value
+        })
       })
-      .then(() => console.log("Form successfully submitted"))
-      .catch((error) => alert(error));
-
+      .then(function (res) {
+        console.log(res)
+      })
+      .catch(function (res) {
+        console.log(res)
+      })
   }
 
 </script>
