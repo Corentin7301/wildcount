@@ -35,7 +35,7 @@
     },
     inputPlaceholder: {
       type: String,
-      default: 'Rechercher une espèce...',
+      default: 'Chamois...',
     }
   })
 
