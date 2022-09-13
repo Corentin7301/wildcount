@@ -2,6 +2,7 @@
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
 - [ ] : Add analytics ?
 - [ ] : Connect form of send-comment to Netlify
+  - [ ] : add honey pot field
 - [ ] : Add swipe between pages
 - [ ] : Beta ?
   - [ ] : Make.com -> create limited list of users

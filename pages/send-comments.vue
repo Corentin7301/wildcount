@@ -4,7 +4,7 @@
       soit, <span class=" text-ecstasy-500">tu
         es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
       par mail au plus vite !</p>
-    <form name="comment-form" @submit.prevent="handleSubmit()" ref="commentForm">
+    <form name="comment-form" @submit.prevent="handleSubmit()">
       <Container class=" grid gap-4 mt-10">
         <label for="firstname">
           <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
@@ -33,7 +33,6 @@
   })
 
   const user = useNhostUser()
-  const commentForm = ref()
   const firstname = ref('')
   const message = ref('')
 
@@ -42,15 +41,22 @@
       .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
       .join("&");
   }
-  const fields = {
-    'firstname': firstname.value,
-    'email': user.value.email,
-    'message': message.value,
-    'form-name': 'comment-form'
-  }
-  
-  const encodedForm = encode(fields);
+
+  const fields = computed(() => {
+    return {
+      'firstname': firstname.value,
+      'email': user.value.email,
+      'message': message.value,
+      'form-name': 'comment-form'
+    }
+  })
+
+
+  const encodedForm = encode(fields.value);
   const handleSubmit = async () => {
+    console.log(fields.value);
+    console.log(firstname.value, message.value);
+
     const res = await fetch("/", {
       method: "POST",
       headers: {
