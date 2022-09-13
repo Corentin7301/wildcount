@@ -48,7 +48,8 @@
 
           <div
             class="w-full rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
-            <textarea name="comment" id="comment" placeholder="Au Mont Pécloz, j'ai vu 8 chamois au milieu du grand pierrier à 20h30..."
+            <textarea name="comment" id="comment"
+              placeholder="Au Mont Pécloz, j'ai vu 8 chamois au milieu du grand pierrier à 20h30..."
               class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 leading-6 border-none outline-none focus:border-none focus:outline-none no-scroll"
               v-model="newComment"></textarea>
           </div>
@@ -62,7 +63,7 @@
         </section>
 
         <section v-else-if="props.job === 'showText'" class="showText">
-          <slot/>
+          <slot />
         </section>
 
         <button v-if="props.buttonMessage" @click="buttonAction()" class=" mt-7"
@@ -240,8 +241,9 @@
 
   const editObservation = async () => {
     newComment.value = newComment.value.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    try {
-      const res = await graphql.request(`
+    if (newNumber.value !== 0) {
+      try {
+        const res = await graphql.request(`
         mutation editObservation {
           update_Observation_by_pk(pk_columns: {id: "${props.observationId}"}, _set: {comment: "${newComment.value}", date: "${dayjs(newDate.value).format('YYYY-MM-DD')}", number_of_animals: ${newNumber.value}, species_id: ${selectedSpecies.value ? selectedSpecies.value.id : observationDatas.value.Species.id }}) {
             id
@@ -249,16 +251,19 @@
           }
         }
         
-      `)
+        `)
 
-      if (res.error === null && res.data.update_Observation_by_pk.id) {
-        errorMessage.value = ''
-        emit('close-modal')
-      } else {
-        errorMessage.value = 'Une erreur est survenue, réessayes s\'il te plaît.'
+        if (res.error === null && res.data.update_Observation_by_pk.id) {
+          errorMessage.value = ''
+          emit('close-modal')
+        } else {
+          errorMessage.value = 'Une erreur est survenue, réessayes s\'il te plaît.'
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
+    } else {
+      deleteObservation()
     }
   }
 
@@ -288,7 +293,8 @@
 </script>
 
 <style>
-.showText hr {
-  display: none;
-}
+  .showText hr {
+    display: none;
+  }
+
 </style>
