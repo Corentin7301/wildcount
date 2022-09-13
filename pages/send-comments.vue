@@ -51,11 +51,8 @@
     }
   })
 
-
-  const encodedForm = encode(fields.value);
   const handleSubmit = async () => {
-    console.log(fields.value);
-    console.log(firstname.value, message.value);
+    const encodedForm = encode(fields.value);
 
     const res = await fetch("/", {
       method: "POST",
@@ -64,7 +61,6 @@
       },
       body: encodedForm
     })
-    console.log(res)
   }
 
 </script>

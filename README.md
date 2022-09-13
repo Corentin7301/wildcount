@@ -10,6 +10,7 @@
 - [ ] : Test install app button *(await PWA support)*
 - [ ] : Pass to PWA *(in progress)*
 - [ ] : for production, turn return url in nhost for emails sent
+- [ ] : clean code (console logs, debugger, ...)
 - [x] : check nuxt.config & metas
 - [x] : Add animals choice (menu) as filter to list page
 - [x] : Create a Change password method
