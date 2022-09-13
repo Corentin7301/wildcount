@@ -9,14 +9,14 @@ export default defineNuxtConfig({
 
     app: {
         head: {
-          title: 'Nuxt 3 Awesome Starter',
-          titleTemplate: '%s - Nuxt 3 Awesome Starter',
+          title: 'Wildcount',
+          // titleTemplate: '%s - Wildcount',
           meta: [
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             {
-              hid: 'description',
-              name: 'description',
-              content: 'Nuxt 3 Awesome Starter',
+              hid: 'L\'application qui permet de sauvegarder les rencontres avec les animaux sauvages !',
+              name: 'L\'application qui permet de sauvegarder les rencontres avec les animaux sauvages !',
+              content: 'L\'application qui permet de sauvegarder les rencontres avec les animaux sauvages !',
             },
           ],
           link: [{ rel: 'icon', type: 'image/x-icon', href: '/logo.png' }],
@@ -36,7 +36,6 @@ export default defineNuxtConfig({
         '@/assets/css/transition.css',
         '@/assets/css/style-perso.css',
       ],
-      favicon: './assets/img/icon.png',
 
         // auto import components
       components: true,
