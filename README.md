@@ -7,6 +7,7 @@
 - [ ] : Connect form of send-comment to Netlify
 - [ ] : Add swipe between pages
 - [ ] : Beta ?
+  - [ ] : Make.com -> create limited list of users
 - [ ] : Demo ?
 - [ ] : for production, turn return url in nhost for emails sent
 - [x] : Add animals choice (menu) as filter to list page
