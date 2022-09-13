@@ -1,15 +1,15 @@
 # todo: 
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
-- [ ] : check nuxt.config & metas
-- [ ] : Test install app button
-- [ ] : Pass to PWA
 - [ ] : Add analytics ?
 - [ ] : Connect form of send-comment to Netlify
 - [ ] : Add swipe between pages
 - [ ] : Beta ?
   - [ ] : Make.com -> create limited list of users
 - [ ] : Demo ?
+- [ ] : Test install app button *(await PWA support)*
+- [ ] : Pass to PWA *(in progress)*
 - [ ] : for production, turn return url in nhost for emails sent
+- [x] : check nuxt.config & metas
 - [x] : Add animals choice (menu) as filter to list page
 - [x] : Create a Change password method
 - [x] : manage connection not available
