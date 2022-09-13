@@ -10,7 +10,6 @@
           <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
             class="input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
             v-model="firstname" required>
-          <input type="email" name="email" id="email" class=" hidden" v-model="user.email" required>
         </label>
         <div
           class="w-full rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
@@ -35,6 +34,8 @@
 
   const user = useNhostUser()
   const commentForm = ref()
+  const firstname = ref('')
+  const message = ref('')
 
   const encode = (data) => {
     return Object.keys(data)
@@ -42,11 +43,12 @@
       .join("&");
   }
   const fields = {
-    'name': 'Coco',
-    'email': 'moi@hy.fr',
-    'message': 'Salut !',
+    'firstname': firstname.value,
+    'email': user.value.email,
+    'message': message.value,
     'form-name': 'comment-form'
   }
+  
   const encodedForm = encode(fields);
   const handleSubmit = async () => {
     const res = await fetch("/", {

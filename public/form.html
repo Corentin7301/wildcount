@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statics Forms</title>
+</head>
+
+<body>
+  <h2>Contact Form</h2>
+
+  <form method="post" name="comment-form" id="comment-form" data-netlify="true">
+    <label for="firstname">
+      <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
+        class="input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center" required>
+    </label>
+    <div
+      class="w-full rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
+      <textarea name="message" id="message" placeholder="Tout ce que tu veux !"
+        class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 leading-6 border-none outline-none focus:border-none focus:outline-none"
+        required></textarea>
+    </div>
+    <input type="submit" name="submit" id="submit" class="submit-button mt-5" value="Envoyer">
+  </form>
+
+</body>
+
+</html>
