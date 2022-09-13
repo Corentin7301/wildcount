@@ -47,7 +47,7 @@
     'message': 'Salut !',
     'form-name': 'comment-form'
   }
-  const encodedForm = this.encode(fields);
+  const encodedForm = encode(fields);
   const handleSubmit = async () => {
     const res = await fetch("/", {
       method: "POST",
