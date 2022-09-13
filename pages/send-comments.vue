@@ -2,9 +2,9 @@
   <div>
     <p class="text-2xl leading-6">Si tu as une question, une suggestion, une demande d'ajout d'une espèce ou quoi que ce
       soit, <span class=" text-ecstasy-500">tu
-      es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
+        es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
       par mail au plus vite !</p>
-    <form name="comments" method="POST" data-netlify="true">
+    <form name="comments" id="comments" @submit.prevent="handleSubmit()" ref="commentForm">
       <Container class=" grid gap-4 mt-10">
         <label for="firstname">
           <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
@@ -21,7 +21,10 @@
         <input type="submit" name="submit" id="submit" class="submit-button mt-5" value="Envoyer">
       </Container>
     </form>
-      <NuxtLink to="/settings" class="  light-button mt-20 flex items-center justify-center gap-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path></svg> Retour</NuxtLink>
+    <NuxtLink to="/settings" class="  light-button mt-20 flex items-center justify-center gap-3"><svg class="w-6 h-6"
+        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+      </svg> Retour</NuxtLink>
   </div>
 </template>
 
@@ -31,5 +34,24 @@
   })
 
   const user = useNhostUser()
+  const commentForm = ref()
+  console.log(commentForm);
+
+
+  const handleSubmit = (e) => {
+    let myForm = document.getElementById("comments")
+    let formData = new FormData(myForm);
+
+    fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams(formData).toString(),
+      })
+      .then(() => console.log("Form successfully submitted"))
+      .catch((error) => alert(error));
+
+  }
 
 </script>
