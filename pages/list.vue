@@ -6,12 +6,31 @@
         @all-observations-search-value="(searchValue) => allObservationsSearch(searchValue)" />
       <!--todo: filters (+ update calc-max-h class in css)-->
       <!--
-      <div class="flex gap-3 flex-nowrap overflow-x-scroll snap-x justify-between">
         <Filter filter="by-numbers" @filter-name="(filterName) => filterChoiced = filterName">0-100</Filter>
         <Filter filter="by-dates" @filter-name="(filterName) => filterChoiced = filterName">Dates</Filter>
         <Filter filter="by-classes" @filter-name="(filterName) => filterChoiced = filterName">Classes</Filter>
-      </div>
       -->
+
+      <div class="flex gap-3 flex-nowrap overflow-x-scroll snap-x justify-between">
+        <div class="filter">
+          <Filter @click="modalIsOpen = true">
+            <template #label>
+              <span>{{filtersStore.classFilterChoiced === 'all' ? 'Tous' : filtersStore.classFilterChoiced.nameFr}}</span>
+            </template>
+          </Filter>
+
+          <Transition name="fade" appear>
+            <Modale v-if="modalIsOpen" @close-modal="modalIsOpen = false">
+              <template #title>
+                Choisir une classe
+              </template>
+              <template #modaleContent>
+                <ClassChoicer @filter-is-choiced="modalIsOpen = false" />
+              </template>
+            </Modale>
+          </Transition>
+        </div>
+      </div>
 
       <p v-if="observations.data.Observation.length === 0" class=" text-center text-2xl">Il n'y a pas encore
         d'observation ! <NuxtLink to="/" class="block text-ecstasy-500 text-3xl">Ajoutes-en une !</NuxtLink>
@@ -54,6 +73,8 @@
 
   // data refreshing
   const refresh = () => refreshNuxtData('observations')
+
+  const modalIsOpen = ref(false)
 
   // data fetching
   const {

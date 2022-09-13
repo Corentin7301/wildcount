@@ -48,8 +48,8 @@
 
           <div
             class="w-full rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
-            <textarea name="comment" id="comment" placeholder="Entre des informations sur ta rencontre"
-              class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 leading-6 border-none outline-none focus:border-none focus:outline-none"
+            <textarea name="comment" id="comment" placeholder="Au Mont Pécloz, j'ai vu 8 chamois au milieu du grand pierrier à 20h30..."
+              class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 leading-6 border-none outline-none focus:border-none focus:outline-none no-scroll"
               v-model="newComment"></textarea>
           </div>
           <div v-if="success"
