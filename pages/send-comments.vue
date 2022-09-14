@@ -4,7 +4,7 @@
       soit, <span class=" text-ecstasy-500">tu
         es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
       par mail au plus vite !</p>
-    <form name="comment-form" @submit.prevent="handleSubmit()">
+    <form name="comment-form" netlify>
       <Container class="grid gap-4 mt-10 ">
         <label for="firstname">
           <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
