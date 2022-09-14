@@ -4,10 +4,10 @@
       soit, <span class=" text-ecstasy-500">tu
         es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
       par mail au plus vite !</p>
-    <form name="comment-form" netlify>
+    <form name="comment-form" @submit.prevent="handleSubmit()">
       <Container class="grid gap-4 mt-10 ">
-        <label for="firstname">
-          <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
+        <label for="user-firstname">
+          <input type="text" name="user-firstname" id="user-firstname" placeholder="Ton prénom"
             class="input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"
             v-model="firstname" required>
         </label>
@@ -50,8 +50,8 @@
 
   const fields = computed(() => {
     return {
-      'firstname': firstname.value,
-      'email': user.value.email,
+      'user-firstname': firstname.value,
+      'user-email': user.value.email,
       'message': message.value,
       'bot-field': bot.value,
       'form-name': 'comment-form'
