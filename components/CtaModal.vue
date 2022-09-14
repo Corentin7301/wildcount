@@ -8,7 +8,8 @@
 
         <button @click="ctaAction()"
           class="absolute w-12 h-12 p-3 rounded-full -bottom-5 -right-3 bg-gradient-to-b button-shadow"
-          :class="ctaColorChoice" v-html="ctaIconChoice">
+          :class="ctaColorChoice">
+          <Icon :name="ctaIcon" />
         </button>
         <!--Modal content-->
 
@@ -104,11 +105,15 @@
     },
     ctaIcon: {
       type: String,
-      default: 'close'
+      default: 'heroicons-outline:x'
     },
     ctaColor: {
       type: String,
       default: 'base'
+    },
+    ctaFunction: {
+      type: String,
+      default: 'close'
     },
     warn: {
       type: Boolean,
@@ -155,19 +160,8 @@
     return observationDatas.data.Observation_by_pk
   })
 
-  const ctaIconChoice = computed(() => {
-    switch (props.ctaIcon) {
-      case 'close':
-        return '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
-      case 'validate':
-        return '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'
-      default:
-        return ''
-    }
-  })
-
   const ctaColorChoice = computed(() => {
-    switch (props.ctaIcon) {
+    switch (props.ctaFunction) {
       case 'close':
         return 'from-tan-hide-500 to-ecstasy-500'
       case 'validate':
