@@ -11,6 +11,7 @@
 - [ ] : Pass to PWA *(in progress)*
 - [ ] : for production, turn return url in nhost for emails sent
 - [ ] : clean code (console logs, debugger, ...)
+- [ ] : Landing page sharing button on app
 - [x] : Connect form of send-comment to Netlify
 - [x] : check nuxt.config & metas
 - [x] : Add animals choice (menu) as filter to list page
