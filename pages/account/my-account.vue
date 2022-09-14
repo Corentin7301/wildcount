@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <h1 class=" text-center text-4xl font-bold mb-7">Modifier le mot de passe</h1>
+            <h1 class="text-4xl font-bold text-center  mb-7">Modifier le mot de passe</h1>
         <Container class="py-4">
           <form class="space-y-4 text-xl" @submit.prevent="changePassword()">
             <div>
@@ -14,13 +14,13 @@
             <!--error message-->
             <Transition name="fade" appear>
               <p v-if="errorMessage"
-                class="text-base text-center font-medium text-red-500 hover:text-red-500 opacity-80 transition-all">
+                class="text-base font-medium text-center text-red-500 hover:text-red-500 opacity-80 ">
                 {{errorMessage}}
               </p>
             </Transition>
             <Transition name="fade" appear>
               <p v-if="successMessage"
-                class="text-base text-center font-medium text-emerald-500 hover:text-emerald-500 opacity-80 transition-all">
+                class="text-base font-medium text-center text-emerald-500 hover:text-emerald-500 opacity-80 ">
                 {{successMessage}}
               </p>
             </Transition>

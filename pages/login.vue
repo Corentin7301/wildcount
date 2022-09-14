@@ -2,8 +2,8 @@
   <div class="flex flex-col justify-center pb-12 sm:px-6 lg:px-8">
     <div>
       <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 class="mt-6 text-center text-5xl font-extrabold text-gray-100">Connexion</h2>
-        <p class=" text-center text-xl text-gray-200">
+        <h2 class="mt-6 text-5xl font-extrabold text-center text-gray-100">Connexion</h2>
+        <p class="text-xl text-center text-gray-200 ">
           ou
           <NuxtLink to="/signup" class="font-medium text-ecstasy-500 hover:text-ecstasy-600"> créé ton compte
           </NuxtLink>
@@ -29,7 +29,7 @@
             <!--error message-->
             <Transition name="fade" appear>
               <p v-if="errorMessage"
-                class="text-base text-center font-medium text-red-500 hover:text-red-500 opacity-80 transition-all">
+                class="text-base font-medium text-center text-red-500 hover:text-red-500 opacity-80">
                 {{errorMessage}}
               </p>
             </Transition>
@@ -51,13 +51,13 @@
                   <div class="w-full border-t border-ecstasy-900"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-ecstasy-500 text-white rounded-full">Ou connectes-toi avec</span>
+                  <span class="px-2 text-white rounded-full bg-ecstasy-500">Ou connectes-toi avec</span>
                 </div>
               </div>
-              <div class="mt-6 grid grid-cols-3 gap-3">
+              <div class="grid grid-cols-3 gap-3 mt-6">
                 <div>
                   <a href="#"
-                    class="w-full inline-flex justify-center py-2 px-4 rounded-full shadow-sm bg-ecstasy-500 text-sm font-medium text-white">
+                    class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-full shadow-sm bg-ecstasy-500">
                     <span class="sr-only">Sign in with Facebook</span>
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fill-rule="evenodd"
@@ -68,7 +68,7 @@
                 </div>
                 <div>
                   <a href="#"
-                    class="w-full inline-flex justify-center py-2 px-4 rounded-full shadow-sm bg-ecstasy-500 text-sm font-medium text-white">
+                    class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-full shadow-sm bg-ecstasy-500">
                     <span class="sr-only">Sign in with Twitter</span>
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path
@@ -78,7 +78,7 @@
                 </div>
                 <div>
                   <a href="#"
-                    class="w-full inline-flex justify-center py-2 px-4 rounded-full shadow-sm bg-ecstasy-500 text-sm font-medium text-white">
+                    class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-full shadow-sm bg-ecstasy-500">
                     <span class="sr-only">Sign in with GitHub</span>
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fill-rule="evenodd"
