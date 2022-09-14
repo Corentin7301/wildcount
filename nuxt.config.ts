@@ -111,7 +111,7 @@ export default defineNuxtConfig({
   },
 
 
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content'],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', 'nuxt-icon'],
   nhost: {
     backendUrl: process.env.NHOST_URL,
   },

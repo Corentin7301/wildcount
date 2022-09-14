@@ -11,7 +11,7 @@
     </Transition>
     <!--Edit modale-->
     <Transition name="slide-top" appear>
-      <CtaModal v-if="editModale" @close-modal="editModale = false, refresh()" buttonMessage="Annuler" ctaIcon="validate" job="editObservation" :warn="false"
+      <CtaModal v-if="editModale" @close-modal="editModale = false, refresh()" buttonMessage="Annuler" ctaFunction="validate" ctaIcon="heroicons-outline:check" job="editObservation" :warn="false"
         :observationId="idOfObservation">
         <template #title>
           Modification de l'observation
