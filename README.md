@@ -1,5 +1,4 @@
 # todo: 
-- [ ] : add honey pot field
 - [ ] : Make.com -> send-me a telegram message when someone sends a comment via form
 - [ ] : Add swipe between pages
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
@@ -12,6 +11,7 @@
 - [ ] : for production, turn return url in nhost for emails sent
 - [ ] : clean code (console logs, debugger, ...)
 - [ ] : Landing page sharing button on app
+- [x] : add honey pot field
 - [x] : Connect form of send-comment to Netlify
 - [x] : check nuxt.config & metas
 - [x] : Add animals choice (menu) as filter to list page
