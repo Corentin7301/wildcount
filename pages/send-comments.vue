@@ -5,11 +5,6 @@
         es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
       par mail au plus vite !</p>
     <form name="comment-form" @submit.prevent="handleSubmit()">
-      <p class="hidden">
-      <label>
-        I see you... r.o.b.o.t <input name="bot-field" />
-      </label>
-    </p>
       <Container class="grid gap-4 mt-10 ">
         <label for="firstname">
           <input type="text" name="firstname" id="firstname" placeholder="Ton prénom"
@@ -22,10 +17,15 @@
             class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 leading-6 border-none outline-none focus:border-none focus:outline-none"
             v-model="message" required></textarea>
         </div>
+        <p class="hidden">
+          <label>
+            I see you... r.o.b.o.t <input name="bot-field" v-model="bot" />
+          </label>
+        </p>
         <input type="submit" name="submit" id="submit" class="mt-5 submit-button" value="Envoyer">
       </Container>
     </form>
-    <NuxtLink to="/settings" class="flex items-center justify-center gap-3 mt-20  light-button"><svg class="w-6 h-6"
+    <NuxtLink to="/settings" class="flex items-center justify-center gap-3 mt-20 light-button"><svg class="w-6 h-6"
         fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
       </svg> Retour</NuxtLink>
@@ -40,6 +40,7 @@
   const user = useNhostUser()
   const firstname = ref('')
   const message = ref('')
+  const bot = ref('')
 
   const encode = (data) => {
     return Object.keys(data)
@@ -52,6 +53,7 @@
       'firstname': firstname.value,
       'email': user.value.email,
       'message': message.value,
+      'bot-field': bot.value,
       'form-name': 'comment-form'
     }
   })
@@ -59,13 +61,20 @@
   const handleSubmit = async () => {
     const encodedForm = encode(fields.value);
 
-    const res = await fetch("/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: encodedForm
-    })
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: encodedForm
+      })
+      firstname.value = ''
+      message.value = ''
+      alert('Merci pour ton message !')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 </script>

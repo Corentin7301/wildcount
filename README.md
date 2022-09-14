@@ -1,5 +1,6 @@
 # todo: 
 - [ ] : Make.com -> send-me a telegram message when someone sends a comment via form
+- [ ] : create an success and thanks message for send-comment
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
 - [ ] : Add analytics ?
 - [ ] : Beta ?
