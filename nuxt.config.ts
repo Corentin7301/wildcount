@@ -1,43 +1,133 @@
-import { defineNuxtConfig } from 'nuxt'
+import {
+  defineNuxtConfig
+} from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    ssr: false,
-    // nitro: {
-    //   preset: 'service-worker'
-    // },
+  ssr: false,
+  // nitro: {
+  //   preset: 'service-worker'
+  // },
 
-    app: {
-        head: {
-          title: 'Wildcount',
-          // titleTemplate: '%s - Wildcount',
-          meta: [
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            {
-              hid: 'L\'application qui permet de sauvegarder les rencontres avec les animaux sauvages !',
-              name: 'L\'application qui permet de sauvegarder les rencontres avec les animaux sauvages !',
-              content: 'L\'application qui permet de sauvegarder les rencontres avec les animaux sauvages !',
-            },
-          ],
-          link: [{ rel: 'icon', type: 'image/x-icon', href: '/logo.png' }],
+  app: {
+    head: {
+      title: 'Wildcount',
+      // titleTemplate: '%s - Wildcount',
+
+      meta: [{
+          charset: 'utf-8'
         },
-      },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1'
+        },
+        {
 
+          hid: 'description',
+          name: 'description',
+          content: global.siteMetaDescription
+        },
 
-    modules: ['@nuxtjs/tailwindcss','nuxt-nhost','@pinia/nuxt','@nuxt/content'],
-    nhost: {
-      backendUrl: process.env.NHOST_URL,
-    },
+        {
+          property: "og:site_name",
+          content: global.siteName
+        },
+        {
+          hid: "og:type",
+          property: "og:type",
+          content: global.siteType
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: global.siteUrl,
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: global.siteName,
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: global.siteMetaDescription,
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: "/logo.png",
+        },
+        {
+          property: "og:image:width",
+          content: "740"
+        },
+        {
+          property: "og:image:height",
+          content: "300"
+        },
 
-    css: [
-        // CSS file in the project
-        '@/assets/css/tailwind.css',
-        '@/assets/css/fonts.css',
-        '@/assets/css/transition.css',
-        '@/assets/css/style-perso.css',
+        {
+          name: "twitter:site",
+          content: global.twitterAccount
+        },
+        // { name: "twitter:card", content: "summary_large_image" }, 
+        {
+          hid: "twitter:url",
+          name: "twitter:url",
+          content: global.twitterUrl,
+        },
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: global.siteName,
+        },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: global.siteMetaDescription,
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: "/logo.png",
+        },
+
       ],
+      link: [
 
-        // auto import components
-      components: true,
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          // CHANGE FAVICON NAME HERE
+          href: '/logo.png'
+        },
+        {
+          hid: "canonical",
+          rel: "canonical",
+          href: global.siteUrl,
+        }
+      ]
+    },
+  },
+
+
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content'],
+  nhost: {
+    backendUrl: process.env.NHOST_URL,
+  },
+
+  plugins: [{
+    src: '@/plugins/variables.js'
+  }, ],
+  css: [
+    // CSS file in the project
+    '@/assets/css/tailwind.css',
+    '@/assets/css/fonts.css',
+    '@/assets/css/transition.css',
+    '@/assets/css/style-perso.css',
+  ],
+
+  // auto import components
+  components: true,
 
 })

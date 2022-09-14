@@ -1,5 +1,5 @@
 <template>
-  <button class="w-16 h-16 p-2 rounded-full  button-shadow"
+  <button class="w-16 h-16 p-2 rounded-full button-shadow"
     :class="`bg-gradient-to-t from-${defineButtonColor().first} to-${defineButtonColor().second}`">
     <slot />
   </button>
