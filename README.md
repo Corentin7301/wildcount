@@ -1,6 +1,5 @@
 # todo: 
 - [ ] : Make.com -> send-me a telegram message when someone sends a comment via form
-- [ ] : Add swipe between pages
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
 - [ ] : Add analytics ?
 - [ ] : Beta ?
@@ -9,8 +8,12 @@
 - [ ] : Test install app button *(await PWA support)*
 - [ ] : Pass to PWA *(in progress)*
 - [ ] : for production, turn return url in nhost for emails sent
-- [ ] : clean code (console logs, debugger, ...)
 - [ ] : Landing page sharing button on app
+- [ ] : Test if we can transform complex svg into other svg
+- [ ] : Work on success new observation animation
+- [ ] : Add swipe between pages ~ *"No actual solution found yet"*
+- [ ] : Look at vue router transition
+- [x] : clean code (console.log, debugger, ...)
 - [x] : add honey pot field
 - [x] : Connect form of send-comment to Netlify
 - [x] : check nuxt.config & metas
