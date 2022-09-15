@@ -12,14 +12,13 @@
 
   <form method="post" name="comment-form" id="comment-form" data-netlify="true">
     <label for="user-firstname">
-      <input type="text" name="user-firstname" id="user-firstname" placeholder="Ton prénom"
-      class="input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center" required>
+      <input type="text" name="user-firstname" id="user-firstname" required>
     </label>
-    <div
-    class="w-full rounded-2xl mx-auto bg-gradient-to-b px-[1px] pt-[1px] from-ecstasy-500 via-tan-hide-500 to-transparent">
-    <textarea name="message" id="message" placeholder="Tout ce que tu veux !"
-    class=" bg-mine-shaft-500 py-4 px-5 rounded-2xl text-white text-2xl -4 min-h-[100px] w-full resize-none -mb-2 leading-6 border-none outline-none focus:border-none focus:outline-none"
-    required></textarea>
+    <label for="user-email">
+      <input type="text" name="user-email" id="user-email">
+    </label>
+    <div>
+    <textarea name="message" id="message" placeholder="Tout ce que tu veux !" required></textarea>
   </div>
   <p class="hidden">
     <label>
