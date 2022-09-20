@@ -53,7 +53,7 @@
             <span>Payes moi un café <span class="text-base">☕️</span> ! </span>
           </div>
         </a>
-        <NuxtLink to="/account/my-account" class=" button-container">
+        <NuxtLink to="/account/new-password" class=" button-container">
           <div class="label-container">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">

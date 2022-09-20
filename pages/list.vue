@@ -158,7 +158,7 @@
   .calc-max-h {
     /* base height - navbar height and filters height */
     /* max-height: calc(var(--base-max-h) - (60px + 50px)); */
-    max-height: calc(var(--base-max-h) - (120px));
+    max-height: calc(var(--base-max-h) - (140px));
   }
 
 </style>
