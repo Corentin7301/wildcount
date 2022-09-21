@@ -44,6 +44,8 @@
 
 
   onMounted(() => {
+    filtersStore.filter = '',
+    filtersStore.order = 'desc'
     refresh()
   })
 

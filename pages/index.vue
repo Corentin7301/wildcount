@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="newObservation()" class=" grid gap-9 max-w-[80%] mx-auto">
-    <div class="flex flex-col  gap-5">
+    <div class="flex flex-col gap-5">
       <SearchBar @selected-species="(species) => selectedSpecies = species" :clearedSearch="clearSearch"
         @cleared-search="clearSearch = false" searchbarUtility="newObservation" />
       <input type="date" name="date" id="date"

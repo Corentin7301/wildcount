@@ -31,15 +31,15 @@
       <div
         class=" rounded-2xl px-[1px] pt-[1px] mb-10 bg-gradient-to-b from-ecstasy-500 via-tan-hide-500 to-transparent card-shadow">
         <div
-          class="w-full h-full px-5 pb-4 text-white border-none outline-none grid gap-2 bg-mine-shaft-500 pt-7 rounded-2xl">
-          <h1 class="text-3xl font-normal text-center leading-5">{{species.data.Species[0].small_name}}</h1>
-          <h2 class="flex items-center justify-center text-3xl font-normal text-center gap-3">
+          class="grid w-full h-full gap-2 px-5 pb-4 text-white border-none outline-none bg-mine-shaft-500 pt-7 rounded-2xl">
+          <h1 class="text-3xl font-normal leading-5 text-center">{{species.data.Species[0].small_name}}</h1>
+          <h2 class="flex items-center justify-center gap-3 text-3xl font-normal text-center">
             Total : <span
               class="text-5xl">{{species.data.Species[0].Observations_aggregate.aggregate.sum.number_of_animals}}</span>
           </h2>
         </div>
       </div>
-      <ul class="overflow-y-scroll grid gap-11 snap-y scroll-pt-2 calc-max-h no-scroll">
+      <ul class="grid overflow-y-scroll gap-11 snap-y scroll-pt-2 calc-max-h no-scroll">
         <li v-for="(observation,index) in observations.data.Observation" :key="index"
           class="relative flex items-center justify-between min-h-[60px] rounded-b-2xl border-[1px] pl-8 pr-10 pt-2 mx-2 my-2 border-tan-hide-500 snap-start card-shadow">
           <!-- delete btn -->
@@ -64,7 +64,7 @@
                 d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
               </path>
             </svg></span>
-          <p class="text-3xl font-normal text-center leading-5">{{dayjs(observation.date).format('DD-MM-YYYY')}}</p>
+          <p class="text-3xl font-normal leading-5 text-center">{{dayjs(observation.date).format('DD-MM-YYYY')}}</p>
           <p class="mt-1 font-normal text-center text-7xl">
             {{observation.number_of_animals}}</p>
         </li>
