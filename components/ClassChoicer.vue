@@ -1,7 +1,7 @@
 <template>
-  <ul class=" mt-10 pl-4 space-y-4">
+  <ul class="pl-4 mt-10 space-y-4 ">
     <div class="flex items-center gap-4" @click="choiceFilter('all')">
-      <div class=" w-12 h-12 p-3 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow rounded-full">
+      <div class="w-12 h-12 p-3 rounded-full bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16">
           </path>
@@ -12,7 +12,7 @@
       </div>
     </div>
     <li v-for="oneClass in classes.data.Class" :key="oneClass.id" @click="choiceFilter(oneClass)"
-      class=" capitalize flex items-center gap-4">
+      class="flex items-center gap-4 capitalize ">
       <div class=" w-12 h-12 p-[14px] bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow rounded-full">
         <img :src="`/${oneClass.illustrationName}-full.svg`" :alt="oneClass.nameFr">
       </div>
@@ -30,14 +30,10 @@
   } from '~/store/filters'
   const filtersStore = useFiltersStore()
   const {
-    auth
-  } = useNhostClient()
-  const user = useNhostUser()
-  const {
     graphql
   } = useNhostClient()
 
-  const emit = defineEmits(['filter-is-choiced'])
+  const emit = defineEmits(['class-is-choiced'])
 
   const {
     data: classes
@@ -55,16 +51,12 @@
     return classes
   })
 
-  const refresh = () => refreshNuxtData('observations')
-
   const choiceFilter = (classObject) => {
     if (classObject === 'all') {
       filtersStore.classFilterChoiced = 'all'
     } else {
       filtersStore.classFilterChoiced = classObject
     }
-    refresh()
-    emit('filter-is-choiced')
+    emit('class-is-choiced')
   }
-
 </script>

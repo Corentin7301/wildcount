@@ -13,7 +13,7 @@
         </button>
         <!--Modal content-->
 
-        <p class="mb-5 text-3xl font-normal leading-6 text-center "
+        <p class="mb-5 text-3xl font-normal text-center leading-6 "
           :class="props.warn ? 'text-red-400' : ''">
           <slot name="title"/>
         </p>
@@ -29,7 +29,7 @@
             </Transition>
           </div>
 
-          <div class="grid items-center justify-between grid-cols-3 gap-4 mx-auto ">
+          <div class="items-center justify-between mx-auto grid grid-cols-3 gap-4 ">
             <button @click="newNumber--"
               class="w-12 h-12 p-3 mx-auto text-3xl rounded-full bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow"><svg
                 fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

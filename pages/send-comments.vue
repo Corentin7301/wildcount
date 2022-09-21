@@ -5,7 +5,7 @@
         es au bon endroit</span> !<br>Envoie moi un petit message, promis je te réponds
       par mail au plus vite !</p>
     <form name="comment-form" @submit.prevent="handleSubmit()">
-      <Container class="grid gap-4 mt-10 ">
+      <Container class="mt-10 grid gap-4 ">
         <label for="user-firstname">
           <input type="text" name="user-firstname" id="user-firstname" placeholder="Ton prénom"
             class="input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center"

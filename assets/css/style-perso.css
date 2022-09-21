@@ -20,11 +20,11 @@
 }
 
 .content-container h1 {
-  @apply text-4xl mb-3;
+  @apply mb-3 text-4xl;
 }
 
 .content-container h2 {
-  @apply text-2xl mb-1;
+  @apply mb-1 text-2xl;
 }
 
 .content-container a {
@@ -32,19 +32,19 @@
 }
 
 .input-style {
-  @apply w-full bg-gradient-to-t from-tan-hide-500 to-ecstasy-500 input-shadow focus:ring-white focus:border-none focus:outline-none rounded-full border-none placeholder:text-gray-200;
+  @apply w-full border-none rounded-full bg-gradient-to-t from-tan-hide-500 to-ecstasy-500 input-shadow focus:ring-white focus:border-none focus:outline-none placeholder:text-gray-200;
 }
 
 .submit-button {
-  @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full;
+  @apply w-full pt-1 text-3xl font-normal text-center rounded-full h-11 bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none;
 }
 
 .warn-button {
-  @apply w-full text-3xl text-center font-normal pt-1 h-11 bg-gradient-to-t from-red-600 to-red-400 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full;
+  @apply w-full pt-1 text-3xl font-normal text-center rounded-full h-11 bg-gradient-to-t from-red-600 to-red-400 button-shadow focus:ring-white focus:border-none focus:outline-none;
 }
 
 .light-button {
-  @apply w-full text-3xl text-center font-normal focus:ring-white focus:border-none focus:outline-none;
+  @apply w-full text-3xl font-normal text-center focus:ring-white focus:border-none focus:outline-none;
 }
 
 .input-shadow {
@@ -52,11 +52,11 @@
 }
 
 .button-shadow {
-  box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25), inset 0px 2px 4px #FFFFFF;
+  box-shadow: inset 0px 2px 4px #FFFFFF;
 }
 
 .card-shadow {
-  filter: drop-shadow(0px 4px 13px #0000002b);
+  filter: drop-shadow(0px 4px 6px #0000002b);
 }
 
 input::-webkit-outer-spin-button,

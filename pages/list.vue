@@ -4,33 +4,9 @@
       <SearchBar @selected-species="(species) => selectedSpecies = species" :clearedSearch="clearSearch"
         @cleared-search="clearSearch = false" class="mb-4 " searchbarUtility="allObservations"
         @all-observations-search-value="(searchValue) => allObservationsSearch(searchValue)" />
-      <!--todo: filters (+ update calc-max-h class in css)-->
-      <!--
-        <Filter filter="by-numbers" @filter-name="(filterName) => filterChoiced = filterName">0-100</Filter>
-        <Filter filter="by-dates" @filter-name="(filterName) => filterChoiced = filterName">Dates</Filter>
-        <Filter filter="by-classes" @filter-name="(filterName) => filterChoiced = filterName">Classes</Filter>
-      -->
 
-      <div class="flex justify-between gap-3 overflow-x-scroll flex-nowrap snap-x">
-        <div class="filter">
-          <Filter @click="modalIsOpen = true">
-            <template #label>
-              <span>{{filtersStore.classFilterChoiced === 'all' ? 'Tous' : filtersStore.classFilterChoiced.nameFr}}</span>
-            </template>
-          </Filter>
-
-          <Transition name="fade" appear>
-            <Modale v-if="modalIsOpen" @close-modal="modalIsOpen = false">
-              <template #title>
-                Choisir une classe
-              </template>
-              <template #modaleContent>
-                <ClassChoicer @filter-is-choiced="modalIsOpen = false" />
-              </template>
-            </Modale>
-          </Transition>
-        </div>
-      </div>
+      <ListFilters :observations="observations"
+        @filter-result="(filteredObservations) => filterResult(filteredObservations)" />
 
       <p v-if="observations.data.Observation.length === 0" class="text-2xl text-center ">Il n'y a pas encore
         d'observation ! <NuxtLink to="/" class="block text-3xl text-ecstasy-500">Ajoutes-en une !</NuxtLink>
@@ -68,27 +44,29 @@
 
 
   onMounted(() => {
-    refresh()
+    filtersStore.filter = '',
+    filtersStore.order = 'desc'
   })
 
   // data refreshing
-  const refresh = () => refreshNuxtData('observations')
-
-  const modalIsOpen = ref(false)
+  // const refresh = () => refreshNuxtData('allObservations')
 
   // data fetching
   const {
     data: observations
-  } = await useAsyncData('observations', async () => {
-    if (filtersStore.classFilterChoiced === 'all') {
-      const observations = await graphql.request(`
+  } = await useAsyncData('allObservations', async () => {
+    const observations = await graphql.request(`
         query AllObservations {
           Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on: species_id) {
+            updated_at
             Species {
               id
               small_name
               common_name
               scientific_name
+              Class {
+                id
+              }
               Observations_aggregate {
                 aggregate {
                   sum {
@@ -100,43 +78,27 @@
           }
         }
   `)
-      return observations
-    } else {
-      const observations = await graphql.request(`
-        query AllObservations {
-          Observation(where: {_and: {user_id: {_eq: "${user.value.id}"}, Species: {Class: {id: {_eq: ${filtersStore.classFilterChoiced.id}}}}}}, order_by: {species_id: asc}, distinct_on: species_id) {
-            Species {
-              id
-              small_name
-              common_name
-              scientific_name
-              Observations_aggregate {
-                aggregate {
-                  sum {
-                    number_of_animals
-                  }
-                }
-              }
-            }
-          }
-        }
-  `)
-      return observations
-    }
+    return observations
+  }, {
+  initialCache: false
+})
 
-  })
+  const filteredObs = ref([])
+  const filterResult = (result) => {
+    filteredObs.value = result
+  }
 
-
-  // search methods
+  // final datas method
   const allObservations = computed(() => {
     if (searchedObservations.value.length > 0) {
       return searchedObservations.value.map(observation => observation.item)
     } else {
-      return observations.value.data.Observation
+      return filteredObs.value
     }
   })
-  const searchedObservations = ref([])
 
+  // search methods
+  const searchedObservations = ref([])
   const allObservationsSearch = async (searchValue) => {
     const options = {
       keys: [
@@ -149,15 +111,10 @@
     searchedObservations.value = fuse.search(searchValue)
   }
 
-
-  const filterChoiced = ref('')
-
 </script>
 
 <style scoped>
   .calc-max-h {
-    /* base height - navbar height and filters height */
-    /* max-height: calc(var(--base-max-h) - (60px + 50px)); */
     max-height: calc(var(--base-max-h) - (140px));
   }
 

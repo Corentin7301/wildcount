@@ -54,7 +54,7 @@
                   <span class="px-2 text-white rounded-full bg-ecstasy-500">Ou connectes-toi avec</span>
                 </div>
               </div>
-              <div class="grid grid-cols-3 gap-3 mt-6">
+              <div class="mt-6 grid grid-cols-3 gap-3">
                 <div>
                   <a href="#"
                     class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-full shadow-sm bg-ecstasy-500">

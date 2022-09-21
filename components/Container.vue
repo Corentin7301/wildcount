@@ -1,5 +1,5 @@
 <template>
-  <div class=" mx-auto" :class="small ? 'max-w-[80%]' : 'max-w-[90%]'">
+  <div class="mx-auto " :class="small ? 'max-w-[80%]' : 'max-w-[90%]'">
     <slot />
   </div>
 </template>
