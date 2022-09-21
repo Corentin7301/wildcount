@@ -37,7 +37,7 @@
       </Filter>
     </div>
     <button @click="resetFilters()" class="relative w-6 h-6 text-2xl text-center cursor-pointer">
-      <img src="@/vertical-wave.svg" class="absolute -top-[13px] -left-[22px]">
+      <img src="/vertical-wave.svg" class="absolute -top-[13px] -left-[22px]">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
       </svg></button>
