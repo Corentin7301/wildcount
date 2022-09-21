@@ -6,7 +6,7 @@ export const useFiltersStore = defineStore({
   state: () => {
     return {
       filter: '',
-      order: 'desc',
+      order: 'asc',
       classFilterChoiced: 'all',
     }
   },

@@ -1,7 +1,7 @@
 <template>
   <nav
     class=" absolute bottom-0 left-0 min-h-[85px] w-full rounded-t-3xl bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 px-20 pt-9 pb-6">
-    <div class="relative w-full h-full flex items-center justify-between">
+    <div class="relative flex items-center justify-between w-full h-full">
       <NuxtLink to="/list">
         <svg class="w-9 h-9 icon-shadow stroke-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 21H20M4 3H20H4ZM4 9H20H4ZM4 15H20H4Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />

@@ -3,7 +3,7 @@
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <h1 class="text-4xl font-bold text-center  mb-7">Modifier le mot de passe</h1>
         <Container class="py-4">
-          <form class="space-y-4 text-xl" @submit.prevent="changePassword()">
+          <form class="text-xl space-y-4" @submit.prevent="changePassword()">
             <div>
               <label for="email">
                 <input id="password" name="password" type="password" placeholder="Nouveau mot de passe" required

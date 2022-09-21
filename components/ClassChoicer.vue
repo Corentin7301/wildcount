@@ -33,7 +33,7 @@
     graphql
   } = useNhostClient()
 
-  const emit = defineEmits(['filter-is-choiced'])
+  const emit = defineEmits(['class-is-choiced'])
 
   const {
     data: classes
@@ -57,6 +57,6 @@
     } else {
       filtersStore.classFilterChoiced = classObject
     }
-    emit('filter-is-choiced')
+    emit('class-is-choiced')
   }
 </script>

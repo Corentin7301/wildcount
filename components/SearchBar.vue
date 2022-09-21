@@ -1,8 +1,8 @@
 <template>
-  <div class="mt-1 relative rounded-md shadow-sm">
-    <input type="text" name="search" id="search" class="input-style text-2xl p-0 pl-10 pt-1"
+  <div class="relative mt-1 rounded-md shadow-sm">
+    <input type="text" name="search" id="search" class="p-0 pt-1 pl-10 text-2xl input-style"
       :placeholder="props.inputPlaceholder" v-model="search" required>
-    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
       <svg class="w-5 h-5 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -13,7 +13,7 @@
     <ul v-if="dropdownIsOpen"
       class="absolute top-12 left-0 bg-mine-shaft-700 rounded-3xl min-h-[30px]  max-h-60 w-full overflow-y-scroll divide-y-[1px] divide-gray-700 no-scroll">
       <li v-for="(species,index) in searchedSpecies" :key="index" @click="selectOneSpecies(species)"
-        class=" pl-8 py-3 text-2xl leading-4">
+        class="py-3 pl-8 text-2xl  leading-4">
         {{ species.common_name }}</li>
     </ul>
   </div>

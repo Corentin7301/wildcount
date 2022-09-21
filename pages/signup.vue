@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col justify-center pb-12 sm:px-6 lg:px-8">
     <div v-if="needsEmailVerification">
-      <p class="text-xl leading-4 text-center mt-14">
+      <p class="text-xl text-center leading-4 mt-14">
         Vérifies ta boîte mail et termines ton inscription grâce au <span class="text-ecstasy-500">lien de vérification
         </span>!
         <span class="block text-base">(Penses à vérifier tes spams si tu ne reçois pas le mail...)</span>
@@ -55,7 +55,7 @@
                   <span class="px-2 text-white rounded-full bg-ecstasy-500">Ou connectes-toi avec</span>
                 </div>
               </div>
-              <div class="grid grid-cols-3 gap-3 mt-6">
+              <div class="mt-6 grid grid-cols-3 gap-3">
                 <div>
                   <a href="#"
                     class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-full shadow-sm bg-ecstasy-500">

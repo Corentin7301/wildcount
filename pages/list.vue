@@ -11,7 +11,8 @@
         <Filter filter="by-classes" @filter-name="(filterName) => filterChoiced = filterName">Classes</Filter>
       -->
 
-      <ListFilters :observations="observations" @filterResult="(filteredObservations) => filteredObs.value = filteredObservations" />
+      <ListFilters :observations="observations"
+        @filter-result="(filteredObservations) => filterResult(filteredObservations)" />
 
       <p v-if="observations.data.Observation.length === 0" class="text-2xl text-center ">Il n'y a pas encore
         d'observation ! <NuxtLink to="/" class="block text-3xl text-ecstasy-500">Ajoutes-en une !</NuxtLink>
@@ -85,18 +86,22 @@
     return observations
   })
 
-  const filteredObs = ref()
+  const filteredObs = ref([])
+  const filterResult = (result) => {
+    filteredObs.value = result
+  }
+
+  // final datas method
+  const allObservations = computed(() => {
+    if (searchedObservations.value.length > 0) {
+      return searchedObservations.value.map(observation => observation.item)
+    } else {
+      return filteredObs.value
+    }
+  })
+
   // search methods
-  // const allObservations = computed(() => {
-  //   if (searchedObservations.value.length > 0) {
-  //     return searchedObservations.value.map(observation => observation.item)
-  //   } else {
-  //     return filteredObs.value.Observation
-  //   }
-  // })
-
   const searchedObservations = ref([])
-
   const allObservationsSearch = async (searchValue) => {
     const options = {
       keys: [
@@ -113,8 +118,6 @@
 
 <style scoped>
   .calc-max-h {
-    /* base height - navbar height and filters height */
-    /* max-height: calc(var(--base-max-h) - (60px + 50px)); */
     max-height: calc(var(--base-max-h) - (140px));
   }
 

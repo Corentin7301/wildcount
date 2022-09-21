@@ -1,5 +1,5 @@
 <template>
-  <div class=" content-container overflow-y-scroll scroll-pt-2 calc-max-h no-scroll">
+  <div class="overflow-y-scroll  content-container scroll-pt-2 calc-max-h no-scroll">
     <ContentDoc />
   </div>
 </template>
