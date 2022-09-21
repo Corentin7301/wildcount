@@ -46,16 +46,15 @@
   onMounted(() => {
     filtersStore.filter = '',
     filtersStore.order = 'desc'
-    refresh()
   })
 
   // data refreshing
-  const refresh = () => refreshNuxtData('observations')
+  // const refresh = () => refreshNuxtData('allObservations')
 
   // data fetching
   const {
     data: observations
-  } = await useAsyncData('observations', async () => {
+  } = await useAsyncData('allObservations', async () => {
     const observations = await graphql.request(`
         query AllObservations {
           Observation(where: {user_id: {_eq: "${user.value.id}"}}, order_by: {species_id: asc}, distinct_on: species_id) {
@@ -80,7 +79,9 @@
         }
   `)
     return observations
-  })
+  }, {
+  initialCache: false
+})
 
   const filteredObs = ref([])
   const filterResult = (result) => {
