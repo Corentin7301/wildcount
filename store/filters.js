@@ -5,6 +5,8 @@ export const useFiltersStore = defineStore({
   id: 'filter-store',
   state: () => {
     return {
+      filter: '',
+      order: 'desc',
       classFilterChoiced: 'all',
     }
   },
