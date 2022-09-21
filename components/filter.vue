@@ -1,6 +1,6 @@
 <template>
   <button
-    class="min-w-[85px] py-1 pt-2 px-3 text-center text-2xl bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none rounded-full border-none placeholder:text-gray-200 snap-start">
+    class="px-8 py-1 pt-2 text-2xl text-center border-none rounded-full whitespace-nowrap bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow focus:ring-white focus:border-none focus:outline-none placeholder:text-gray-200 snap-start">
     <div class="flex items-center justify-center gap-1">
       <slot name="label" />
       <svg v-if="props.chevron" class="w-4 h-4 mb-1 transition-transform duration-200"

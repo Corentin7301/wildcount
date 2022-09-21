@@ -4,12 +4,6 @@
       <SearchBar @selected-species="(species) => selectedSpecies = species" :clearedSearch="clearSearch"
         @cleared-search="clearSearch = false" class="mb-4 " searchbarUtility="allObservations"
         @all-observations-search-value="(searchValue) => allObservationsSearch(searchValue)" />
-      <!--todo: filters (+ update calc-max-h class in css)-->
-      <!--
-        <Filter filter="by-numbers" @filter-name="(filterName) => filterChoiced = filterName">0-100</Filter>
-        <Filter filter="by-dates" @filter-name="(filterName) => filterChoiced = filterName">Dates</Filter>
-        <Filter filter="by-classes" @filter-name="(filterName) => filterChoiced = filterName">Classes</Filter>
-      -->
 
       <ListFilters :observations="observations"
         @filter-result="(filteredObservations) => filterResult(filteredObservations)" />
