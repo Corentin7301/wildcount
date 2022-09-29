@@ -12,10 +12,8 @@
           <Icon :name="ctaIcon" />
         </button>
         <!--Modal content-->
-
-        <p class="mb-5 text-3xl font-normal text-center leading-6 "
-          :class="props.warn ? 'text-red-400' : ''">
-          <slot name="title"/>
+        <p class="mb-5 text-3xl font-normal leading-6 text-center " :class="props.warn ? 'text-red-400' : ''">
+          <slot name="title" />
         </p>
         <section v-if="props.job === 'editObservation'" class="flex flex-col gap-5 ">
           <div class="flex flex-col gap-5 ">
@@ -29,7 +27,7 @@
             </Transition>
           </div>
 
-          <div class="items-center justify-between mx-auto grid grid-cols-3 gap-4 ">
+          <div class="grid items-center justify-between grid-cols-3 gap-4 mx-auto ">
             <button @click="newNumber--"
               class="w-12 h-12 p-3 mx-auto text-3xl rounded-full bg-gradient-to-t from-ecstasy-500 to-tan-hide-500 button-shadow"><svg
                 fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +59,6 @@
         </section>
 
         <section v-else-if="props.job === 'viewComment'">
-          <!--TODO-->
           <p class=" leading-6 text-3xl min-h-[75px]" v-html="observationDatas.comment"></p>
         </section>
 
@@ -123,7 +120,7 @@
       type: String,
       default: ''
     },
-    observationId: {
+    id: {
       type: String,
       default: ''
     },
@@ -143,7 +140,7 @@
   } = useAsyncData('observationDatas', async () => {
     const observationDatas = await graphql.request(`
       query observationDatas {
-        Observation_by_pk(id: "${props.observationId}") {
+        Observation_by_pk(id: "${props.id}") {
           date
           comment
           number_of_animals
@@ -196,6 +193,9 @@
 
   const buttonAction = async () => {
     switch (props.job) {
+      case 'deletingSpeciesObservation':
+        deleteAllSpeciesObservations()
+        break;
       case 'deletingObservation':
         deleteObservation()
         break;
@@ -210,11 +210,35 @@
     }
   }
 
+  const deleteAllSpeciesObservations = async () => {
+    try {
+      const res = await graphql.request(`
+        mutation DeleteAllSpeciesObservations {
+          delete_Observation(where: {_and: {Species: {id: {_eq: ${props.id}}}, user_id: {_eq: "${user.value.id}"}}}) {
+            affected_rows
+            returning {
+              id
+            }
+          }
+        }
+      `);
+      if (res.error === null) {
+        errorMessage.value = ''
+        emit('close-modal')
+        // refresh();
+      } else {
+        errorMessage.value = 'Une erreur est survenue, réessayes s\'il te plaît.'
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const deleteObservation = async () => {
     try {
       const res = await graphql.request(`
       mutation deleteObservation {
-        delete_Observation_by_pk(id: "${props.observationId}") {
+        delete_Observation_by_pk(id: "${props.id}") {
           id
         }
       }
@@ -237,7 +261,7 @@
       try {
         const res = await graphql.request(`
         mutation editObservation {
-          update_Observation_by_pk(pk_columns: {id: "${props.observationId}"}, _set: {comment: "${parsedNewComment}", date: "${dayjs(newDate.value).format('YYYY-MM-DD')}", number_of_animals: ${newNumber.value}, species_id: ${selectedSpecies.value ? selectedSpecies.value.id : observationDatas.value.Species.id }}) {
+          update_Observation_by_pk(pk_columns: {id: "${props.id}"}, _set: {comment: "${parsedNewComment}", date: "${dayjs(newDate.value).format('YYYY-MM-DD')}", number_of_animals: ${newNumber.value}, species_id: ${selectedSpecies.value ? selectedSpecies.value.id : observationDatas.value.Species.id }}) {
             id
             updated_at
           }
