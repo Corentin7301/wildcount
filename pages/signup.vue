@@ -1,19 +1,27 @@
 <template>
   <div class="flex flex-col justify-center pb-12 sm:px-6 lg:px-8">
     <div v-if="needsEmailVerification">
-      <p class="text-xl text-center leading-4 mt-14">
-        Vérifies ta boîte mail et termines ton inscription grâce au <span class="text-ecstasy-500">lien de vérification
-        </span>!
-        <span class="block text-base">(Penses à vérifier tes spams si tu ne reçois pas le mail...)</span>
+      <p class="text-xl leading-4 text-center mt-14">
+        Vérifies ta boîte mail et termines ton inscription grâce au
+        <span class="text-ecstasy-500">lien de vérification </span>!
+        <span class="block text-base"
+          >(Penses à vérifier tes spams si tu ne reçois pas le mail...)</span
+        >
       </p>
-      <p class="pt-20 text-center  text-9xl">📬</p>
+      <p class="pt-20 text-center text-9xl">📬</p>
     </div>
     <div v-else>
       <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 class="mt-6 text-5xl font-extrabold text-center text-gray-100">Nouveau compte</h2>
-        <p class="text-xl text-center text-gray-200 ">
+        <h2 class="mt-6 text-5xl font-extrabold text-center text-gray-100">
+          Nouveau compte
+        </h2>
+        <p class="text-xl text-center text-gray-200">
           ou
-          <NuxtLink to="/login" class="font-medium text-ecstasy-500 hover:text-ecstasy-600"> connectes-toi
+          <NuxtLink
+            to="/login"
+            class="font-medium text-ecstasy-500 hover:text-ecstasy-600"
+          >
+            connectes-toi
           </NuxtLink>
         </p>
       </div>
@@ -22,28 +30,74 @@
           <form class="space-y-4" @submit.prevent="signUp()">
             <div>
               <label for="email">
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="Adresse email" required
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="Adresse email"
+                  required
                   v-model="email"
-                  class="appearance-none w-full  focus:outline-none focus:ring-ecstasy-500 input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center">
+                  class="
+                    appearance-none
+                    w-full
+                    focus:outline-none focus:ring-ecstasy-500
+                    input-style
+                    p-0
+                    pt-1
+                    text-2xl text-center
+                    max-w-[75%]
+                    mx-auto
+                    flex
+                    items-center
+                    justify-center
+                  "
+                />
               </label>
             </div>
             <div>
               <label for="email">
-                <input id="password" name="password" type="password" placeholder="Mot de passe" required
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Mot de passe"
+                  required
                   v-model="password"
-                  class="appearance-none w-full focus:outline-none focus:ring-ecstasy-500 input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center">
+                  class="
+                    appearance-none
+                    w-full
+                    focus:outline-none focus:ring-ecstasy-500
+                    input-style
+                    p-0
+                    pt-1
+                    text-2xl text-center
+                    max-w-[75%]
+                    mx-auto
+                    flex
+                    items-center
+                    justify-center
+                  "
+                />
               </label>
-                          <!--error message-->
-            <Transition name="fade" appear>
-              <p v-if="errorMessage"
-                class="text-base font-medium text-center text-red-500 hover:text-red-500 opacity-80">
-                {{errorMessage}}
-              </p>
-            </Transition>
+              <!--error message-->
+              <Transition name="fade" appear>
+                <p
+                  v-if="errorMessage"
+                  class="text-base font-medium text-center text-red-500  hover:text-red-500 opacity-80"
+                >
+                  {{ errorMessage }}
+                </p>
+              </Transition>
             </div>
             <div class="flex items-center justify-center">
-              <input type="submit" name="search" id="search" class="submit-button max-w-[90%] mt-10"
-                value="Créer mon compte">
+              <input
+                type="submit"
+                name="search"
+                id="search"
+                class="submit-button max-w-[90%] mt-10"
+                value="Créer mon compte"
+              />
             </div>
           </form>
           <!--<div class="mt-6">
@@ -55,7 +109,7 @@
                   <span class="px-2 text-white rounded-full bg-ecstasy-500">Ou connectes-toi avec</span>
                 </div>
               </div>
-              <div class="mt-6 grid grid-cols-3 gap-3">
+              <div class="grid grid-cols-3 gap-3 mt-6">
                 <div>
                   <a href="#"
                     class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-full shadow-sm bg-ecstasy-500">
@@ -97,48 +151,43 @@
 </template>
 
 <script setup>
-  const {
-    auth
-  } = useNhostClient()
+const { auth } = useNhostClient();
 
-  definePageMeta({
-    layout: "sign-layout",
-  });
+definePageMeta({
+  layout: "sign-layout",
+});
 
-  // redirect method if user is already logged in
-  const user = useNhostUser()
-  if (user.value !== null) {
-    navigateTo('/')
-  }
+// redirect method if user is already logged in
+const user = useNhostUser();
+if (user.value !== null) {
+  navigateTo("/");
+}
 
-  // todo: google ?
-  // todo: facebook ?
-  // const locale = ref(navigator.language || navigator.userLanguage)
-  const email = ref('')
-  const password = ref('')
-  const needsEmailVerification = ref(false)
-  const errorMessage = ref('')
+// todo: google ?
+// todo: facebook ?
+// const locale = ref(navigator.language || navigator.userLanguage)
+const email = ref("");
+const password = ref("");
+const needsEmailVerification = ref(false);
+const errorMessage = ref("");
 
-  const signUp = async () => {
-    try {
-      const res = await auth.signUp({
-        email: email.value,
-        password: password.value,
-      })
+const signUp = async () => {
+  try {
+    const res = await auth.signUp({
+      email: email.value,
+      password: password.value,
+    });
 
-
-      if (res.error === null) {
-        needsEmailVerification.value = true
-        setTimeout(() => {
-          return navigateTo('/')
-        }, 15000);
-      } else if (res.error.status === 409) {
-        errorMessage.value = 'Un compte existe déjà avec cette adresse mail.'
-      }
-
-    } catch (error) {
-      console.log(error);
+    if (res.error === null) {
+      needsEmailVerification.value = true;
+      setTimeout(() => {
+        return navigateTo("/");
+      }, 15000);
+    } else if (res.error.status === 409) {
+      errorMessage.value = "Un compte existe déjà avec cette adresse mail.";
     }
+  } catch (error) {
+    console.log(error);
   }
-
+};
 </script>
