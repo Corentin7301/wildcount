@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statics Forms</title>
+</head>
+
+<body>
+  <h2>Contact Form</h2>
+
+  <form method="post" name="comment-form" id="comment-form" data-netlify="true">
+    <label for="user-firstname">
+      <input type="text" name="user-firstname" id="user-firstname" required>
+    </label>
+    <label for="user-email">
+      <input type="text" name="user-email" id="user-email">
+    </label>
+    <div>
+    <textarea name="message" id="message" placeholder="Tout ce que tu veux !" required></textarea>
+  </div>
+  <p class="hidden">
+    <label>
+      I see you... r.o.b.o.t <input name="bot-field" />
+    </label>
+  </p>
+  <input type="submit" name="submit" id="submit" class="mt-5 submit-button" value="Envoyer">
+  </form>
+
+</body>
+
+</html>

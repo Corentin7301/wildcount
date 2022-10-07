@@ -11,7 +11,7 @@
             </svg>
             <span>Installer l'application</span>
           </div>
-          <div class=" w-2 h-2 mr-2 bg-ecstasy-500 rounded-full animate-ping"></div>
+          <div class="w-2 h-2 mr-2 rounded-full bg-ecstasy-500 animate-ping"></div>
         </button>
         <NuxtLink to="/tutorial" class=" button-container">
           <div class="label-container">
@@ -53,7 +53,7 @@
             <span>Payes moi un café <span class="text-base">☕️</span> ! </span>
           </div>
         </a>
-        <NuxtLink to="/account/my-account" class=" button-container">
+        <NuxtLink to="/account/new-password" class=" button-container">
           <div class="label-container">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +109,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
         </NuxtLink>
-        <button class=" button-container text-red-500" @click="deleteModale = true">
+        <button class="text-red-500 button-container" @click="deleteModale = true">
           <div class="label-container">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +120,7 @@
             <span>Supprimer TOUTES les observations</span>
           </div>
         </button>
-        <button v-if="user" @click="signout()" class=" button-container text-red-500">
+        <button v-if="user" @click="signout()" class="text-red-500 button-container">
           <div class="label-container">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
@@ -131,18 +131,28 @@
           </div>
         </button>
       </section>
-      <p class="mt-7 text-xl">Application réalisée par <a href="https://portfolio.corentinperroux.fr"
+      <p class="text-xl mt-7">Application réalisée par <a href="https://portfolio.corentinperroux.fr"
           class=" text-tan-hide-500">Corentin PERROUX</a> <span class="text-base">🦌</span></p>
       <!--why this app modale-->
       <Transition name="slide-top" appear>
-        <CtaModal v-if="whyThisAppModal" @close-modal="whyThisAppModal = false" title="Pourquoi cette application ?"
-          job="showText" class=" content-container"><ContentRenderer :value="data"/></CtaModal>
+        <CtaModal v-if="whyThisAppModal" @close-modal="whyThisAppModal = false"
+          job="showText" class=" content-container">
+        <template #title>
+          Pourquoi cette application ?
+        </template>
+          <template #showText>
+            <ContentRenderer :value="data" />
+          </template>
+        </CtaModal>
       </Transition>
       <!--delete modale-->
       <Transition name="slide-top" appear>
         <CtaModal v-if="deleteModale" @close-modal="deleteModale = false"
-          title="Supprimer TOUTES les observations ?<br>(Attention ! Tu ne pourras pas annuler !)"
-          buttonMessage="Tout supprimer" :warn="true" job="deletingAllObservations" />
+          buttonMessage="Tout supprimer" :warn="true" job="deletingAllObservations">
+          <template #title>
+            Supprimer TOUTES les observations ?<br>(Attention ! Tu ne pourras pas annuler !)
+          </template>
+        </CtaModal>
       </Transition>
     </Container>
   </div>
@@ -194,7 +204,9 @@
   }
 
   const whyThisAppModal = ref(false)
-  const { data } = await useAsyncData('page-data', () => queryContent('/why-this-app').findOne())
+  const {
+    data
+  } = await useAsyncData('page-data', () => queryContent('/why-this-app').findOne())
 
   const deleteModale = ref(false)
 

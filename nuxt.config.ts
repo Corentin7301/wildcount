@@ -11,32 +11,110 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Nuxt 3 Awesome Starter',
-      titleTemplate: '%s - Nuxt 3 Awesome Starter',
+      title: 'Wildcount',
+      // titleTemplate: '%s - Wildcount',
+
       meta: [{
+          charset: 'utf-8'
+        },
+        {
           name: 'viewport',
           content: 'width=device-width, initial-scale=1'
         },
         {
           hid: 'description',
           name: 'description',
-          content: 'Nuxt 3 Awesome Starter',
+          content: global.siteMetaDescription
         },
+
+        {
+          property: "og:site_name",
+          content: global.siteName
+        },
+        {
+          hid: "og:type",
+          property: "og:type",
+          content: global.siteType
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: global.siteUrl,
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: global.siteName,
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: global.siteMetaDescription,
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: "/logo.png",
+        },
+        {
+          property: "og:image:width",
+          content: "740"
+        },
+        {
+          property: "og:image:height",
+          content: "300"
+        },
+
+        {
+          name: "twitter:site",
+          content: global.twitterAccount
+        },
+        // { name: "twitter:card", content: "summary_large_image" }, 
+        {
+          hid: "twitter:url",
+          name: "twitter:url",
+          content: global.twitterUrl,
+        },
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: global.siteName,
+        },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: global.siteMetaDescription,
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: "/logo.png",
+        },
+
       ],
-      link: [{
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/logo.png'
-      }],
+      link: [
+
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          // CHANGE FAVICON NAME HERE
+          href: '/logo.png'
+        },
+        {
+          hid: "canonical",
+          rel: "canonical",
+          href: global.siteUrl,
+        }
+      ]
     },
   },
 
-
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', '@kevinmarrec/nuxt-pwa'],
+modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', 'nuxt-icon', '@kevinmarrec/nuxt-pwa'],
   nhost: {
     backendUrl: process.env.NHOST_URL,
   },
-  pwa: {
+  
+    pwa: {
     meta: {
       theme_color: '#373D20',
       name: 'WildCount',
@@ -60,6 +138,10 @@ export default defineNuxtConfig({
     },
   },
 
+  plugins: [{
+    src: '@/plugins/variables.js'
+  }, ],
+
   css: [
     // CSS file in the project
     '@/assets/css/tailwind.css',
@@ -67,7 +149,6 @@ export default defineNuxtConfig({
     '@/assets/css/transition.css',
     '@/assets/css/style-perso.css',
   ],
-  favicon: './assets/img/icon.png',
 
   // auto import components
   components: true,

@@ -1,17 +1,29 @@
 # todo: 
-- [ ] : for production, turn return url in nhost for emails sent
-- [ ] : manage connection not available
+- [ ] : Make.com -> send-me a telegram message when someone sends a comment via form + add in notion / sheet list
+- [ ] : create an success and thanks message for send-comment
 - [ ] : create filters in list page for sort by All obs or By one day (input the - day's date) or By period
-- [ ] : check nuxt.config & metas
-- [ ] : Create a Change password method
-- [ ] : Test install app button
-- [ ] : Pass to PWA
 - [ ] : Add analytics ?
-- [ ] : Connect form of send-comment to Netlify
-- [ ] : Add swipe between pages
-- [ ] Add Pages:
-  - [ ] : my-account
-  - [ ] : Tutorial
-  - [ ] : send-comments
-  - [ ] : legal-notice
-  - [ ] : privacy-policy
+- [ ] : Beta ?
+  - [ ] : Make.com -> create limited list of users
+- [ ] : Demo ?
+- [ ] : Test install app button *(await PWA support)*
+- [ ] : Pass to PWA *(in progress)*
+- [ ] : for production, turn return url in nhost for emails sent
+- [ ] : Landing page sharing button on app
+- [ ] : Test if we can transform complex svg into other svg
+- [ ] : Work on success new observation animation
+- [ ] : Add swipe between pages ~ *"No actual solution found yet"*
+- [ ] : Look at vue router transition
+- [x] : clean code (console.log, debugger, ...)
+- [x] : add honey pot field
+- [x] : Connect form of send-comment to Netlify
+- [x] : check nuxt.config & metas
+- [x] : Add animals choice (menu) as filter to list page
+- [x] : Create a Change password method
+- [x] : manage connection not available
+- [x] Add Pages:
+  - [x] : my-account
+  - [x] : Tutorial
+  - [x] : send-comments
+  - [x] : legal-notice
+  - [x] : privacy-policy
