@@ -8,16 +8,17 @@
         </svg>
       </NuxtLink>
 
-      <NuxtLink to="/stats">
-        <svg class="w-9 h-9 icon-shadow stroke-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+      <NuxtLink to="" class="relative ">
+        <svg class="opacity-30 w-9 h-9 icon-shadow stroke-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
           </path>
         </svg>
+        <span class="absolute text-xl -translate-x-1/2 left-1/2 -bottom-6 opacity-70">Bientôt</span>
       </NuxtLink>
 
-      <NuxtLink to="/" class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+      <NuxtLink to="/" class="absolute transform -translate-x-1/2 -top-12 left-1/2">
         <Button color="red">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>

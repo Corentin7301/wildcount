@@ -1,11 +1,10 @@
 <template>
   <div class="flex items-center gap-3">
-    <div class="spinner"></div>
-
     <p class="text-xl">
       Je suis toujours en train de travailler sur cette page, elle ne devrait
       pas trop tarder à sortir ! 😉
     </p>
+    <div class="spinner"></div>
   </div>
 </template>
 

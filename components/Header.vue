@@ -1,9 +1,10 @@
 <template>
-  <header class="flex justify-between align-top  mb-11">
-    <svg @click="menuIsOpen = true" class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+  <header class="flex justify-between align-top mb-11">
+    <svg v-if="enabledMenu" @click="menuIsOpen = true" class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
     </svg>
+    <div v-else class="w-6 "></div>
 
     <NuxtLink to="/"><img src="/logo.png" alt="wildcount logo" class=" max-w-[90px] max-h-[90px]"></NuxtLink>
 
@@ -26,6 +27,7 @@
 
 <script setup>
   const menuIsOpen = ref(false)
+  const enabledMenu = ref(false)
 
 </script>
 
