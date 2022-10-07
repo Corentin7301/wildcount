@@ -113,30 +113,48 @@ export default defineNuxtConfig({
   nhost: {
     backendUrl: process.env.NHOST_URL,
   },
-
   pwa: {
-    meta: {
-      theme_color: '#373D20',
-      name: 'WildCount',
-      author: 'Corentin PERROUX',
-      description: 'Compte tes observations d\'espèces sauvages sur WildCount !',
-      lang: 'fr',
-    },
     manifest: {
-      name: 'WildCount',
-      short_name: 'WildCount',
-      description: 'Compte tes observations d\'espèces sauvages sur WildCount !',
-      lang: 'fr',
-      theme_color: "#333333",
-      background_color: "#333333",
-      display: "standalone",
-      orientation: "portrait",
-      start_url: "/?utm_source=pwa"
+      name: 'Marrec.io',
+      short_name: 'Marrec.io',
+      background_color: '#111827',
+      theme_color: '#3B82F6',
     },
-    workbox: {
-      enabled: true
+    meta: {
+      name: 'Kevin Marrec | Marrec.io',
+      author: 'Kevin Marrec',
+      description: 'Kevin Marrec, Full-stack Developer.',
+      mobileAppIOS: true,
+      ogHost: 'https://marrec.io',
+      twitterCard: 'summary',
+      twitterSite: '@K_Marrec',
+      twitterCreator: '@K_Marrec',
     },
   },
+  // pwa: {
+  //   meta: {
+  //     theme_color: '#373D20',
+  //     name: 'WildCount',
+  //     author: 'Corentin PERROUX',
+  //     description: 'Compte tes observations d\'espèces sauvages sur WildCount !',
+  //     lang: 'fr',
+  //   },
+  //   manifest: {
+  //     start_url: "/",
+  //     name: 'WildCount',
+  //     short_name: 'WildCount',
+  //     description: 'Compte tes observations d\'espèces sauvages sur WildCount !',
+  //     lang: 'fr',
+  //     theme_color: "#333333",
+  //     background_color: "#333333",
+  //     display: "standalone",
+  //     // orientation: "portrait",
+  //     // start_url: "/?utm_source=pwa"
+  //   },
+  //   workbox: {
+  //     enabled: true
+  //   },
+  // },
 
   plugins: [{
     src: '@/plugins/variables.js'
