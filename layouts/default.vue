@@ -4,7 +4,7 @@
     <Container>
       <Header />
       <slot v-if="online" />
-      <p class="text-3xl text-center text-red-500 underline  underline-offset-4" v-else>Tu es hors ligne ! Vérifies ta
+      <p class="text-3xl text-center text-red-500 underline underline-offset-4" v-else>Tu es hors ligne ! Vérifies ta
         connexion Internet !</p>
       <Navbar />
     </Container>
@@ -16,7 +16,5 @@
     useOnline
   } from '@vueuse/core'
   const online = useOnline()
-
   useHead({})
-
 </script>

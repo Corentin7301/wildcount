@@ -109,23 +109,23 @@ export default defineNuxtConfig({
     },
   },
 
-modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', 'nuxt-icon', '@kevinmarrec/nuxt-pwa'],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', 'nuxt-icon', '@kevinmarrec/nuxt-pwa'],
   nhost: {
     backendUrl: process.env.NHOST_URL,
   },
-  
-    pwa: {
+
+  pwa: {
     meta: {
       theme_color: '#373D20',
       name: 'WildCount',
       author: 'Corentin PERROUX',
-      description: 'Vois ton nombre d\'observations par espèces au lieu de les calculer sur WildCount !',
+      description: 'Compte tes observations d\'espèces sauvages sur WildCount !',
       lang: 'fr',
     },
     manifest: {
       name: 'WildCount',
       short_name: 'WildCount',
-      description: 'Vois ton nombre d\'observations par espèces au lieu de les calculer sur WildCount !',
+      description: 'Compte tes observations d\'espèces sauvages sur WildCount !',
       lang: 'fr',
       theme_color: "#333333",
       background_color: "#333333",
