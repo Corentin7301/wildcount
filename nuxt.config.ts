@@ -22,7 +22,6 @@ export default defineNuxtConfig({
           content: 'width=device-width, initial-scale=1'
         },
         {
-
           hid: 'description',
           name: 'description',
           content: global.siteMetaDescription
@@ -110,15 +109,39 @@ export default defineNuxtConfig({
     },
   },
 
-
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', 'nuxt-icon'],
+modules: ['@nuxtjs/tailwindcss', 'nuxt-nhost', '@pinia/nuxt', '@nuxt/content', 'nuxt-icon', '@kevinmarrec/nuxt-pwa'],
   nhost: {
     backendUrl: process.env.NHOST_URL,
+  },
+  
+    pwa: {
+    meta: {
+      theme_color: '#373D20',
+      name: 'WildCount',
+      author: 'Corentin PERROUX',
+      description: 'Vois ton nombre d\'observations par espèces au lieu de les calculer sur WildCount !',
+      lang: 'fr',
+    },
+    manifest: {
+      name: 'WildCount',
+      short_name: 'WildCount',
+      description: 'Vois ton nombre d\'observations par espèces au lieu de les calculer sur WildCount !',
+      lang: 'fr',
+      theme_color: "#333333",
+      background_color: "#333333",
+      display: "standalone",
+      orientation: "portrait",
+      start_url: "/?utm_source=pwa"
+    },
+    workbox: {
+      enabled: true
+    },
   },
 
   plugins: [{
     src: '@/plugins/variables.js'
   }, ],
+
   css: [
     // CSS file in the project
     '@/assets/css/tailwind.css',
