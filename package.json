@@ -1,4 +1,5 @@
 {
+  "name": "wildcount",
   "private": true,
   "scripts": {
     "build": "nuxi build",
