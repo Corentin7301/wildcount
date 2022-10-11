@@ -84,7 +84,7 @@
               <Transition name="fade" appear>
                 <p
                   v-if="errorMessage"
-                  class="text-base font-medium text-center text-red-500  hover:text-red-500 opacity-80"
+                  class="text-base font-medium text-center text-red-500 hover:text-red-500 opacity-80"
                 >
                   {{ errorMessage }}
                 </p>
@@ -177,7 +177,6 @@ const signUp = async () => {
       email: email.value,
       password: password.value,
     });
-
     if (res.error === null) {
       needsEmailVerification.value = true;
       setTimeout(() => {
@@ -185,6 +184,8 @@ const signUp = async () => {
       }, 15000);
     } else if (res.error.status === 409) {
       errorMessage.value = "Un compte existe déjà avec cette adresse mail.";
+    } else if (res.error.status === 400) {
+      errorMessage.value = "Rentres un email valide et un mot de passe d'au moins 8 caractères.";
     }
   } catch (error) {
     console.log(error);

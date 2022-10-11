@@ -21,8 +21,8 @@
             </div>
             <div>
               <label for="email">
-                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Mot de passe" required
-                  v-model="password"
+                <input id="password" name="password" type="password" autocomplete="current-password"
+                  placeholder="Mot de passe" required v-model="password"
                   class="appearance-none w-full focus:outline-none focus:ring-ecstasy-500 input-style p-0 pt-1 text-2xl text-center max-w-[75%] mx-auto flex items-center justify-center">
               </label>
             </div>
@@ -54,7 +54,7 @@
                   <span class="px-2 text-white rounded-full bg-ecstasy-500">Ou connectes-toi avec</span>
                 </div>
               </div>
-              <div class="mt-6 grid grid-cols-3 gap-3">
+              <div class="grid grid-cols-3 gap-3 mt-6">
                 <div>
                   <a href="#"
                     class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-full shadow-sm bg-ecstasy-500">
@@ -120,19 +120,18 @@
         email: email.value,
         password: password.value
       })
-
-      if (res.error === null || res.error.status === 100) {
+      if (res.error == null && res.user !== null) {
         return navigateTo('/')
-      }
-
-      if (res.error.status === 401) {
+      } else if (res.error.status === 401) {
         errorMessage.value = 'Email ou mot de passe incorrect'
-      }
-      if (res.error.status === 102) {
+      } else if (res.error.status === 102) {
         errorMessage.value =
           'Tu dois vérifier ton adresse email. Cliques sur le lien qui t\'as a été envoyé par email. 📬 (Si tu n\'as pas reçu le mail, vérifies dans les spams)'
+      } else if (res.error.status === 100) {
+        return navigateTo('/')
       }
-
+      console.log(res);
+      
     } catch (error) {
       console.log(error)
     }
