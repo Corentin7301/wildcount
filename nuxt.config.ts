@@ -111,18 +111,6 @@ export default defineNuxtConfig({
   },
   pwa: {
     meta: {
-      name: 'Kevin Marrec | Marrec.io',
-      author: 'Kevin Marrec',
-      description: 'Kevin Marrec, Full-stack Developer.',
-      mobileAppIOS: true,
-      ogHost: 'https://marrec.io',
-      twitterCard: 'summary',
-      twitterSite: '@K_Marrec',
-      twitterCreator: '@K_Marrec',
-    },
-  },
-  pwa: {
-    meta: {
       name: 'WildCount',
       author: 'Corentin PERROUX',
       description: 'Compte tes observations d\'espèces sauvages sur WildCount !',
