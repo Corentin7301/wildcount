@@ -1,7 +1,7 @@
 <template>
   <button
     class="w-16 h-16 p-2 rounded-full button-shadow"
-    :class="`bg-gradient-to-t from-${defineButtonColor().first} to-${
+    :class="`bg-gradient-to-t ${defineButtonColor().first} ${
       defineButtonColor().second
     }`"
   >
@@ -21,18 +21,18 @@ const defineButtonColor = () => {
   switch (props.color) {
     case "base":
       return {
-        first: "ecstasy-500",
-        second: "tan-hide-500",
+        first: "to-tan-hide-500",
+        second: "from-ecstasy-500",
       };
     case "green":
       return {
-        first: "green-300",
-        second: "green-500",
+        first: "to-green-300",
+        second: "from-green-500",
       };
     case "red":
       return {
-        first: "red-300",
-        second: "red-500",
+        first: "to-red-400",
+        second: "from-red-500",
       };
   }
 };

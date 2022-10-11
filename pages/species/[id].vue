@@ -2,8 +2,8 @@
   <div>
     <!--Delete Species modale-->
     <Transition name="slide-top" appear>
-      <CtaModal v-if="deleteSpeciesModale" @close-modal="(deleteSpeciesModale = false), refresh()" buttonMessage="Supprimer"
-        :warn="true" job="deletingSpeciesObservation" :id="route.params.id">
+      <CtaModal v-if="deleteSpeciesModale" @close-modal="(deleteSpeciesModale = false), refresh()"
+        buttonMessage="Supprimer" :warn="true" job="deletingSpeciesObservation" :id="route.params.id">
         <template #title>
           Supprimer toutes les observations de cette espèce ?<br />(Tu ne pourras pas annuler !)
         </template>
@@ -21,13 +21,13 @@
     <!--Edit modale-->
     <Transition name="slide-top" appear>
       <CtaModal v-if="editModale" @close-modal="(editModale = false), refresh()" buttonMessage="Annuler"
-      ctaFunction="validate" ctaIcon="heroicons-outline:check" job="editObservation" :warn="false"
-      :id="idOfObservation">
-      <template #title> Modification de l'observation </template>
-    </CtaModal>
-  </Transition>
-  <!--View Comment modale-->
-  <Transition name="slide-top" appear>
+        ctaFunction="validate" ctaIcon="heroicons-outline:check" job="editObservation" :warn="false"
+        :id="idOfObservation">
+        <template #title> Modification de l'observation </template>
+      </CtaModal>
+    </Transition>
+    <!--View Comment modale-->
+    <Transition name="slide-top" appear>
       <CtaModal v-if="viewCommentModale" @close-modal="viewCommentModale = false" buttonMessage="" job="viewComment"
         :id="idOfObservation">
         <template #title> Commentaire </template>
@@ -60,8 +60,8 @@
         </div>
       </div>
       <div class="flex justify-between mb-5">
-        <span class="w-1"></span><Button @click="deleteSpeciesModale = true" class="self-end w-auto h-auto"
-          color="red">Tout supprimer</Button>
+        <span class="w-1"></span>
+        <Button @click="deleteSpeciesModale = true" class="self-end w-auto h-auto" color="red">Tout supprimer</Button>
       </div>
       <ul class="grid overflow-y-scroll gap-11 snap-y scroll-pt-2 calc-max-h no-scroll">
         <li v-for="(observation, index) in observations.data.Observation" :key="index" class="
