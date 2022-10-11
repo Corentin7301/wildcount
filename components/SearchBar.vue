@@ -1,37 +1,24 @@
 <template>
   <div class="relative mt-1 rounded-md shadow-sm">
-    <input
-      type="text"
-      name="search"
-      id="search"
-      class="p-0 pt-1 pl-10 text-2xl input-style"
-      :placeholder="props.inputPlaceholder"
-      v-model="search"
-      autocomplete="off"
-      required
-    />
-    <div
-      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-    >
-      <svg
-        class="w-5 h-5 text-gray-200"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        ></path>
+    <input type="text" name="search" id="search" class="p-0 pt-1 pl-10 text-2xl input-style"
+      :placeholder="props.inputPlaceholder" v-model="search" autocomplete="off" required />
+    <!--search icon-->
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
+      <svg class="w-5 h-5 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </div>
+    <!--cross icon-->
+    <div v-if="search !== ''" @click="search = ''" class="absolute inset-y-0 right-0 flex items-center pr-3 opacity-80">
+      <svg class="w-6 h-6 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </div>
 
-    <ul
-      v-if="dropdownIsOpen"
-      class="
+    <ul v-if="dropdownIsOpen" class="
         absolute
         top-12
         left-0
@@ -43,14 +30,9 @@
         overflow-y-scroll
         divide-y-[1px] divide-gray-700
         no-scroll
-      "
-    >
-      <li
-        v-for="(species, index) in searchedSpecies"
-        :key="index"
-        @click="selectOneSpecies(species)"
-        class="py-3 pl-8 text-2xl leading-4"
-      >
+      ">
+      <li v-for="(species, index) in searchedSpecies" :key="index" @click="selectOneSpecies(species)"
+        class="py-3 pl-8 text-2xl leading-4">
         {{ species.common_name }}
       </li>
     </ul>
@@ -58,48 +40,50 @@
 </template>
 
 <script setup>
-const { graphql } = useNhostClient();
+  const {
+    graphql
+  } = useNhostClient();
 
-const props = defineProps({
-  clearedSearch: {
-    type: Boolean,
-    default: false,
-  },
-  searchbarUtility: {
-    type: String,
-    default: "",
-  },
-  inputPlaceholder: {
-    type: String,
-    default: "Chamois...",
-  },
-});
+  const props = defineProps({
+    clearedSearch: {
+      type: Boolean,
+      default: false,
+    },
+    searchbarUtility: {
+      type: String,
+      default: "",
+    },
+    inputPlaceholder: {
+      type: String,
+      default: "Chamois...",
+    },
+  });
 
-// search feature
-const search = ref("");
-const dropdownIsOpen = ref(false);
-const searchedSpecies = ref([]);
-const selectedSpecies = ref(null);
+  // search feature
+  const search = ref("");
+  const dropdownIsOpen = ref(false);
+  const searchedSpecies = ref([]);
+  const selectedSpecies = ref(null);
 
-watch(search, (newSearch) => {
-  if (props.searchbarUtility === "newObservation") {
-    searchSpecies();
-    if (
-      newSearch.length === 0 ||
-      (selectedSpecies.value !== null &&
-        newSearch === selectedSpecies.value.common_name)
-    ) {
-      dropdownIsOpen.value = false;
-    } else {
-      dropdownIsOpen.value = true;
+  watch(search, (newSearch) => {
+    if (props.searchbarUtility === "newObservation") {
+      searchSpecies();
+      if (
+        newSearch.length === 0 ||
+        (selectedSpecies.value !== null &&
+          newSearch === selectedSpecies.value.common_name)
+      ) {
+        dropdownIsOpen.value = false;
+      } else {
+        dropdownIsOpen.value = true;
+      }
+    } else if (props.searchbarUtility === "allObservations") {
+      searchAllObservations();
     }
-  } else if (props.searchbarUtility === "allObservations") {
-    searchAllObservations();
-  }
-});
-// todo: look at graphQL subscription
-const searchSpecies = async () => {
-  const res = await graphql.request(`
+  });
+  // todo: look at graphQL subscription
+  const searchSpecies = async () => {
+    const res = await graphql.request(`
           query SearchSpecies {
             Species(limit: 10,
             order_by: {common_name: asc},
@@ -115,36 +99,37 @@ const searchSpecies = async () => {
             }
           }
            `);
-  searchedSpecies.value = res.data.Species;
-};
+    searchedSpecies.value = res.data.Species;
+  };
 
-// select one species feature
-const selectOneSpecies = (species) => {
-  selectedSpecies.value = species;
-  search.value = species.common_name;
-  emit("selected-species", species);
-};
+  // select one species feature
+  const selectOneSpecies = (species) => {
+    selectedSpecies.value = species;
+    search.value = species.common_name;
+    emit("selected-species", species);
+  };
 
-const emit = defineEmits([
-  "selected-species",
-  "cleared-search",
-  "all-observations-search-value",
-]);
+  const emit = defineEmits([
+    "selected-species",
+    "cleared-search",
+    "all-observations-search-value",
+  ]);
 
-// clear search & selectedSpecies when observation is successfully submitted
+  // clear search & selectedSpecies when observation is successfully submitted
 
-watch(
-  () => props.clearedSearch,
-  (newClearedSearch, second) => {
-    if (newClearedSearch === true) {
-      search.value = "";
-      selectedSpecies.value = null;
-      emit("cleared-search");
+  watch(
+    () => props.clearedSearch,
+    (newClearedSearch, second) => {
+      if (newClearedSearch === true) {
+        search.value = "";
+        selectedSpecies.value = null;
+        emit("cleared-search");
+      }
     }
-  }
-);
+  );
 
-const searchAllObservations = () => {
-  emit("all-observations-search-value", search.value);
-};
+  const searchAllObservations = () => {
+    emit("all-observations-search-value", search.value);
+  };
+
 </script>
